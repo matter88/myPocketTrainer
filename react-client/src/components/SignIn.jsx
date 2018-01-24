@@ -3,7 +3,6 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React from 'react';
-// import { Link } from 'react-router-dom'
 import { firebaseApp } from '../config/firebase.js';
 import {
     BrowserRouter as Router,
