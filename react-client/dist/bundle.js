@@ -45224,6 +45224,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 var _reactRouterDom = __webpack_require__(39);
 
+var _reactRedux = __webpack_require__(87);
+
 var _firebase = __webpack_require__(69);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -45307,6 +45309,7 @@ var SignUp = function (_React$Component) {
         value: function render() {
             var _this3 = this;
 
+<<<<<<< HEAD
             var isLoggedIn = this.state.signedIn;
             if (isLoggedIn) {
                 return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/UserStats' });
@@ -45314,6 +45317,19 @@ var SignUp = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'container' },
+=======
+            var email = this.props.email;
+
+            var redirect = void 0;
+            console.log('signup email from redux: ', email);
+            if (email) {
+                redirect = _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+            }
+            return _react2.default.createElement(
+                'div',
+                { className: 'form-inline', id: 'banana', style: { margin: "5%" } },
+                redirect,
+>>>>>>> origin/dev
                 _react2.default.createElement(
                     _MuiThemeProvider2.default,
                     null,
@@ -45383,11 +45399,25 @@ var SignUp = function (_React$Component) {
     return SignUp;
 }(_react2.default.Component);
 
+<<<<<<< HEAD
 var style = {
     margin: 15
 };
 
 exports.default = SignUp;
+=======
+var mapStateToProps = function mapStateToProps(state) {
+    var email = state.email;
+
+    return {
+        email: email
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(SignUp);
+
+// export default SignUp;
+>>>>>>> origin/dev
 
 /***/ }),
 /* 401 */

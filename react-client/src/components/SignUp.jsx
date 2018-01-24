@@ -6,6 +6,7 @@ import TextField from 'material-ui/TextField';
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { firebaseApp } from '../config/firebase.js';
 
 class SignUp extends React.Component {
@@ -65,47 +66,44 @@ class SignUp extends React.Component {
     }
 
     render() {
-        const isLoggedIn = this.state.signedIn;
-        if (isLoggedIn) {
-            return <Redirect to='/UserStats' />
-        }
+        const { email } = this.props;
+        let redirect;
+        console.log('signup email from redux: ', email)
+        if (email) {
+            redirect = <Redirect to="/"/>
+        } 
         return(
-        <div className = 'container'>
-          <MuiThemeProvider>
-            <div>
-              <h1> Sign Up</h1>
-             <TextField
-               hintText="Enter your First Name"
-               floatingLabelText="First Name"
-               onChange = {(event,newValue) => this.setState({first_name:newValue})}
-               />
-             <br/>
-             <TextField
-               hintText="Enter your Last Name"
-               floatingLabelText="Last Name"
-               onChange = {(event,newValue) => this.setState({last_name:newValue})}
-               />
-             <br/>
-             <TextField
-               hintText="Enter your Email"
-               type="email"
-               floatingLabelText="Email"
-               // value={this.state.email}
-               onChange={this.changeEmailState}
-               />
-             <br/>
-             <TextField
-               type = "password"
-               hintText="Enter your Password"
-               floatingLabelText="Password"
-               // value = {this.state.password}
-               onChange={this.changePasswordState}
-               />
-             <br/>
-
-           <RaisedButton label="Submit" primary={true} style={style}  onClick={() => this.signUp()}/>
-           <div>{this.state.error.message}</div>
-           <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
+            <div className='form-inline' id="banana" style={{ margin: "5%" }}>
+                {redirect}
+                <h2>SignUp</h2>
+                <div className='form-group'></div>
+                <input 
+                className='form-control'
+                type='text'
+                style={{ marginRight: '5px'}}
+                placeholder='email'
+                // value={this.state.email}
+                onChange={this.changeEmailState}
+                />
+                <input 
+                className='form-control'
+                type='password'
+                style={{ marginRight: '5px'}}
+                placeholder='password'
+                // value = {this.state.password}
+                onChange={this.changePasswordState}
+                />
+                <button 
+                className='btn btn-primary'
+                type='button'
+                onClick={() => this.signUp()}
+                >
+                SignUp
+                </button>
+                
+                <div>{this.state.error.message}</div>
+                {/* <div>{ test }</div> */}
+                <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
             </div>
            </MuiThemeProvider>
         </div>
@@ -114,8 +112,13 @@ class SignUp extends React.Component {
     }
 }
 
-const style = {
-  margin: 15,
-};
+const mapStateToProps = (state) => {
+    const { email } = state;
+    return {
+        email
+    }
+}
 
-export default SignUp;
+export default connect(mapStateToProps, null)(SignUp);
+
+// export default SignUp;
