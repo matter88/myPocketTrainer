@@ -72,37 +72,42 @@ class SignUp extends React.Component {
             redirect = <Redirect to='/UserStats'/>
         } 
         return(
-            <div className='form-inline' id="banana" style={{ margin: "5%" }}>
-                {redirect}
-                <h2>SignUp</h2>
-                <div className='form-group'></div>
-                <input 
-                className='form-control'
-                type='text'
-                style={{ marginRight: '5px'}}
-                placeholder='email'
-                // value={this.state.email}
-                onChange={this.changeEmailState}
-                />
-                <input 
-                className='form-control'
-                type='password'
-                style={{ marginRight: '5px'}}
-                placeholder='password'
-                // value = {this.state.password}
-                onChange={this.changePasswordState}
-                />
-                <button 
-                className='btn btn-primary'
-                type='button'
-                onClick={() => this.signUp()}
-                >
-                SignUp
-                </button>
-                
-                <div>{this.state.error.message}</div>
-                {/* <div>{ test }</div> */}
-                <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
+        <div className = 'signupForm'>
+          <MuiThemeProvider>
+            <div>
+              <h2>Create New Account</h2>
+             <TextField
+               hintText="Enter your First Name"
+               floatingLabelText="First Name"
+               onChange = {(event,newValue) => this.setState({first_name:newValue})}
+               />
+             <br/>
+             <TextField
+               hintText="Enter your Last Name"
+               floatingLabelText="Last Name"
+               onChange = {(event,newValue) => this.setState({last_name:newValue})}
+               />
+             <br/>
+             <TextField
+               hintText="Enter your Email"
+               type="email"
+               floatingLabelText="Email"
+               // value={this.state.email}
+               onChange={this.changeEmailState}
+               />
+             <br/>
+             <TextField
+               type = "password"
+               hintText="Enter your Password"
+               floatingLabelText="Password"
+               // value = {this.state.password}
+               onChange={this.changePasswordState}
+               />
+             <br/>
+
+           <RaisedButton label="Submit" primary={true} style={style}  onClick={() => this.signUp()}/>
+           <div>{this.state.error.message}</div>
+           <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
             </div>
            </MuiThemeProvider>
         </div>
