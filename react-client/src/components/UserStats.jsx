@@ -1,15 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    Redirect,
-    withRouter
-  } from 'react-router-dom';
-  import axios from 'axios';
-  import Landing from './Landing.jsx';
+import axios from 'axios';
+import Landing from './Landing.jsx';
 import SetCalories from './SetCalories.jsx';
+import DailySummary from './DailySummary.jsx';
+import { setUserStats } from '../actions/index.js';
+import store from '../reducers/store.js';
+import { Redirect } from 'react-router-dom'
+
+const styles = {
+  customWidth: {
+    width: 200,
+  },
+};
 
 class UserStats extends React.Component {
     constructor(props){
@@ -21,7 +24,8 @@ class UserStats extends React.Component {
             weight: 0,
             height: 0,
             age: 0,
-            calories: ""
+            calories: "",
+            macros: null
         }
         this.handleActivityLevel = this.handleActivityLevel.bind(this)
         this.handleGender = this.handleGender.bind(this)
@@ -31,11 +35,12 @@ class UserStats extends React.Component {
         this.handleFeet = this.handleFeet.bind(this)
         this.handleInches = this.handleInches.bind(this)
         this.handleWeight = this.handleWeight.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this)
     }
 
     handleFeet(event) {
         var feetInCM = event.target.value * 30.48
-        console.log(feetInCM)
+        console.log('feetInCM',feetInCM)
         this.setState({
             height: this.state.height + feetInCM
         })
@@ -43,7 +48,6 @@ class UserStats extends React.Component {
 
     handleInches(event) {
         var inchesInCM = event.target.value * 2.54
-        console.log(inchesInCM)
         this.setState({
             height: this.state.height + inchesInCM
         })
@@ -51,13 +55,13 @@ class UserStats extends React.Component {
 
    handleActivityLevel(event) {
         this.setState({
-            value: event.target.value
+            activityLevel: event.target.value
         })
     }
 
-    handleGender(event) {
+    handleGender(event, index, value2) {
         this.setState({
-            gender: event.target.value
+            value2
         })
     }
 
@@ -68,9 +72,9 @@ class UserStats extends React.Component {
     }
 
     handleWeight(event) {
-        var weightInKG = event.target.value * 0.453592
+        let inputWeight = event.target.value  * 0.453592
         this.setState({
-            weight: weightInKG
+            weight: inputWeight
         })
     }
 
@@ -80,15 +84,15 @@ class UserStats extends React.Component {
         })
     }
 
-    calculateMacros(obj){
+    calculateCalories(obj){
         let restingEnergy = null;
         let TDEE = null;
         let totalTDEE = null;
 
-        
-        if (obj.gender === "Male") {
+
+        if (obj.gender === "male") {
             restingEnergy = 10 * this.state.weight + 6.25 * this.state.height - 5 * this.state.age + 5
-        } else if (obj.gender === "Female") {
+        } else if (obj.gender === "female") {
             restingEnergy = 10 * this.state.weight + 6.25 * this.state.height - 5 * this.state.age - 161
         }
 
@@ -102,20 +106,24 @@ class UserStats extends React.Component {
             TDEE = restingEnergy * 1.725;
         }
 
-        if (obj.goal === "Lose") {
+        if (obj.goal === "lose") {
             totalTDEE = TDEE - ( TDEE * .20 )
-        } else if (obj.goal === "Lose10") {
+        } else if (obj.goal === "lose10%") {
             totalTDEE = TDEE - ( TDEE * .10 )
-        } else if (obj.goal === "Gain") {
+        } else if (obj.goal === "gain") {
             totalTDEE = TDEE + ( TDEE * .20)
-        }     
+        }
+
+        console.log('calculate calories: ', totalTDEE )
         return Math.round(totalTDEE);
+        
     }
 
     handleSubmitUserStats(event) {
         event.preventDefault()
         let calcCalories;
         let macrosNutrients;
+        const { email } = this.props
         var userBodyData = {
             age: this.state.age,
             weight: this.state.weight,
@@ -124,19 +132,28 @@ class UserStats extends React.Component {
             goal: this.state.goal,
             activityLevel: this.state.activityLevel
           }
-
-        const { email } = this.props
-        userBodyData["email"] = email;
-
-        calcCalories = this.calculateMacros(userBodyData);
-        macrosNutrients = this.calculateMacrosNutrients(calcCalories)
-        console.log('calories', calcCalories)
-        console.log('macroNutrients', macrosNutrients)
+          
+        calcCalories = this.calculateCalories(userBodyData);  
+        macrosNutrients = this.calculateMacros(calcCalories)
         
+        userBodyData["email"] = email;
+        userBodyData["calories"] = calcCalories;
+        userBodyData["protiens"] = macrosNutrients.protiens;
+        userBodyData["carbohydrates"] = macrosNutrients.carbohydrates;
+        userBodyData["fats"] = macrosNutrients.fats
+        userBodyData['createdAt']= new Date();
+
+       
+  
+        store.dispatch(setUserStats(userBodyData))
+
+
         axios.post('banx/userStats', userBodyData)
           .then((response)=>{
+              console.log(response.data)
             this.setState({
-                calories: calcCalories
+                calories: calcCalories,
+                macros: macrosNutrients
             })
           })
           .catch((error)=> {
@@ -144,84 +161,85 @@ class UserStats extends React.Component {
           });
     }
 
-    calculateMacrosNutrients(calories) {
+    calculateMacros(calories) {
         var obj = {};
-        obj["proteins"] = calories / 4;
-        obj["carbs"] = calories / 4;
+        obj["protiens"] = calories / 4;
+        obj["carbohydrates"] = calories / 4;
         obj["fats"] = calories / 9;
 
         return obj;
     }
 
-    // clearState() {
-    //     this.setState({
-    //         activityLevel: "sedentary",
-    //         goal: "Lose",
-    //         gender: "Male",
-    //         weight: 0,
-    //         height: 0,
-    //         age: 0,
-    //         // calories: ""
-    //     })
-    // }
+    handleInputChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+    
+        this.setState({
+          gender: name
+        });
+      }
 
     render() {
-        // if (this.state.compiledData) {
-        //     return <Redirect to='/' />
-        // }
+        if (this.state.macros) {
+            return <Redirect to="/Journal"/>
+        }
+        if (this.props.email === undefined) {
+            return <Redirect to="/"/>
+        }
         return (
-            <div>
-                <SetCalories calories={this.state.calories}/>
+            <div className = "profile">
+               <h2>Profile</h2>
                 <form>
-                    <label>
-                    Age:<br/>
-                    <input type="number" placeholder="Age" onChange={this.handleAge} />
-                    </label>
-                    <br/> <br/>
-                    <label>                
-                    Current Weight:<br/>
-                    <input type="number" placeholder="Weight" onChange={this.handleWeight} />
-                    </label>
-                    <br/> <br/>
-                    <label>
-                    Current Height:<br/>
-                    <input type="number" placeholder="Feet" onChange={this.handleFeet}/>
-                    <input type="number" placeholder="Inches" onChange={this.handleInches} />
-                    </label>
-                    <br/> <br/>
-                    <label>
-                        Activity Level:<br/>
-                    <select value={this.state.value} onChange={this.handleActivityLevel}>
-                        <option value="sedentary">Sedentary</option>
-                        <option value="lightActivity">Light Activity</option>
-                        <option value="moderateActivity">Moderate Activity</option>
-                        <option value="veryActive">Very Active</option>
-                    </select>
-                    </label>
-                    <label>
-                        Gender:<br/>
-                    <select value={this.state.gender} onChange={this.handleGender}>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                    </label>
-                    <br/><br/>
-                    <label>
-                        Goal:<br/>
-                    <select value={this.state.value} onChange={this.handleChangeGoal}>
-                        <option value="Lose">Lose</option>
-                        <option value="Lose10">Lose10</option>
-                        <option value="Maintain">Maintain</option>
-                        <option value="Gain">Gain</option>
-                    </select>
-                    </label>
-                    <input 
-                    type="submit" 
-                    value="Submit" 
-                    onClick={this.handleSubmitUserStats}
-                    /><br/> <br/>
-
-                </form>
+                <label>
+                Age:
+                <input name="age" type="number" onChange={this.handleAge} />
+                </label>
+                <label>
+                Weight:
+                <input name="weight" type="number" onChange={this.handleWeight} />
+                </label>
+                <br />
+                <label>
+                Feet:
+                <input name="feet" type="number" onChange={this.handleFeet} />
+                </label>
+                <label>
+                Inches:
+                <input  name="inches" type="number" onChange={this.handleInches} />
+                </label>
+                <label>
+                Female:
+                <input name="female" type="checkbox" checked={this.state.female} onChange={this.handleInputChange} />
+                </label>
+                <label>
+                Male:
+                <input name="male" type="checkbox" checked={this.state.male} onChange={this.handleInputChange} />
+                </label>
+                <br/>
+                <label>
+                Activity Level:
+                <select value={this.state.value} onChange={this.handleActivityLevel}>
+                    <option value="sedentary">Sedentary</option>
+                    <option value="lightActivity">Light Activity</option>
+                    <option value="moderateActivity">Moderate Activity</option>
+                    <option value="veryActive">Very Active</option>
+                </select>
+                </label>
+                <br/>
+                <label>
+                Goal:
+                <select value={this.state.value} onChange={this.handleGoal}>
+                    <option value="lose">Lose</option>
+                    <option value="lose10%">Lose 10%</option>
+                    <option value="maintain">Maintain</option>
+                    <option value="gain">Gain</option>
+                </select>
+                </label>
+                <br/>
+                <input type="submit" value="Submit" onClick={this.handleSubmitUserStats} />
+                
+                </form> 
             </div>
         )
     }
@@ -230,7 +248,7 @@ class UserStats extends React.Component {
 
 
 var mapStateToProps = function(state) {
-    const { email } = state
+    const { email } = state.reducer
     return {
         email
     }

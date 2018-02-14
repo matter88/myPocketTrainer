@@ -13,11 +13,15 @@ router.post('/caloriesInput', controller.caloriesInput.post)
 
 router.get('/getCalories', controller.getCalories.get);
 
-router.post('/searchNutrition', controller.searchNutrition.post);
+router.get('/getTodaysJournal', controller.getTodaysJournal.get);
 
 router.post('/userStats', controller.userStats.post);
 
-router.post('/usdaDB', searchBarController.usdaDB.post)
+router.get('/getUserStats', controller.getUserStats.get);
+
+router.post('/usdaDB', searchBarController.usdaDB.post);
+
+router.get('/usdaReport', searchBarController.usdaReport.get);
 
 
 

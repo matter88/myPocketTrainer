@@ -1,17 +1,45 @@
 import React from 'react';
-import USDAsearch from './USDAsearch.jsx'
+import USDAsearch from './USDAsearch.jsx';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 const USDAresultsList = (props) => (
-    <div>
-        {console.log("hi", props)}
-        {props.usdaResults.map((item, index) => 
-        <li onClick={() => {
-            props.handleClick()}
-        }
+   
+        <Table>
+     
+    
+    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+      <TableRow>
+        <TableHeaderColumn></TableHeaderColumn>
+      </TableRow>
+    </TableHeader> 
+
+        <TableBody displayRowCheckbox={false} >
+    {props.usdaResults.map((item, index) => 
+        <TableRow 
         className="testNoBullet" 
         key={index}
-        >{item.name}</li>)}
-    </div>
+        >
+        <TableRowColumn>
+            <li onClick={() => {
+            props.handleClick(item.ndbno)}
+            }>
+            {item.name}
+            </li>
+        </TableRowColumn>
+        </TableRow>
+     )}
+    </TableBody>
+</Table>
+
+    
+    
 )
 
 export default USDAresultsList;

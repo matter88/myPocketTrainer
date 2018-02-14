@@ -2,7 +2,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-
 import React from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
@@ -18,9 +17,7 @@ class SignUp extends React.Component {
             error: {
                 message: ''
             },
-            signedIn: false
         }
-        // this.handleSignUp = this.handleSignUp.bind(this);
         this.changeEmailState = this.changeEmailState.bind(this);
         this.changePasswordState = this.changePasswordState.bind(this)
     }
@@ -37,19 +34,6 @@ class SignUp extends React.Component {
         })
     }
 
-    // handleSignUp() {
-    //     axios.post('/dbSignUpInfo', {
-    //         email: this.state.email,
-    //         password: this.state.password
-    //         })
-    //         .then(function (response) {
-    //         console.log(response);
-    //         })
-    //         .catch(function (error) {
-    //         console.log(error);
-    //         });
-    // }
-
     signUp() {
         const { email, password } = this.state
         firebaseApp.auth().createUserWithEmailAndPassword(email, password)
@@ -58,34 +42,30 @@ class SignUp extends React.Component {
                 error: error
             })
         })
-        .then(() => {
-            this.setState({
-                signedIn: true
-            })
-        })
     }
+
+
 
     render() {
         const { email } = this.props;
         let redirect;
         if (email) {
             redirect = <Redirect to='/UserStats'/>
-        } 
+        }
         return(
         <div className = 'signupForm'>
-          <MuiThemeProvider>
+         {redirect}
             <div>
-              <h2>Create New Account</h2>
              <TextField
                hintText="Enter your First Name"
                floatingLabelText="First Name"
-               onChange = {(event,newValue) => this.setState({first_name:newValue})}
+            //    onChange = {(event,newValue) => this.setState({first_name:newValue})}
                />
              <br/>
              <TextField
                hintText="Enter your Last Name"
                floatingLabelText="Last Name"
-               onChange = {(event,newValue) => this.setState({last_name:newValue})}
+            //    onChange = {(event,newValue) => this.setState({last_name:newValue})}
                />
              <br/>
              <TextField
@@ -105,11 +85,12 @@ class SignUp extends React.Component {
                />
              <br/>
 
-           <RaisedButton label="Submit" primary={true} style={style}  onClick={() => this.signUp()}/>
+           {/* <RaisedButton label="Submit" primary={true} style={style}  onClick={() => this.signUp()}/> */}
+           <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()}/>
            <div>{this.state.error.message}</div>
            <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
             </div>
-           </MuiThemeProvider>
+           {/* </MuiThemeProvider> */}
         </div>
 
         )

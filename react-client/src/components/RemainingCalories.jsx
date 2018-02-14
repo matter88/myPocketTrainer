@@ -2,9 +2,9 @@ import React from 'react';
 
 const RemainingCalories = (props) => {
     return (
-        <span>
-            1080
-        </span>
+        <h3>
+            {props.userStats === null ? null : props.userStats.calories - props.todaysCalories + "  remaing calories"}
+        </h3>
     )
 }
 
