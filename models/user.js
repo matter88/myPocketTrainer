@@ -9,7 +9,7 @@ db.on('error', function() {
 });
 
 db.once('open', function() {
-  console.log('mongoose userdata connected successfully');
+  console.log('mongoose nutrients connected successfully');
 });
 
 var Schema = mongoose.Schema
@@ -17,23 +17,21 @@ var Schema = mongoose.Schema
 
 const userNutritionIntakeSchema = mongoose.Schema({
     email: { type: String },
-    calories: {type: Number, default: 0},
-    fats: {type: Number, default: 0},
-    saturated: {type: Number, default: 0},
-    polyunsaturated: {type: Number, default: 0},
-    monounsaturated: {type: Number, default: 0},
-    trans : {type: Number, default: 0},
-    cholesterol: {type: Number, default: 0},
-    sodium: {type: Number, default: 0},
-    potassium: {type: Number, default: 0},
-    carbs: {type: Number, default: 0},
-    fiber: {type: Number, default: 0},
-    sugars: {type: Number, default: 0},
-    protein: {type: Number, default: 0},
-    vitaminA: {type: Number, default: 0},
-    vitaminC: {type: Number, default: 0},
-    calcium: {type: Number, default: 0},
-    iron: {type: Number, default: 0},
+    name: { type: String },
+    createdAt: { type: Date },
+    Water: {type: Number, default: 0},
+    Calories: {type: Number, default: 0},
+    Protein: {type: Number, default: 0},
+    Fats: {type: Number, default: 0},
+    Carbohydrate: {type: Number, default: 0},
+    Fiber: {type: Number, default: 0},
+    Sugars: {type: Number, default: 0},
+    Calcium: {type: Number, default: 0},
+    Iron: {type: Number, default: 0},
+    Magenesium: {type: Number, default: 0},
+    Phophorous: {type: Number, default: 0},
+    Potassium: {type: Number, default: 0},
+    Sodium: {type: Number, default: 0},
 })
 
 const userNutritionIntake = mongoose.model('userNutritionIntake', userNutritionIntakeSchema);
@@ -57,6 +55,20 @@ var selectAll = () => {
     })
   }
 
+var todaysJournal = () => {
+  console.log('todays data invoked')
+  let today = new Date();
+  today.setHours(0,0,0,0);
+  return userNutritionIntake.find({"createdAt" : { $gte : today }}, function(err, entry) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('success pulled back todays journal!');
+    }
+  });
+}  
+
 
 exports.save = save;
 exports.selectAll = selectAll;
+exports.todaysJournal = todaysJournal;

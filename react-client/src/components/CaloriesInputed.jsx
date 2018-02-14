@@ -3,7 +3,7 @@ import React from 'react';
 const CaloriesInputed = (props) => {
     return (
         <span>
-            520 { "   =   "}
+            {/* {props.todaysCalories === null ? 2000 : props.todaysCalories + "  calories =   "} */}
         </span>
     )
 }

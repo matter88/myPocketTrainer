@@ -1,6 +1,5 @@
-var db = require('../../database-mongo/index.js');
+var db = require('../../models/userBodyStats.js');
 var db2 = require('../../models/user.js')
-// var User = require('../../models/users.js');
 var axios = require('axios');
 
 
@@ -14,6 +13,27 @@ module.exports = {
         })
         .catch((error) => console.log(error))
       }  
+    },
+
+    getUserStats: {
+      get: function(req, res) {
+        console.log('getuserstats invoked GUAVA', req.query)
+        db.getUserStats(req.query.email)
+        .then((results) => {
+          res.send(results)
+        })
+        .catch((error) => console.log(error))
+      }  
+    },
+
+    getTodaysJournal: {
+      get: function(req, res) {
+        db2.todaysJournal(new Date())
+        .then((results) => {
+          res.send(results)
+        })
+        .catch((error) => console.log(error))
+      }
     },
 
     getAllEntries: {
@@ -60,25 +80,6 @@ module.exports = {
             })
             .catch((error) => console.log(error))
           }
-      },
-
-      searchNutrition: {
-          post: function(req, res) {
-            var query = req.body;
-            axios.post('https://trackapi.nutritionix.com/v2/natural/nutrients', query,
-            {
-              headers : {
-                "x-app-id" : "90459724",
-                "x-app-key" : "2f56e0df3a2b13689c8d88a7a5cfb97d"
-              }
-            })
-            .then((response) => {
-              res.send(response.data);
-            })
-            .catch( (error) => {
-              console.log(error);
-            });
-        }
       },
 
       userStats: {

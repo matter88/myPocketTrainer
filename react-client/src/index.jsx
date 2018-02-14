@@ -1,23 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { firebaseApp } from './config/firebase.js' 
-import {createBrowserHistory} from 'history';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  BrowserRouter,
-  Redirect
-
-} from 'react-router-dom'
+import { firebaseApp } from './config/firebase.js' ;
+import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/App.jsx'
-import { logUser } from './actions/index.js';
-import reducer from './reducers';
+import { logUser, logUserOUT } from './actions/index.js';
+import store from './reducers/store.js';
 
-const store = createStore(reducer);
+// const store = createStore(combineReducers({ reducer }), {}, applyMiddleware());
+let redirect;
 
 firebaseApp.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -28,16 +21,18 @@ firebaseApp.auth().onAuthStateChanged(function(user) {
   } else {
     // No user is signed in.
     console.log('user is not logged in')
+    store.dispatch(logUserOUT())
   }
 });
 
-ReactDOM.render(  
+ReactDOM.render( 
+
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <MuiThemeProvider>
         <App />
       </MuiThemeProvider>
-    </BrowserRouter>
+    </Router>
   </Provider>
 , document.getElementById('app')
 );

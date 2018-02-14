@@ -1,33 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { createStore } from 'redux';
 import AppBar from 'material-ui/AppBar';
-import { firebaseApp } from '../config/firebase.js'
+import { firebaseApp } from '../config/firebase.js';
+import { connect } from 'react-redux';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
-//the header creates links that can be used to navigate between routes
-
+import Drawer from 'material-ui/Drawer';
+import { logUser, logUserOUT } from '../actions/index.js';
+import reducer from '../reducers';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
+      error: {
+        message: ''
+      },
+      signedIn : true
     }
-
+    this.handleToggle = this.handleToggle.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleRequestClose = this.handleRequestClose.bind(this)
   }
 
-  signOut() {
-    firebaseApp.auth().signOut()
-    .then(function() {
-      // Sign-out successful.
-    }).catch(function(error) {
-      // An error happened.
-    })
-  }
+  
 
   handleClick(event) {
     // This prevents ghost click.
@@ -39,51 +39,81 @@ class Header extends React.Component {
     });
   };
 
+  handleToggle() {
+    this.setState({open: !this.state.open});
+  }
+
   handleRequestClose() {
     this.setState({
       open: false,
     });
   };
 
+  signOut() {
+    firebaseApp.auth().signOut()
+    .catch(function(error) {
+      this.setState({
+        error: error
+      })
+    })
+    .then(() => {
+      console.log(this.state)
+      this.setState({
+          signedIn: false
+      })
+      
+  })
+  }
+
 render() {
+  const { email } = this.props;
+  let signUp, profile;
+  let signIn;
+  let signOut;
+  let redirect;
+  let dailySummary;
+  if (!email) {
+    signUp = <MenuItem onClick={this.handleRequestClose}><Link to='/SignUp'>Sign Up</Link></MenuItem>
+    signIn = <MenuItem onClick={this.handleRequestClose}><Link to='/SignIn'>Login</Link></MenuItem>
+  } else {
+    signOut = <MenuItem onClick={() => this.signOut()}>SignOut</MenuItem>
+    dailySummary = <MenuItem onClick={this.handleRequestClose}><Link to='/Journal'>Food Journal</Link></MenuItem>
+    profile =     <MenuItem onClick={this.handleRequestClose}><Link to='/Profile'>Profile</Link></MenuItem>
+
+  }
+
+
+
   return (
   <header>
 
-  <AppBar
-    title = "MacroTrakR"
-    iconClassNameRight="muidocs-icon-navigation-expand-more"
+  <AppBar title = "MacroTrekker" onClick = {this.handleToggle} >
+  <Drawer
+    docked={false}
+    width={200}
+    open={this.state.open}
+    onRequestChange={(open) => this.setState({open})}
   >
-  <RaisedButton onClick={this.handleClick}label="Menu"/>
-  <Popover
-  open={this.state.open}
-  anchorEl={this.state.anchorEl}
-  // anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-  // targetOrigin={{horizontal: 'left', vertical: 'top'}}
-  onRequestClose={this.handleRequestClose}
-  >
-  <Menu>
-    <MenuItem>
-      <Link to='/SignUp'>SignUp</Link>
-    </MenuItem>
-    <MenuItem  >
-      <Link to='/SignIn'>SignIn</Link>
-    </MenuItem>
-    <MenuItem >
-      <Link to='/'>Landing</Link>
-    </MenuItem>
-    <MenuItem >
-      <Link to='/UserStats'>Profile</Link>
-    </MenuItem>
-    <MenuItem onClick={() => this.signOut()}>
-    SignOut
-    </MenuItem>
-  </Menu>
-  </Popover>
+    <MenuItem onClick={this.handleRequestClose}><Link to='/'>Home</Link></MenuItem>
+    {signUp}
+    {signIn}
+    {dailySummary}
+  {profile}
+    {signOut}
+  </Drawer>
+
   </AppBar>
 
   </header>
   )}
 }
 
+const mapStateToProps = (state) => {
+  const { email } = state.reducer;
+  return {
+      email
+  }
+}
 
-export default Header;
+
+export default connect(mapStateToProps, null)(Header);
