@@ -4,7 +4,7 @@ const SetCalories = (props) => {
     return (
      
         <span>
-            {props.userStats === null ? 2000 : props.userStats.calories}  {"   calories   -  "}
+            {props.userStats === null ? 2000 : props.userStats.calories}  {"      -  "}
         </span>
     )
 }
