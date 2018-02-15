@@ -14,6 +14,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import { redirectHome } from '../actions';
 import helpers from '../helpers.js';
 import TodaysEntries from './TodaysEntries.jsx';
+import { Table } from 'material-ui';
 
 class DailySummary extends React.Component {
     constructor(props) {
@@ -26,7 +27,9 @@ class DailySummary extends React.Component {
         todaysCalories: 0
 
     }
+        this.handleDelete = this.handleDelete.bind(this)
         this.redirect = this.redirect.bind(this)
+        this.handleRowSelection = this.handleRowSelection.bind(this)
     }
 
     componentWillMount() {
@@ -75,6 +78,14 @@ class DailySummary extends React.Component {
         store.dispatch(redirectHome())
     }
 
+    handleRowSelection() {
+        console.log('invoked fxn passed down from dailysummary')
+    }
+
+    handleDelete() {
+        console.log('handle delete')
+    }
+
     render() {
     if (this.props.email === undefined) { return <Redirect to="/"/> }
     return (
@@ -90,13 +101,17 @@ class DailySummary extends React.Component {
                 </span>
             </div>
             <div className="dailySummary">
-                <PieChart width={800} height={400}>
-                <Pie isAnimationActive={false} dataKey="value" data={this.state.todaysMacros} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
-                {/* <Pie data={data02} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/> */}
+                <PieChart width={800} height={400} className="dailySummary">
+                <Pie isAnimationActive={false} dataKey="value" data={this.state.todaysMacros} cx={200} cy={200} outerRadius={80} fill="#8884d8" label className="dailySummary"/>
+                <Pie data={this.state.todaysMacros} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
                 <Tooltip/>
                 </PieChart>
-            </div>
-            <TodaysEntries todaysEntries={this.state.todaysEntries}/>
+            </div>           
+
+            <TodaysEntries 
+            todaysEntries={this.state.todaysEntries}
+            // handleRowSelection={this.handleRowSelection}
+            />
         </div>
     )}
 }
