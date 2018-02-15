@@ -13,18 +13,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { redirectHome } from '../actions';
 import helpers from '../helpers.js';
-import todaysEntries from './todaysEntries.jsx';
-import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-    TableRowColumn,
-  } from 'material-ui/Table';
-
-
-
+import TodaysEntries from './TodaysEntries.jsx';
 
 class DailySummary extends React.Component {
     constructor(props) {
@@ -107,13 +96,7 @@ class DailySummary extends React.Component {
                 <Tooltip/>
                 </PieChart>
             </div>
-            {console.log("guava duality ",this.state.todaysEntries)}
-            <ul>
-            {this.state.todaysEntries.map((entry, index) => 
-                <li key={index}>{entry.Name}</li>
-            )}
-            </ul>
-            <hr/>
+            <TodaysEntries todaysEntries={this.state.todaysEntries}/>
         </div>
     )}
 }
