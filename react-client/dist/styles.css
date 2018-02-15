@@ -15,6 +15,10 @@ body {
 
 }
 
+.dailySummary {
+  text-align: center;
+}
+
 .loginForm {
   background-color: white;
   text-align: center;
