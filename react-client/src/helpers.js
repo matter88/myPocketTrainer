@@ -46,9 +46,9 @@ module.exports = {
                 p["name"] = "Protein"
                 c["name"] = "Carbohydrate"
                 f["name"] = "Fats"
-                p["value"] += obj["Protein"]
-                c["value"] += obj["Carbohydrate"]
-                f["value"] += obj["Fats"]
+                p["value"] += Math.round(obj["Protein"])
+                c["value"] += Math.round(obj["Carbohydrate"])
+                f["value"] += Math.round(obj["Fats"])
         }
 
         resultsArray.push(f)

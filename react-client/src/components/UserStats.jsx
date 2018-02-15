@@ -163,9 +163,11 @@ class UserStats extends React.Component {
 
     calculateMacros(calories) {
         var obj = {};
-        obj["protiens"] = calories / 4;
-        obj["carbohydrates"] = calories / 4;
-        obj["fats"] = calories / 9;
+        obj["protiens"] = Math.round(calories / 4);
+        obj["carbohydrates"] = Math.round(calories / 4);
+        obj["fats"] = Math.round(calories / 9);
+
+        console.log("userstats", obj)
 
         return obj;
     }
