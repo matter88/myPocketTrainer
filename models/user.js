@@ -17,7 +17,7 @@ var Schema = mongoose.Schema
 
 const userNutritionIntakeSchema = mongoose.Schema({
     email: { type: String },
-    name: { type: String },
+    Name: { type: String },
     createdAt: { type: Date },
     Water: {type: Number, default: 0},
     Calories: {type: Number, default: 0},

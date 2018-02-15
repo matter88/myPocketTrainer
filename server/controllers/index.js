@@ -17,7 +17,6 @@ module.exports = {
 
     getUserStats: {
       get: function(req, res) {
-        console.log('getuserstats invoked GUAVA', req.query)
         db.getUserStats(req.query.email)
         .then((results) => {
           res.send(results)
@@ -58,7 +57,6 @@ module.exports = {
 
       caloriesInput: {
         post: function(req, res) {
-          console.log('apple', req.body)
             var itemCalories = req.body
             db2.save(itemCalories)
             .then((results) => {

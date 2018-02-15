@@ -13,16 +13,18 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { redirectHome } from '../actions';
 import helpers from '../helpers.js';
+import todaysEntries from './todaysEntries.jsx';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+  } from 'material-ui/Table';
 
 
 
-const data01 = [{name: 'Protein', value: 400}, {name: 'Group B', value: 300},
-                  {name: 'Fats', value: 300}, {name: 'Group D', value: 200},
-                  {name: 'Group E', value: 278}, {name: 'Group F', value: 189}]
-
-const data02 = [{name: 'Group A', value: 2400}, {name: 'Group B', value: 4567},
-                  {name: 'Group C', value: 1398}, {name: 'Group D', value: 9800},
-                  {name: 'Group E', value: 3908}, {name: 'Group F', value: 4800}];
 
 class DailySummary extends React.Component {
     constructor(props) {
@@ -61,7 +63,7 @@ class DailySummary extends React.Component {
             }
         })
         .then((response) => {
-            console.log(response.data)
+            console.log("peach", response)
             this.setState ({
                 todaysEntries: response.data
             })
@@ -69,6 +71,7 @@ class DailySummary extends React.Component {
         .then(() => {
             let objArr = helpers.designEntriesArray(this.state.todaysEntries)
             let totalCalories = helpers.calculateDailyCalories(this.state.todaysEntries)
+            console.log('daily summary', objArr)
             this.setState({
                 todaysMacros: objArr,
                 todaysCalories: totalCalories
@@ -87,14 +90,6 @@ class DailySummary extends React.Component {
     if (this.props.email === undefined) { return <Redirect to="/"/> }
     return (
         <div>
-            <span>
-                <h3>{this.state.userStats === null ? null : this.state.userStats.calories} calories</h3>
-            </span>
-            <hr/>
-            <div>
-                {this.state.userStats === null ? null : this.state.userStats.calories} calories remain <br/>
-            </div>
-            <hr/>
             <div className="dailySummary">
                 <span><SetCalories userStats={this.state.userStats} /></span>
                 <span> <CaloriesInputed todaysCalories={this.state.todaysCalories}/></span>
@@ -108,10 +103,16 @@ class DailySummary extends React.Component {
             <div className="dailySummary">
                 <PieChart width={800} height={400}>
                 <Pie isAnimationActive={false} dataKey="value" data={this.state.todaysMacros} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
-                <Pie data={data02} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
+                {/* <Pie data={data02} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/> */}
                 <Tooltip/>
                 </PieChart>
             </div>
+            {console.log("guava duality ",this.state.todaysEntries)}
+            <ul>
+            {this.state.todaysEntries.map((entry, index) => 
+                <li key={index}>{entry.Name}</li>
+            )}
+            </ul>
             <hr/>
         </div>
     )}
