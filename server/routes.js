@@ -17,6 +17,8 @@ router.get('/getTodaysJournal', controller.getTodaysJournal.get);
 
 router.post('/userStats', controller.userStats.post);
 
+router.post('/deleteEntry', controller.deleteEntry.post)
+
 router.get('/getUserStats', controller.getUserStats.get);
 
 router.post('/usdaDB', searchBarController.usdaDB.post);

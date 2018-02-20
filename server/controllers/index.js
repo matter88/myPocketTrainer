@@ -89,6 +89,19 @@ module.exports = {
           })
           .catch((error) => console.log(error))
         }
+      },
+
+      deleteEntry: {
+        post: function(req, res) {
+          console.log('deleteEtry req.body', req.body)
+          let id = req.body["_id"]
+          console.log("delete entry",id)
+          db2.deleteEntry(id)
+          .then((results) => {
+            res.send('successfully deleted entry')
+          })
+          .catch((error) => console.log(error))
+        }
       }
 
 
