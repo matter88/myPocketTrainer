@@ -10,6 +10,8 @@ import {
   } from 'material-ui/Table';
   import ActionDelete from 'material-ui/svg-icons/action/delete';
   import RaisedButton from 'material-ui/RaisedButton';
+  var axios = require('axios')
+
 
 
   const style = {
@@ -23,6 +25,7 @@ class TodaysEntries extends React.Component {
       selectedRows: [],
     }
     this.onRowSelection = this.onRowSelection.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   onRowSelection(selectedRows) {
@@ -33,6 +36,25 @@ class TodaysEntries extends React.Component {
       return;
     };
     this.setState({ selectedRows });
+  }
+
+  handleDelete() {
+  let selectedRows = this.state.selectedRows
+   for (let i = 0; i < selectedRows.length; i++) {
+     let ele = selectedRows[i];
+
+     let objId = this.props.todaysEntries[ele]["_id"]
+
+     axios.post('/banx/deleteEntry', {
+      _id : objId
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+   }
   }
 
   render() {
@@ -81,6 +103,7 @@ class TodaysEntries extends React.Component {
                   label="DELETE"
                   labelPosition="after"
                   icon={<ActionDelete/>}
+                  onClick={this.handleDelete}
                 />
                  </TableRowColumn>
                </TableRow>

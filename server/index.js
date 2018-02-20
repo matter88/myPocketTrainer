@@ -7,8 +7,6 @@ var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 var expressValidator = require('express-validator');
 var session = require('express-session');
-//how you link to database
-var items = require('../database-mongo/index.js');
 var bodyParser = require('body-parser')
 var axios = require('axios')
 const passport = require('passport');

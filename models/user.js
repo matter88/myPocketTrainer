@@ -68,7 +68,20 @@ var todaysJournal = () => {
   });
 }  
 
+const deleteEntry = (objId) => {
+  console.log('delete entry in model invoked')
+  return userNutritionIntake.remove({ _id: objId }, function(err) {
+    if (err) {
+            console.log(err);
+    }
+    else {
+            console.log('successfully deleted');
+    }
+});
+}
+
 
 exports.save = save;
 exports.selectAll = selectAll;
 exports.todaysJournal = todaysJournal;
+exports.deleteEntry = deleteEntry;
