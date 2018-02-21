@@ -11,7 +11,6 @@ const SetCalories = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log('daily summary state', state)
     const { stats } = state.getUserStats
     const { email } = state.reducer
     const { items } = state.todaysEntries

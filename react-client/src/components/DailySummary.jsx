@@ -38,7 +38,6 @@ class DailySummary extends React.Component {
     }
 
     componentDidMount() {
-        
         let emailTest = this.props.email
         store.dispatch(getTodaysEntries(emailTest))
         console.log('daily summary props', this.props)
@@ -66,8 +65,8 @@ class DailySummary extends React.Component {
     return (
         <div>
             <div className="dailySummary">
-                <span><SetCalories userStats={this.state.userStats} /></span>
-                <span> <CaloriesInputed todaysCalories={this.state.todaysCalories}/></span>
+                <span><SetCalories/></span>
+                <span> <CaloriesInputed/></span>
                 <span>
                     <RemainingCalories
                     userStats={this.state.userStats}
