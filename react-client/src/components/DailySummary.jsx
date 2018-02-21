@@ -38,14 +38,10 @@ class DailySummary extends React.Component {
     }
 
     componentDidMount() {
-        let emailTest = this.props.email
-        store.dispatch(getTodaysEntries(emailTest))
+        let email = this.props.email
+        store.dispatch(getTodaysEntries(email))
         console.log('daily summary props', this.props)
-        //     // console.log('daily summary items', this.props.items)
-        //     // let objArr = helpers.designEntriesArray(this.props.items)
-        //     // let totalCalories = helpers.calculateDailyCalories(this.props.items)
-    
-    
+        //     // 
     }
 
     redirect() {
@@ -61,7 +57,11 @@ class DailySummary extends React.Component {
     }
 
     render() {
+    let objArr;
     if (this.props.email === undefined) { return <Redirect to="/"/> }
+    this.props.items === undefined ? null : 
+    objArr = helpers.designEntriesArray(this.props.items)
+    // let objArr = helpers.designEntriesArray(this.props.items)
     return (
         <div>
             <div className="dailySummary">
@@ -76,8 +76,8 @@ class DailySummary extends React.Component {
             </div>
             <div className="dailySummary">
                 <PieChart width={800} height={400} className="dailySummary">
-                <Pie isAnimationActive={false} dataKey="value" data={this.state.todaysMacros} cx={200} cy={200} outerRadius={80} fill="#8884d8" label className="dailySummary"/>
-                <Pie data={this.state.todaysMacros} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
+                <Pie isAnimationActive={false} data={objArr} dataKey="value"  cx={200} cy={200} outerRadius={80} fill="#8884d8" label className="dailySummary"/>
+                <Pie data={objArr} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
                 <Tooltip/>
                 </PieChart>
             </div>           
