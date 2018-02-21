@@ -1,12 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const SetCalories = (props) => {
-    return (
-     
+    return ( 
         <span>
-            {props.userStats === null ? 2000 : props.userStats.calories}  {"      -  "}
+            {console.log('setcalories', props.stats)}
+            {props.stats === undefined ? 2000 : props.stats[0].calories}  {"      -  "}
         </span>
     )
 }
 
-export default SetCalories;
+const mapStateToProps = (state) => {
+    console.log('daily summary state', state)
+    const { stats } = state.getUserStats
+    const { email } = state.reducer
+    const { items } = state.todaysEntries
+    return { 
+        email,
+        items,
+        stats
+    }
+}
+
+export default connect(mapStateToProps,null)(SetCalories);

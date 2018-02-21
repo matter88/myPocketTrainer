@@ -11,7 +11,7 @@ import {PieChart, Pie, Legend, Tooltip} from 'recharts';
 import { Redirect } from 'react-router-dom'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { redirectHome, getTodaysEntries } from '../actions';
+import { redirectHome, getTodaysEntries, getUserStats } from '../actions';
 import helpers from '../helpers.js';
 import TodaysEntries from './TodaysEntries.jsx';
 import { Table } from 'material-ui';
@@ -33,25 +33,20 @@ class DailySummary extends React.Component {
     }
 
     componentWillMount() {
-        axios.get('/banx/getUserStats', {
-            params: {
-                email: this.props.email
-            }
-        })
-        .then((response) => {
-            this.setState({
-                userStats: response.data[0]
-            })
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        let email = this.props.email
+        store.dispatch(getUserStats(email))
     }
 
     componentDidMount() {
-        console.log('daily summary component did mount', this.props)
+        
         let emailTest = this.props.email
         store.dispatch(getTodaysEntries(emailTest))
+        console.log('daily summary props', this.props)
+        //     // console.log('daily summary items', this.props.items)
+        //     // let objArr = helpers.designEntriesArray(this.props.items)
+        //     // let totalCalories = helpers.calculateDailyCalories(this.props.items)
+    
+    
     }
 
     redirect() {
@@ -97,13 +92,13 @@ class DailySummary extends React.Component {
 }
     
 const mapStateToProps = (state) => {
-    console.log('daily summary state', state)
+    const { stats } = state.getUserStats
     const { email } = state.reducer
     const { items } = state.todaysEntries
-    console.log('daily summary items', items)
     return { 
         email,
-        items
+        items,
+        stats
     }
 }
 
