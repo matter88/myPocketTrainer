@@ -1,4 +1,6 @@
-import { SIGNED_IN, SIGNED_OUT } from '../constants';
+import { SIGNED_IN, 
+        SIGNED_OUT, 
+} from '../constants';
 
 export default (state = {}, action) => {
     switch (action.type) {
@@ -15,3 +17,5 @@ export default (state = {}, action) => {
         return state
     }
 }
+
+
