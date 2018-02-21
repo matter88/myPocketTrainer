@@ -4,6 +4,7 @@ import {
     SET_USERSTATS, 
     REDIRECT_HOME,
     ITEMS_FETCH_DATA_SUCCESS,
+    GET_USERSTATS
  } from '../constants';
 import { Redirect } from 'react-router-dom'
 import helpers from '../helpers.js';
@@ -60,20 +61,43 @@ export function getTodaysEntries(email) {
             }
         })
         .then((response) => {
-            console.log("peach", response)
             dispatch(itemsFetchDataSuccess(response.data))
         })
         // .then(() => {
-        //     let objArr = helpers.designEntriesArray(this.state.todaysEntries)
-        //     let totalCalories = helpers.calculateDailyCalories(this.state.todaysEntries)
-        //     console.log('daily summary', objArr)
-        //     this.setState({
-        //         todaysMacros: objArr,
-        //         todaysCalories: totalCalories
-        //     })
+        //     let objArr = helpers.designEntriesArray()
+        //     let totalCalories = helpers.calculateDailyCalories()
+        //     console.log('actions index objArr redesigned', objArr)
+        //     // this.setState({
+        //     //     todaysMacros: objArr,
+        //     //     todaysCalories: totalCalories
+        //     // })
         // })
         .catch((error) => {
             console.log(error)
         })
+    }
+}
+
+export function userStatsFetchedSuccess(stats) {
+    return {
+        type: 'GET_USERSTATS',
+        stats
+    }
+}
+
+export function getUserStats(email) {
+    return (dispatch) => {
+        axios.get('/banx/getUserStats', {
+            params: {
+                email: email
+            }
+        })
+        .then((response) => {
+            console.log('action index', response.data)
+            dispatch(userStatsFetchedSuccess(response.data))
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 }
