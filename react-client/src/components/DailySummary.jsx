@@ -40,8 +40,6 @@ class DailySummary extends React.Component {
     componentDidMount() {
         let email = this.props.email
         store.dispatch(getTodaysEntries(email))
-        console.log('daily summary props', this.props)
-        //     // 
     }
 
     redirect() {
@@ -61,7 +59,6 @@ class DailySummary extends React.Component {
     if (this.props.email === undefined) { return <Redirect to="/"/> }
     this.props.items === undefined ? null : 
     objArr = helpers.designEntriesArray(this.props.items)
-    // let objArr = helpers.designEntriesArray(this.props.items)
     return (
         <div>
             <div className="dailySummary">

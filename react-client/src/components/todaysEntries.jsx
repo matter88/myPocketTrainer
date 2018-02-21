@@ -10,7 +10,8 @@ import {
   } from 'material-ui/Table';
   import ActionDelete from 'material-ui/svg-icons/action/delete';
   import RaisedButton from 'material-ui/RaisedButton';
-  var axios = require('axios')
+  import { connect } from 'react-redux';
+  import axios from 'axios';
 
 
 
@@ -58,8 +59,10 @@ class TodaysEntries extends React.Component {
   }
 
   render() {
+    console.log('todaysEntries', this.props.items)
     return(
       <div>
+        {this.props.items === undefined ? null :  
           <Table
           multiSelectable={true}
           style={style} 
@@ -67,7 +70,7 @@ class TodaysEntries extends React.Component {
           fixedHeader={true}
             selectable={true}
           >
-       {this.props.todaysEntries.length === 0 ?  
+       {this.props.items.length === 0 ?  
   
           <TableHeader >
             <TableRow>
@@ -83,7 +86,7 @@ class TodaysEntries extends React.Component {
           </TableHeader>
       }
       <TableBody deselectOnClickaway={false} >
-      {this.props.todaysEntries.map((nutri, index) =>
+      {this.props.items.map((nutri, index) =>
           <TableRow 
           key={index}
           selected={this.state.selectedRows.indexOf(index) !== -1}
@@ -109,6 +112,7 @@ class TodaysEntries extends React.Component {
                </TableRow>
              </TableFooter>
     </Table>
+    }
     
       </div>
 
@@ -116,4 +120,15 @@ class TodaysEntries extends React.Component {
   }    
 }
 
-export default TodaysEntries;
+const mapStateToProps = (state) => {
+  const { stats } = state.getUserStats
+  const { email } = state.reducer
+  const { items } = state.todaysEntries
+  return { 
+      email,
+      items,
+      stats
+  }
+}
+
+export default connect(mapStateToProps, null)(TodaysEntries);
