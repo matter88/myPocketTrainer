@@ -14,12 +14,38 @@ class SignUp extends React.Component {
         this.state = {
             email: null,
             password: '',
+            emailSignIn: null,
+            passwordSignIn: '',
             error: {
                 message: ''
             },
         }
         this.changeEmailState = this.changeEmailState.bind(this);
         this.changePasswordState = this.changePasswordState.bind(this)
+        this.changeEmailStateSignIn = this.changeEmailStateSignIn.bind(this);
+        this.changePasswordStateSignIn = this.changePasswordStateSignIn.bind(this)
+    }
+
+    changeEmailStateSignIn(event) {
+        this.setState({
+            emailSignIn: event.target.value
+        })
+    }
+
+    changePasswordStateSignIn(event) {
+        this.setState({
+            passwordSignIn: event.target.value
+        })
+    }
+
+    signUp() {
+        const { email, password } = this.state
+        firebaseApp.auth().createUserWithEmailAndPassword(email, password)
+        .catch((error) => {
+            this.setState({
+                error: error
+            })
+        })
     }
 
     changeEmailState(event) {
@@ -34,45 +60,69 @@ class SignUp extends React.Component {
         })
     }
 
-    signUp() {
-        const { email, password } = this.state
-        firebaseApp.auth().createUserWithEmailAndPassword(email, password)
+    signIn() {
+        const { emailSignIn, passwordSignIn } = this.state
+        firebaseApp.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
         .catch((error) => {
             this.setState({
                 error: error
             })
-        })
+          })
     }
 
 
 
     render() {
+        console.log('signup props',this.props)
         const { email } = this.props;
         let redirect;
         if (email) {
-            redirect = <Redirect to='/UserStats'/>
+            console.log("redirect invoked")
+            redirect = <Redirect to='/Profile'/>
         }
         return(
+            <div>
+            <div className = 'loginForm'>
+              <div>
+               <TextField
+                 hintText="Enter your email"
+                 floatingLabelText="Email"
+                 onChange={this.changeEmailStateSignIn}
+                 />
+               <br/>
+                 <TextField
+                   type="password"
+                   hintText="Enter your Password"
+                   floatingLabelText="Password"
+                   onChange={this.changePasswordStateSignIn}
+                   />
+                 <br/>
+                 <RaisedButton label="Sign In" primary={true}  onClick={() => this.signIn()}/>
+                 <div>{this.state.error.message}</div>
+                 <div><Link to={'/'}>Not registered? Sign up!</Link></div>
+             </div>
+          </div>
+          {/* <hr/> */}
         <div className = 'signupForm'>
          {redirect}
             <div>
              <TextField
                hintText="Enter your First Name"
                floatingLabelText="First Name"
-            //    onChange = {(event,newValue) => this.setState({first_name:newValue})}
+
                />
              <br/>
              <TextField
                hintText="Enter your Last Name"
                floatingLabelText="Last Name"
-            //    onChange = {(event,newValue) => this.setState({last_name:newValue})}
+
                />
              <br/>
              <TextField
                hintText="Enter your Email"
                type="email"
                floatingLabelText="Email"
-               // value={this.state.email}
+              
                onChange={this.changeEmailState}
                />
              <br/>
@@ -80,25 +130,24 @@ class SignUp extends React.Component {
                type = "password"
                hintText="Enter your Password"
                floatingLabelText="Password"
-               // value = {this.state.password}
+               
                onChange={this.changePasswordState}
                />
              <br/>
 
-           {/* <RaisedButton label="Submit" primary={true} style={style}  onClick={() => this.signUp()}/> */}
            <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()}/>
            <div>{this.state.error.message}</div>
            <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
             </div>
-           {/* </MuiThemeProvider> */}
         </div>
-
+        </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    const { email } = state;
+    console.log('sign up state', state)
+    const { email } = state.reducer;
     return {
         email
     }

@@ -74,7 +74,7 @@ render() {
   let dailySummary;
   if (!email) {
     signUp = <MenuItem onClick={this.handleRequestClose}><Link to='/SignUp'>Sign Up</Link></MenuItem>
-    signIn = <MenuItem onClick={this.handleRequestClose}><Link to='/SignIn'>Login</Link></MenuItem>
+    // signIn = <MenuItem onClick={this.handleRequestClose}><Link to='/SignIn'>Login</Link></MenuItem>
   } else {
     signOut = <MenuItem onClick={() => this.signOut()}>SignOut</MenuItem>
     dailySummary = <MenuItem onClick={this.handleRequestClose}><Link to='/Journal'>Food Journal</Link></MenuItem>
@@ -96,7 +96,7 @@ render() {
   >
     <MenuItem onClick={this.handleRequestClose}><Link to='/'>Home</Link></MenuItem>
     {signUp}
-    {signIn}
+    {/* {signIn} */}
     {dailySummary}
   {profile}
     {signOut}

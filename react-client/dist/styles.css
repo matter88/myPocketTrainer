@@ -19,9 +19,9 @@ body {
   text-align: center;
 }
 
-.loginForm {
+/* .loginForm {
   background-color: white;
-  text-align: center;
+  text-align: center ;
   position: absolute;
   margin: auto;
   top: 60px;
@@ -29,12 +29,12 @@ body {
   bottom: 0;
   left: 0;
   width: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+/* } */ */
 
 .signupForm {
   background-color: white;
-  text-align: center;
+  text-align: right;
   position: absolute;
   margin: auto;
   top: 60px;
@@ -42,7 +42,7 @@ body {
   bottom: 0;
   left: 0;
   width: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
 .profile {
@@ -90,15 +90,7 @@ body {
   background-color: white;
 }
 
-/* footer {
-  position: absolute;
-  bottom:0;
-  width:100%;
-  height:60px;
-  padding: 1rem;
-  background-color: #F5F5F5;
-  text-align: center;
-} */
+
 
 
 .footer {
