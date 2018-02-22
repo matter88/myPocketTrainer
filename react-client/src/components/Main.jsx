@@ -11,7 +11,7 @@ const Main = () => (
     <main>
         <Switch>
             <Route path='/SignUp' component={SignUp} />
-            <Route path='/SignIn' component={SignIn} />
+            {/* <Route path='/SignIn' component={SignIn} /> */}
             <Route exact path='/' component={USDAsearch} />
             <Route path='/Profile' component={Profile} />
             <Route path='/Journal' component={Journal} />
