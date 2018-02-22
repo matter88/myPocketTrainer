@@ -101,3 +101,24 @@ export function getUserStats(email) {
         });
     }
 }
+
+export function deletedEntrySuccess() {
+    return {
+        type: 'DELETE_ENTRY'
+    }
+}
+
+export function deleteEntry(objId) {
+    return (dispatch) => {
+        axios.post('/banx/deleteEntry', {
+            _id : objId
+          })
+          .then((response) => {
+            console.log(response);
+            dispatch(deletedEntrySuccess())
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
+}

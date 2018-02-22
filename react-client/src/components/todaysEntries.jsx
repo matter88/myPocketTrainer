@@ -12,6 +12,7 @@ import {
   import RaisedButton from 'material-ui/RaisedButton';
   import { connect } from 'react-redux';
   import axios from 'axios';
+  import store from '../reducers/store.js';
 
 
 
@@ -44,17 +45,9 @@ class TodaysEntries extends React.Component {
    for (let i = 0; i < selectedRows.length; i++) {
      let ele = selectedRows[i];
 
-     let objId = this.props.todaysEntries[ele]["_id"]
+     let objId = this.props.items[ele]["_id"]
 
-     axios.post('/banx/deleteEntry', {
-      _id : objId
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      store.dispatch()
    }
   }
 
