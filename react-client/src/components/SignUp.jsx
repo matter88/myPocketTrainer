@@ -47,10 +47,12 @@ class SignUp extends React.Component {
 
 
     render() {
+        console.log('signup props',this.props)
         const { email } = this.props;
         let redirect;
         if (email) {
-            redirect = <Redirect to='/UserStats'/>
+            console.log("redirect invoked")
+            redirect = <Redirect to='/Profile'/>
         }
         return(
         <div className = 'signupForm'>
@@ -98,7 +100,8 @@ class SignUp extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    const { email } = state;
+    console.log('sign up state', state)
+    const { email } = state.reducer;
     return {
         email
     }
