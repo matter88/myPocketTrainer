@@ -1,4 +1,4 @@
-import { ITEMS_FETCH_DATA_SUCCESS } from "../constants"
+import { ITEMS_FETCH_DATA_SUCCESS, DELETE_ENTRY } from "../constants"
 
 export default (state = [], action) => {
     switch (action.type) {
@@ -7,6 +7,8 @@ export default (state = [], action) => {
             return {
                 items
             }
+        case DELETE_ENTRY:
+            return state
      default: 
         return state       
     }
