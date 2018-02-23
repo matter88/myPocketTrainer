@@ -13,6 +13,7 @@ import {
   import { connect } from 'react-redux';
   import axios from 'axios';
   import store from '../reducers/store.js';
+  import { deleteEntry } from '../actions';
 
 
 
@@ -47,7 +48,7 @@ class TodaysEntries extends React.Component {
 
      let objId = this.props.items[ele]["_id"]
 
-      store.dispatch()
+      store.dispatch(deleteEntry(objId))
    }
   }
 
