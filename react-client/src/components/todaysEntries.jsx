@@ -48,6 +48,8 @@ class TodaysEntries extends React.Component {
 
      let objId = this.props.items[ele]["_id"]
 
+     console.log('todaysEntries email?', this.props.email)
+
       store.dispatch(deleteEntry(objId))
    }
   }

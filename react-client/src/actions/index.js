@@ -115,7 +115,7 @@ export function deleteEntry(objId) {
           })
           .then((response) => {
             console.log(response);
-            dispatch(deletedEntrySuccess())
+            dispatch(getTodaysEntries())
           })
           .catch((error) => {
             console.log(error);
