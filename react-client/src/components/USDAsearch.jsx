@@ -58,7 +58,7 @@ handleSubmitNDBNO() {
         }
     })
     .then((response) =>{
-        console.log('clientside', response.data.report.food.name)
+        console.log('clientside response', response.data.report)
         this.setState({
             searchInput: '',
             usdaList: [],

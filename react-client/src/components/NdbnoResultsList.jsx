@@ -11,6 +11,7 @@ import {
 
 
 const NdbnoResultsList = (props) => {
+  console.log('inside ndbno results list', props.nutrient[0].measures)
     return (
       
         <Table>
@@ -23,7 +24,13 @@ const NdbnoResultsList = (props) => {
             </TableHeader> : 
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>{props.itemName}</TableHeaderColumn>
+                <TableHeaderColumn>{props.itemName}
+                <select>{props.nutrient[0].measures.map((measure, index) => 
+                  <option key={index} value={measure.label}>{measure.label}</option>
+                )}
+  
+</select>
+                </TableHeaderColumn>
               </TableRow>
             </TableHeader>
         }
