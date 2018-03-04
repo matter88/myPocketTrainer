@@ -87,7 +87,7 @@ render() {
   return (
   <header>
 
-  <AppBar title = "MacroTrekker" onClick = {this.handleToggle} >
+  <AppBar title = "MacroCoach" onClick = {this.handleToggle} >
   <Drawer
     docked={false}
     width={200}
