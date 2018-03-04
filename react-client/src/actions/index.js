@@ -4,7 +4,8 @@ import {
     SET_USERSTATS, 
     REDIRECT_HOME,
     ITEMS_FETCH_DATA_SUCCESS,
-    GET_USERSTATS
+    GET_USERSTATS,
+    SET_SERVING_SIZE
  } from '../constants';
 import { Redirect } from 'react-router-dom'
 import helpers from '../helpers.js';
@@ -120,5 +121,12 @@ export function deleteEntry(objId) {
           .catch((error) => {
             console.log(error);
           });
+    }
+}
+
+export function setServingSize(size) {
+    return {
+        type: 'SET_SERVING_SIZE',
+        size
     }
 }

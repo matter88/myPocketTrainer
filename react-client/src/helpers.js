@@ -60,6 +60,10 @@ module.exports = {
     calculateDailyCalories: (array) => {
         let totalCalories = 0;
 
+        if (array.length === undefined) {
+            return totalCalories
+        }
+
         for (var i = 0; i < array.length; i++) {
             var entryCalories = array[i].Calories
 
