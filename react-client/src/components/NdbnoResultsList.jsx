@@ -42,7 +42,8 @@ class NdbnoResultsList extends React.Component {
     console.log('inside render functio ndbno size' , labelIndex)
     return (
       
-      <Table>
+      <Table             style={{backgroundColor:'gray',}} 
+      >
        {this.props.nutrient.length === 0 ?  
   
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>

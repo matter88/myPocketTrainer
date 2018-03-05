@@ -1,9 +1,29 @@
 html,
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: white;
+/* input[type="test2"]{
 
-  }
+  background-color : #d1d1d1; 
+
+} */
+ 
+
+/* .itemRow {
+  color: '#00D77E'; 
+} */
+
+
+.guava  {
+  background-color: black;
+}
+
+.three {
+  background-color: gray;
+}
+
+.usdaSearch {
+  text-align: center;
+  color: white;
+} 
+
 
 #app {
   background-color: white;
@@ -12,7 +32,7 @@ body {
  
 .mainCenter {
   margin-top: 50px;
-
+  
 }
 
 .dailySummary {

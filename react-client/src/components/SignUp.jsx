@@ -85,12 +85,14 @@ class SignUp extends React.Component {
             <div className = 'loginForm'>
               <div>
                <TextField
+               inputStyle={{ color: '#00D77E' }}
                  hintText="Enter your email"
                  floatingLabelText="Email"
                  onChange={this.changeEmailStateSignIn}
                  />
                <br/>
                  <TextField
+                 inputStyle={{ color: '#00D77E' }}
                    type="password"
                    hintText="Enter your Password"
                    floatingLabelText="Password"
