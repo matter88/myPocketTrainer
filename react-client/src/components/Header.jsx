@@ -74,10 +74,10 @@ render() {
   let dailySummary;
   if (!email) {
     signUp = <MenuItem onClick={this.handleRequestClose}><Link to='/SignUp'>Sign Up</Link></MenuItem>
-    // signIn = <MenuItem onClick={this.handleRequestClose}><Link to='/SignIn'>Login</Link></MenuItem>
+    signIn = <MenuItem onClick={this.handleRequestClose}><Link to='/SignIn'>Login</Link></MenuItem>
   } else {
     signOut = <MenuItem onClick={() => this.signOut()}>SignOut</MenuItem>
-    dailySummary = <MenuItem onClick={this.handleRequestClose}><Link to='/Journal'>Food Journal</Link></MenuItem>
+    dailySummary = <MenuItem onClick={this.handleRequestClose}><Link to='/Journal'>Journal</Link></MenuItem>
     profile =     <MenuItem onClick={this.handleRequestClose}><Link to='/Profile'>Profile</Link></MenuItem>
 
   }
@@ -95,12 +95,13 @@ render() {
     onRequestChange={(open) => this.setState({open})}
   >
     <MenuItem onClick={this.handleRequestClose}><Link to='/'>Home</Link></MenuItem>
-    {signUp}
+    {/* {signUp} */}
+    {signIn}
     {dailySummary}
   {profile}
     {signOut}
   </Drawer>
-
+ 
   </AppBar>
 
   </header>
