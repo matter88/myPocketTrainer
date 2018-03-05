@@ -9,37 +9,47 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-const USDAresultsList = (props) => (
+class USDAresultsList extends React.Component {
+    constructor(props) {
+        super(props);   
+    }
+    render() {
+        return (
    
-        <Table>
-     
+            <Table style={{backgroundColor:'gray',}} >
+         
+        
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+          <TableRow>
+            <TableHeaderColumn></TableHeaderColumn>
+          </TableRow>
+        </TableHeader> 
     
-    <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-      <TableRow>
-        <TableHeaderColumn></TableHeaderColumn>
-      </TableRow>
-    </TableHeader> 
-
-        <TableBody displayRowCheckbox={false} >
-    {props.usdaResults.map((item, index) => 
-        <TableRow 
-        className="testNoBullet" 
-        key={index}
-        >
-        <TableRowColumn>
-            <li onClick={() => {
-            props.handleClick(item.ndbno)}
-            }>
-            {item.name}
-            </li>
-        </TableRowColumn>
-        </TableRow>
-     )}
-    </TableBody>
-</Table>
-
+            <TableBody 
+            displayRowCheckbox={false}  >
+        {this.props.usdaResults.map((item, index) => 
+            <TableRow 
+        
+            key={index}
+            >
+            <TableRowColumn >
+                <li
+                className="test3"  
+                onClick={() => {
+                this.props.handleClick(item.ndbno)}
+                }>
+                {item.name}
+                </li>
+            </TableRowColumn>
+            </TableRow>
+         )}
+        </TableBody>
+    </Table>
     
-    
-)
+        
+        
+    )
+    }
+} 
 
 export default USDAresultsList;

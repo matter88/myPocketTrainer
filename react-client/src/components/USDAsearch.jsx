@@ -7,6 +7,25 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { connect } from 'react-redux'
 import helpers from '../helpers.js';
+import {orange500, blue500} from 'material-ui/styles/colors';
+import FlatButton from 'material-ui/FlatButton';
+
+
+
+const styles = {
+    errorStyle: {
+      color: "#00D77E",
+    },
+    underlineStyle: {
+      borderColor: orange500,
+    },
+    floatingLabelStyle: {
+      color: orange500,
+    },
+    floatingLabelFocusStyle: {
+      color: blue500,
+    },
+  };
 
 class USDAsearch extends React.Component {
     constructor(props) {
@@ -118,7 +137,7 @@ handleSaveToDB() {
         usdaResults={this.state.usdaResults}
         handleClick={this.handleClick}
         /> :
-        <div/>
+        null
 
         this.state.nutrients.length > 0 && this.props.email ?
         nutrientList =  <NdbnoResultsList
@@ -126,28 +145,33 @@ handleSaveToDB() {
         itemName={this.state.itemName}
         /> : null  
 
-        nutrientList === undefined ? 
-        null :
+        nutrientList !== undefined ? 
         button = <FloatingActionButton type="submit" value="add to my daily intake" onClick={this.handleSaveToDB}>
                     <ContentAdd />
-                 </FloatingActionButton>  
+                 </FloatingActionButton> 
+        : null
+         
     
     return (
-        <div className="mainCenter">
+        <div className="usdaSearch">
         <form>
             <label>
-            <span>
+            <span >
             <TextField
             hintText="What are we eating?"
             floatingLabelText="Macro Search"
-            floatingLabelFixed={true}
-            value={this.state.searchInput}
+            floatingLabelFixed={false}
+            // value={this.state.searchInput}
             onChange={this.handleSearchInput}
+            hintStyle={styles.errorStyle} 
+            floatingLabelStyle={styles.errorStyle}
+                      
+            inputStyle={{ color: '#00D77E' }}
             />
             </span>
          
             </label>
-            <input type="submit" value="Submit" onClick={this.handleSubmit} />
+            <FlatButton primary={true} label="nutrition me" onClick={this.handleSubmit} />
         </form>
 
         {usda}

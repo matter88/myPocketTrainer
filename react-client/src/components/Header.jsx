@@ -85,9 +85,9 @@ render() {
 
 
   return (
-  <header>
+  <header >
 
-  <AppBar title = "MacroCoach" onClick = {this.handleToggle} >
+  <AppBar style={{backgroundColor: "00D77E"}}  title="MacroCoach" onClick = {this.handleToggle} >
   <Drawer
     docked={false}
     width={200}
@@ -96,7 +96,6 @@ render() {
   >
     <MenuItem onClick={this.handleRequestClose}><Link to='/'>Home</Link></MenuItem>
     {signUp}
-    {/* {signIn} */}
     {dailySummary}
   {profile}
     {signOut}
