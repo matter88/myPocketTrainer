@@ -82,7 +82,7 @@ class SignUp extends React.Component {
         }
         return(
             <div>
-            <div className = 'loginForm'>
+            {/* <div className = 'loginForm'>
               <div>
                <TextField
                inputStyle={{ color: '#00D77E' }}
@@ -104,19 +104,21 @@ class SignUp extends React.Component {
                  <div><Link to={'/'}>Not registered? Sign up!</Link></div>
              </div>
           </div>
-          {/* <hr/> */}
+          <hr/> */}
         <div className = 'signupForm'>
          {redirect}
             <div>
              <TextField
                hintText="Enter your First Name"
                floatingLabelText="First Name"
+               inputStyle={{ color: '#00D77E' }}
 
                />
              <br/>
              <TextField
                hintText="Enter your Last Name"
                floatingLabelText="Last Name"
+               inputStyle={{ color: '#00D77E' }}
 
                />
              <br/>
@@ -124,7 +126,8 @@ class SignUp extends React.Component {
                hintText="Enter your Email"
                type="email"
                floatingLabelText="Email"
-              
+               inputStyle={{ color: '#00D77E' }}
+
                onChange={this.changeEmailState}
                />
              <br/>
@@ -132,7 +135,8 @@ class SignUp extends React.Component {
                type = "password"
                hintText="Enter your Password"
                floatingLabelText="Password"
-               
+               inputStyle={{ color: '#00D77E' }}
+
                onChange={this.changePasswordState}
                />
              <br/>
