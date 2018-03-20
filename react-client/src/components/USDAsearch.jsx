@@ -154,29 +154,28 @@ handleSaveToDB() {
     
     return (
         <div className="usdaSearch">
-        <form>
-            <label>
-            <span >
-            <TextField
-            hintText="What are we eating?"
-            floatingLabelText="Macro Search"
-            floatingLabelFixed={false}
-            // value={this.state.searchInput}
-            onChange={this.handleSearchInput}
-            hintStyle={styles.errorStyle} 
-            floatingLabelStyle={styles.errorStyle}
-                      
-            inputStyle={{ color: '#00D77E' }}
-            />
-            </span>
-         
-            </label>
-            <FlatButton primary={true} label="nutrition me" onClick={this.handleSubmit} />
-        </form>
-
-        {usda}
-        {button}
-        {nutrientList}
+            <form>
+                <label>
+                    <span >
+                    <TextField
+                    hintText="What are we eating?"
+                    floatingLabelText="Macros"
+                    floatingLabelFixed={false}
+                    // value={this.state.searchInput}
+                    onChange={this.handleSearchInput}
+                    hintStyle={styles.errorStyle} 
+                    floatingLabelStyle={styles.errorStyle}
+                    inputStyle={{ color: '#00D77E' }}
+                    />
+                    </span>
+                </label>
+                <FlatButton primary={true} label="Search" onClick={this.handleSubmit} />
+            </form>
+            <div>
+                {usda}
+                {button}
+                {nutrientList}
+            </div>
         </div>
     )}
 }

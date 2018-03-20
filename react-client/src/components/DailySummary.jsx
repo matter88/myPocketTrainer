@@ -56,11 +56,19 @@ class DailySummary extends React.Component {
 
     render() {
     let objArr;
+    
     if (this.props.email === undefined) { return <Redirect to="/"/> }
-    this.props.items === undefined ? null : 
+
+    this.props.items === undefined ? 
+    null : 
     objArr = helpers.designEntriesArray(this.props.items)
+    
     return (
-        <div>
+        <div className="container-1">
+            <div>
+                <span><button>Yesterday</button></span>
+                <span> <button> Tomorrow</button></span>
+            </div>
             <div className="dailySummary">
                 <span><SetCalories/></span>
                 <span> <CaloriesInputed/></span>
@@ -73,16 +81,14 @@ class DailySummary extends React.Component {
             </div>
             <div className="dailySummary">
                 <PieChart width={800} height={400} className="dailySummary">
-                <Pie isAnimationActive={false} data={objArr} dataKey="value"  cx={200} cy={200} outerRadius={80} fill="#8884d8" label className="dailySummary"/>
-                <Pie data={objArr} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
-                <Tooltip/>
+                    <Pie isAnimationActive={false} data={objArr} dataKey="value"  cx={200} cy={200} outerRadius={80} fill="#8884d8" label className="dailySummary"/>
+                    <Pie data={objArr} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d"/>
+                    <Tooltip/>
                 </PieChart>
-            </div>           
-
-            <TodaysEntries 
-            todaysEntries={this.state.todaysEntries}
-            // handleRowSelection={this.handleRowSelection}
-            />
+            </div>
+            <div>
+            <TodaysEntries todaysEntries={this.state.todaysEntries}/>
+            </div>
         </div>
     )}
 }
