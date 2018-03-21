@@ -43,6 +43,7 @@ class USDAsearch extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.handleSaveToDB = this.handleSaveToDB.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
     }
 
 handleSearchInput(event) {
@@ -51,6 +52,26 @@ handleSearchInput(event) {
         searchInput: event.target.value
     })
 }
+
+    handleKeyPress(event) {
+        if(event.key == 'Enter'){
+            console.log('handlekeypress invoked')
+            axios.post('/banx/usdaDB', {
+                searchTerm: this.state.searchInput,
+              })
+            .then((response) => {
+                console.log(response.data)
+                this.setState({
+                    usdaResults : response.data.list.item
+                })
+            })
+            .catch((error) => {
+            console.log(error);
+            });
+          event.preventDefault()
+        }
+      }
+
 
 handleSubmit(event) {
     console.log('handle submit invoked')
@@ -166,6 +187,7 @@ handleSaveToDB() {
                     hintStyle={styles.errorStyle} 
                     floatingLabelStyle={styles.errorStyle}
                     inputStyle={{ color: '#00D77E' }}
+                    onKeyPress={this.handleKeyPress} 
                     />
                     </span>
                 </label>

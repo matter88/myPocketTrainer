@@ -29,7 +29,7 @@ class USDAresultsList extends React.Component {
             displayRowCheckbox={false}  >
         {this.props.usdaResults.map((item, index) => 
             <TableRow 
-        
+            className="search-results-rows"
             key={index}
             >
             <TableRowColumn >
