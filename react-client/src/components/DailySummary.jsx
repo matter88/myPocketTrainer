@@ -11,7 +11,7 @@ import {PieChart, Pie, Legend, Tooltip} from 'recharts';
 import { Redirect } from 'react-router-dom'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { redirectHome, getTodaysEntries, getUserStats } from '../actions';
+import { redirectHome, getTodaysEntries, getUserStats, getYesterday, getTomorrowFoodAc } from '../actions';
 import helpers from '../helpers.js';
 import TodaysEntries from './TodaysEntries.jsx';
 import { Table } from 'material-ui';
@@ -30,6 +30,20 @@ class DailySummary extends React.Component {
         this.handleDelete = this.handleDelete.bind(this)
         this.redirect = this.redirect.bind(this)
         this.handleRowSelection = this.handleRowSelection.bind(this)
+        this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this)
+        this.getYesterday = this.getYesterday.bind(this)
+    }
+
+
+    getYesterday() {
+        console.log('banana test')
+        let email = this.props.email;
+        store.dispatch(getYesterday(email))
+    }
+
+    getTomorrowFoodEntries() {
+        let email = this.props.email;
+        store.dispatch(getTomorrowFoodAc(email))
     }
 
     componentWillMount() {
@@ -66,8 +80,8 @@ class DailySummary extends React.Component {
     return (
         <div className="container-1">
             <div>
-                <span><button>Yesterday</button></span>
-                <span> <button> Tomorrow</button></span>
+                <span><button onClick={this.getYesterday}>Yesterday</button></span>
+                <span> <button onClick={this.getTomorrowFoodEntries}> Tomorrow</button></span>
             </div>
             <div className="dailySummary">
                 <span><SetCalories/></span>
@@ -94,6 +108,7 @@ class DailySummary extends React.Component {
 }
     
 const mapStateToProps = (state) => {
+    console.log('daily summary', state)
     const { stats } = state.getUserStats
     const { email } = state.reducer
     const { items } = state.todaysEntries

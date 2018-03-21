@@ -16,7 +16,8 @@ class USDAresultsList extends React.Component {
     render() {
         return (
    
-            <Table style={{backgroundColor:'gray',}} >
+            <Table       className="table"
+            style={{backgroundColor:'gray',}} >
          
         
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -29,7 +30,7 @@ class USDAresultsList extends React.Component {
             displayRowCheckbox={false}  >
         {this.props.usdaResults.map((item, index) => 
             <TableRow 
-            className="search-results-rows"
+            className="table"
             key={index}
             >
             <TableRowColumn >
