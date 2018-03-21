@@ -27,13 +27,34 @@ module.exports = {
 
     getTodaysJournal: {
       get: function(req, res) {
-        db2.todaysJournal(new Date())
+        db2.todaysJournal()
         .then((results) => {
           res.send(results)
         })
         .catch((error) => console.log(error))
       }
     },
+
+
+    getYesterdayJournal: {
+      get: function(req, res) {
+        db2.yesterdayJournal()
+        .then((results) => {
+          res.send(results)
+        })
+        .catch((error) => console.log(error))
+      }
+    },
+
+   getTomorrowJournal: {
+     get: function(req, res) {
+       db2.tomorrowJournal()
+       .then((results) => {
+         res.send(results)
+       })
+       .catch((error) => console.log(error))
+     }
+   },
 
     getAllEntries: {
         get: function(req, res) {

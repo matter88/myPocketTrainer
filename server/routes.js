@@ -25,6 +25,7 @@ router.post('/usdaDB', searchBarController.usdaDB.post);
 
 router.get('/usdaReport', searchBarController.usdaReport.get);
 
+router.get('/getYesterdayJournal', controller.getYesterdayJournal.get)
 
-
+router.get('/getTomorrowJournal', controller.getTomorrowJournal.get)
 module.exports = router;

@@ -93,7 +93,7 @@ render() {
       null : 
       <TableHeader >
         <TableRow>
-          <TableHeaderColumn >Select All Entries / Unselect All Entries</TableHeaderColumn>
+          <TableHeaderColumn >Select All</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       }

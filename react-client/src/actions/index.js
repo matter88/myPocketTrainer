@@ -5,8 +5,8 @@ import {
     REDIRECT_HOME,
     ITEMS_FETCH_DATA_SUCCESS,
     GET_USERSTATS,
-    SET_SERVING_SIZE
- } from '../constants';
+    SET_SERVING_SIZE,
+} from '../constants';
 import { Redirect } from 'react-router-dom'
 import helpers from '../helpers.js';
 import axios from 'axios';
@@ -128,5 +128,37 @@ export function setServingSize(size) {
     return {
         type: 'SET_SERVING_SIZE',
         size
+    }
+}
+
+export function getYesterday(email) {
+    return (dispatch) => {
+        axios.get('/banx/getYesterdayJournal', {
+            params: {
+                email: email
+            }
+        })
+        .then((response) => {
+            dispatch(itemsFetchDataSuccess(response.data))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+}
+
+export function getTomorrowFoodAc(email) {
+    return (dispatch) => {
+        axios.get('/banx/getTomorrowJournal', {
+            params: {
+                email: email
+            }
+        })
+        .then((response) => {
+            dispatch(itemsFetchDataSuccess(response.data))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
     }
 }

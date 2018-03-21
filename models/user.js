@@ -68,6 +68,33 @@ var todaysJournal = () => {
   });
 }  
 
+const yesterdayJournal = () => {
+  console.log('yesterday data invoked')
+  let date = new Date();
+  date.setDate(date.getDate() - 1)
+  date.setHours(0,0,0,0);
+  return userNutritionIntake.find({"createdAt" : { $gte : date }}, function(err, entry) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('success pulled back yesterdays journal!');
+    }
+  });
+} 
+
+const tomorrowJournal = () => {
+  let date = new Date();
+  date.setDate(date.getDate() + 1)
+  date.setHours(0,0,0,0);
+  return userNutritionIntake.find({"createdAt" : { $gte : date }}, function(err, entry) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('success pulled back tomorrows journal!')
+    }
+  });
+}
+
 const deleteEntry = (objId) => {
   console.log('delete entry in model invoked')
   return userNutritionIntake.remove({ _id: objId }, function(err) {
@@ -85,3 +112,5 @@ exports.save = save;
 exports.selectAll = selectAll;
 exports.todaysJournal = todaysJournal;
 exports.deleteEntry = deleteEntry;
+exports.yesterdayJournal = yesterdayJournal;
+exports.tomorrowJournal = tomorrowJournal;

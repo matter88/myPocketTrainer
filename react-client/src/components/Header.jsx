@@ -87,7 +87,7 @@ render() {
   return (
   <header >
 
-  <AppBar style={{backgroundColor: "00D77E"}}  title="MacroTRAKR" onClick = {this.handleToggle} >
+  <AppBar style={{backgroundColor: "black"}} className="appBar" title="MacroTRAKR" onClick = {this.handleToggle} >
   <Drawer
     docked={false}
     width={200}

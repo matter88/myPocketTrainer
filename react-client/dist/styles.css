@@ -150,13 +150,13 @@ html,
 
  .container-1 {
   /* display: flex; */
-  color: rgb(0,0,255);
+  color:#00D77E;
   border:1px #ccc solid;
   padding:10px;
  }
 
  .table {
-  color: #777;
+  color: #00D77E !important;
   background-color: black !important;
   border: 2px solid black !important;
  }
@@ -164,4 +164,12 @@ html,
  .table-row {
   color: #00D77E;
   background-color: black !important;
+ }
+
+ .appBar {
+  color: #00D77E !important;
+ }
+
+ .search-results-rows {
+  color: #00D77E;
  }

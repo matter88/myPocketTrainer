@@ -10,7 +10,7 @@ import setServingSize from './setServingSizeReducer.js';
 const logger = createLogger();
 
 export default createStore(
-    combineReducers({ reducer, todaysEntries, getUserStats, setServingSize }),
+    combineReducers({ reducer, todaysEntries, getUserStats, setServingSize}),
     {},
     applyMiddleware(thunk)
 )
