@@ -38,11 +38,9 @@ class NdbnoResultsList extends React.Component {
       }
     }
 
-    console.log('inside render functio ndbno GUAVA' , this.props)
-    console.log('inside render functio ndbno size' , labelIndex)
     return (
       
-      <Table             style={{backgroundColor:'gray',}} 
+      <Table style={{backgroundColor:'gray',}} 
       >
        {this.props.nutrient.length === 0 ?  
   
@@ -52,7 +50,7 @@ class NdbnoResultsList extends React.Component {
             </TableRow>
           </TableHeader> : 
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
+            <TableRow style={{backgroundColor:'gray',}}>
               <TableHeaderColumn>{this.props.itemName}
               <select  onChange={this.handleChange}>{this.props.nutrient[0].measures.map((measure, index) => 
                 <option key={index} value={measure.label}>{measure.label}</option>
