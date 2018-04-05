@@ -27,9 +27,7 @@ class DailySummary extends React.Component {
         todaysCalories: 0
 
     }
-        this.handleDelete = this.handleDelete.bind(this)
         this.redirect = this.redirect.bind(this)
-        this.handleRowSelection = this.handleRowSelection.bind(this)
         this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this)
         this.getYesterday = this.getYesterday.bind(this)
     }
@@ -60,13 +58,6 @@ class DailySummary extends React.Component {
         store.dispatch(redirectHome())
     }
 
-    handleRowSelection() {
-        console.log('invoked fxn passed down from dailysummary')
-    }
-
-    handleDelete() {
-        console.log('handle delete')
-    }
 
     render() {
     let objArr;
@@ -108,7 +99,6 @@ class DailySummary extends React.Component {
 }
     
 const mapStateToProps = (state) => {
-    console.log('daily summary', state)
     const { stats } = state.getUserStats
     const { email } = state.reducer
     const { items } = state.todaysEntries

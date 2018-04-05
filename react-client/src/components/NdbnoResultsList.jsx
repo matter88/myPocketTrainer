@@ -10,8 +10,8 @@ import {
   import store from '../reducers/store.js'
   import { setServingSize } from '../actions/index.js'
   import { connect } from 'react-redux'
-
-
+  import FloatingActionButton from 'material-ui/FloatingActionButton';
+  import ContentAdd from 'material-ui/svg-icons/content/add';
 
 class NdbnoResultsList extends React.Component {
   constructor(props) {
@@ -39,44 +39,46 @@ class NdbnoResultsList extends React.Component {
     }
 
     return (
-      
-      <Table style={{backgroundColor:'gray',}} 
-      >
-       {this.props.nutrient.length === 0 ?  
-  
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow>
-              <TableHeaderColumn></TableHeaderColumn>
-            </TableRow>
-          </TableHeader> : 
-          <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-            <TableRow style={{backgroundColor:'gray',}}>
-              <TableHeaderColumn>{this.props.itemName}
-              <select  onChange={this.handleChange}>{this.props.nutrient[0].measures.map((measure, index) => 
-                <option key={index} value={measure.label}>{measure.label}</option>
-              )}
 
-</select>
-              </TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-      }
+    <Table style={{backgroundColor:'gray',}}>
+      {this.props.nutrient.length === 0 ?
+
+      <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        <TableRow>
+          <TableHeaderColumn></TableHeaderColumn>
+        </TableRow>
+      </TableHeader> :
+
+      <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+        <TableRow style={{backgroundColor:'gray',}}>
+          <TableHeaderColumn>
+            {this.props.itemName}
+            <select  onChange={this.handleChange}>
+              {this.props.nutrient[0].measures.map((measure, index) => 
+              <option key={index} value={measure.label}>{measure.label}</option>)}
+            </select> GUAVA TEST <FloatingActionButton type="submit" value="add to my daily intake" onClick={this.handleSaveToDB}>
+                    <ContentAdd />
+                </FloatingActionButton> 
+          </TableHeaderColumn>
+        </TableRow>
+      </TableHeader>}
+
+
       <TableBody displayRowCheckbox={false}>
-      {labelIndex === undefined ? <TableRow/> :
-      this.props.nutrient.map((nutri, index) =>
+        {labelIndex === undefined ?
+        
+        <TableRow/> :
+
+        this.props.nutrient.map((nutri, index) =>
         <TableRow key={index}>
-        <TableRowColumn>{nutri.name === "Energy" ? "Calories" : nutri.name}</TableRowColumn>
-        {console.log('insider render strawbery', nutri.measures[labelIndex])}
-        <TableRowColumn>{nutri.measures[labelIndex].value + "  "}{nutri.unit === "kcal" ? "calories" : nutri.unit}</TableRowColumn>
-      </TableRow>
-    )}
-      }
-      {console.log('right before nutrient mapping', this.props.nutrient)}
-      
+          <TableRowColumn>{nutri.name === "Energy" ? "Calories" : nutri.name}</TableRowColumn>
+          <TableRowColumn>{nutri.measures[labelIndex].value + "  "}{nutri.unit === "kcal" ? "calories" : nutri.unit}</TableRowColumn>
+        </TableRow>
+      )}
       </TableBody>
+
     </Table>
-  )
-  }
+  )}
 } 
 
 const mapStateToProps = (state) => {

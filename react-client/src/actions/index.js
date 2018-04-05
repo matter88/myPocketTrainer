@@ -64,15 +64,6 @@ export function getTodaysEntries(email) {
         .then((response) => {
             dispatch(itemsFetchDataSuccess(response.data))
         })
-        // .then(() => {
-        //     let objArr = helpers.designEntriesArray()
-        //     let totalCalories = helpers.calculateDailyCalories()
-        //     console.log('actions index objArr redesigned', objArr)
-        //     // this.setState({
-        //     //     todaysMacros: objArr,
-        //     //     todaysCalories: totalCalories
-        //     // })
-        // })
         .catch((error) => {
             console.log(error)
         })
@@ -94,7 +85,6 @@ export function getUserStats(email) {
             }
         })
         .then((response) => {
-            console.log('action index', response.data)
             dispatch(userStatsFetchedSuccess(response.data))
         })
         .catch((error) => {
@@ -115,7 +105,6 @@ export function deleteEntry(objId) {
             _id : objId
           })
           .then((response) => {
-            console.log(response);
             dispatch(getTodaysEntries())
           })
           .catch((error) => {
