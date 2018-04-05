@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 const CaloriesInputed = (props) => {
     return (
         <span>
-            {console.log('calories inputed', props)}
             {props.items === undefined ? 
                 2000 : 
                 helpers.calculateDailyCalories(props.items) + "   =   "}

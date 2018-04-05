@@ -7,6 +7,7 @@ import DailySummary from './DailySummary.jsx';
 import { setUserStats } from '../actions/index.js';
 import store from '../reducers/store.js';
 import { Redirect } from 'react-router-dom'
+import { TextField, ListItem, Checkbox, MenuItem, SelectField, FlatButton } from 'material-ui';
 
 const styles = {
   customWidth: {
@@ -19,13 +20,14 @@ class UserStats extends React.Component {
         super(props);
         this.state = {
             activityLevel: "sedentary",
-            goal: "Lose",
+            goal: "lose",
             gender: "Male",
             weight: 0,
             height: 0,
             age: 0,
             calories: "",
-            macros: null
+            macros: null,
+            value: 1
         }
         this.handleActivityLevel = this.handleActivityLevel.bind(this)
         this.handleGender = this.handleGender.bind(this)
@@ -40,7 +42,6 @@ class UserStats extends React.Component {
 
     handleFeet(event) {
         var feetInCM = event.target.value * 30.48
-        console.log('feetInCM',feetInCM)
         this.setState({
             height: this.state.height + feetInCM
         })
@@ -53,10 +54,10 @@ class UserStats extends React.Component {
         })
     }
 
-   handleActivityLevel(event) {
+   handleActivityLevel(event, index, value) {
         this.setState({
-            activityLevel: event.target.value
-        })
+            activityLevel: value
+        })          
     }
 
     handleGender(event, index, value2) {
@@ -65,9 +66,9 @@ class UserStats extends React.Component {
         })
     }
 
-    handleGoal(event) {
+    handleGoal(event, index, value) {
         this.setState({
-            goal: event.target.value
+            goal: value
         })
     }
 
@@ -114,7 +115,6 @@ class UserStats extends React.Component {
             totalTDEE = TDEE + ( TDEE * .20)
         }
 
-        console.log('calculate calories: ', totalTDEE )
         return Math.round(totalTDEE);
         
     }
@@ -150,7 +150,6 @@ class UserStats extends React.Component {
 
         axios.post('banx/userStats', userBodyData)
           .then((response)=>{
-              console.log(response.data)
             this.setState({
                 calories: calcCalories,
                 macros: macrosNutrients
@@ -167,8 +166,6 @@ class UserStats extends React.Component {
         obj["carbohydrates"] = Math.round(calories / 4);
         obj["fats"] = Math.round(calories / 9);
 
-        console.log("userstats", obj)
-
         return obj;
     }
 
@@ -182,7 +179,10 @@ class UserStats extends React.Component {
         });
       }
 
+
     render() {
+        let userStats = this.props.stats[0]
+        console.log('userstats state', userStats)
         if (this.state.macros) {
             return <Redirect to="/Journal"/>
         }
@@ -191,26 +191,8 @@ class UserStats extends React.Component {
         }
         return (
             <div className = "profile">
-               <h2>Profile</h2>
-                <form>
-                <label>
-                Age:
-                <input name="age" type="number" onChange={this.handleAge} />
-                </label>
-                <label>
-                Weight:
-                <input name="weight" type="number" onChange={this.handleWeight} />
-                </label>
-                <br />
-                <label>
-                Feet:
-                <input name="feet" type="number" onChange={this.handleFeet} />
-                </label>
-                <label>
-                Inches:
-                <input  name="inches" type="number" onChange={this.handleInches} />
-                </label>
-                <label>
+               <h2>Body Statistics</h2>
+               <label>
                 Female:
                 <input name="female" type="checkbox" checked={this.state.female} onChange={this.handleInputChange} />
                 </label>
@@ -219,29 +201,65 @@ class UserStats extends React.Component {
                 <input name="male" type="checkbox" checked={this.state.male} onChange={this.handleInputChange} />
                 </label>
                 <br/>
-                <label>
-                Activity Level:
-                <select value={this.state.value} onChange={this.handleActivityLevel}>
-                    <option value="sedentary">Sedentary</option>
-                    <option value="lightActivity">Light Activity</option>
-                    <option value="moderateActivity">Moderate Activity</option>
-                    <option value="veryActive">Very Active</option>
-                </select>
-                </label>
-                <br/>
-                <label>
-                Goal:
-                <select value={this.state.value} onChange={this.handleGoal}>
-                    <option value="lose">Lose</option>
-                    <option value="lose10%">Lose 10%</option>
-                    <option value="maintain">Maintain</option>
-                    <option value="gain">Gain</option>
-                </select>
-                </label>
-                <br/>
-                <input type="submit" value="Submit" onClick={this.handleSubmitUserStats} />
+                    <TextField 
+                    type="number" 
+                    defaultValue={userStats.age}
+                    floatingLabelText="Age"
+                    onChange={this.handleAge}
+                    />
+                    <TextField 
+                    type="number" 
+                    defaultValue={Math.round(userStats.weight * 2.20462)} 
+                    floatingLabelText="Weight"
+                    onChange={this.handleWeight}
+                    /><br/>
+                <TextField
+                type="number"
+                defaultValue={Math.floor(userStats.height / 12)}
+                floatingLabelText="Feet"
+                onChange={this.handleFeet}
+                />
+                 <TextField
+                type="number"
+                defaultValue={Math.round(userStats.height % 12)}
+                floatingLabelText="Inches"
+                onChange={this.handleInches}
+                />
+           
+             
+               
+                 <SelectField
+          floatingLabelText="Activity Level"
+          value={userStats.activityLevel}
+          onChange={
+              this.handleActivityLevel
+             
+            }
+        >
+          <MenuItem value="sedentary" primaryText="Sedentary" />
+          <MenuItem value="lightActivity" primaryText="Light Activity" />
+          <MenuItem value="moderateActivity" primaryText="Moderate Activity" />
+          <MenuItem value="veryActive" primaryText="Very Active" />
+          <MenuItem value="weekly" primaryText="Weekly" />
+        </SelectField>
                 
-                </form> 
+             
+                <SelectField 
+                value={userStats.goal}
+                floatingLabelText="Goal"
+                onChange={this.handleGoal}
+                >
+                    <MenuItem value="lose" primaryText="Lose"/>
+                    <MenuItem value="lose10%" primaryText="Lose10%"/>
+                    <MenuItem value="maintain" primaryText="Maintain"/>
+                    <MenuItem value="gain" primaryText="Gain"/>
+                </SelectField>
+                <br/>
+               
+                <FlatButton  
+                label="Update" 
+                primary={true} 
+                onClick={this.handleSubmitUserStats} />
             </div>
         )
     }
@@ -251,8 +269,10 @@ class UserStats extends React.Component {
 
 var mapStateToProps = function(state) {
     const { email } = state.reducer
+    const { stats } = state.getUserStats
     return {
-        email
+        email,
+        stats
     }
 }
 

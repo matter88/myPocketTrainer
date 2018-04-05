@@ -166,11 +166,11 @@ handleSaveToDB() {
         itemName={this.state.itemName}
         /> : null  
 
-        nutrientList !== undefined ? 
-        button = <FloatingActionButton type="submit" value="add to my daily intake" onClick={this.handleSaveToDB}>
-                    <ContentAdd />
-                 </FloatingActionButton> 
-        : null
+        // nutrientList !== undefined ? 
+        // button = <FloatingActionButton type="submit" value="add to my daily intake" onClick={this.handleSaveToDB}>
+        //             <ContentAdd />
+        //          </FloatingActionButton> 
+        // : null
          
     
     return (
