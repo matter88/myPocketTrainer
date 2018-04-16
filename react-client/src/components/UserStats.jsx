@@ -192,14 +192,14 @@ class UserStats extends React.Component {
         return (
             <div className = "profile">
                <h2>Body Statistics</h2>
-               <label>
+              
                 Female:
                 <input name="female" type="checkbox" checked={this.state.female} onChange={this.handleInputChange} />
-                </label>
-                <label>
+               
+                
                 Male:
                 <input name="male" type="checkbox" checked={this.state.male} onChange={this.handleInputChange} />
-                </label>
+               
                 <br/>
                     <TextField 
                     type="number" 
