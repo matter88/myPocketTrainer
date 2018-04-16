@@ -260,6 +260,7 @@ class UserStats extends React.Component {
                 label="Update" 
                 primary={true} 
                 onClick={this.handleSubmitUserStats} />
+                <SelectField></SelectField>
             </div>
         )
     }
