@@ -41,11 +41,11 @@ class SignUp extends React.Component {
     signUp() {
         const { email, password } = this.state
         firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-        .catch((error) => {
-            this.setState({
-                error: error
+            .catch((error) => {
+                this.setState({
+                    error: error
+                })
             })
-        })
     }
 
     changeEmailState(event) {
@@ -63,26 +63,26 @@ class SignUp extends React.Component {
     signIn() {
         const { emailSignIn, passwordSignIn } = this.state
         firebaseApp.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
-        .catch((error) => {
-            this.setState({
-                error: error
+            .catch((error) => {
+                this.setState({
+                    error: error
+                })
             })
-          })
     }
 
 
 
     render() {
-        console.log('signup props',this.props)
+        console.log('signup props', this.props)
         const { email } = this.props;
         let redirect;
         if (email) {
             console.log("redirect invoked")
-            redirect = <Redirect to='/Profile'/>
+            redirect = <Redirect to='/Profile' />
         }
-        return(
+        return (
             <div>
-            {/* <div className = 'loginForm'>
+                {/* <div className = 'loginForm'>
               <div>
                <TextField
                inputStyle={{ color: '#00D77E' }}
@@ -105,48 +105,48 @@ class SignUp extends React.Component {
              </div>
           </div>
           <hr/> */}
-        <div className = 'signupForm'>
-         {redirect}
-            <div>
-             <TextField
-               hintText="Enter your First Name"
-               floatingLabelText="First Name"
-               inputStyle={{ color: '#00D77E' }}
+                <div className='signupForm'>
+                    {redirect}
+                    <div>
+                        <TextField
+                            hintText="Enter your First Name"
+                            floatingLabelText="First Name"
+                            inputStyle={{ color: '#00D77E' }}
 
-               />
-             <br/>
-             <TextField
-               hintText="Enter your Last Name"
-               floatingLabelText="Last Name"
-               inputStyle={{ color: '#00D77E' }}
+                        />
+                        <br />
+                        <TextField
+                            hintText="Enter your Last Name"
+                            floatingLabelText="Last Name"
+                            inputStyle={{ color: '#00D77E' }}
 
-               />
-             <br/>
-             <TextField
-               hintText="Enter your Email"
-               type="email"
-               floatingLabelText="Email"
-               inputStyle={{ color: '#00D77E' }}
+                        />
+                        <br />
+                        <TextField
+                            hintText="Enter your Email"
+                            type="email"
+                            floatingLabelText="Email"
+                            inputStyle={{ color: '#00D77E' }}
 
-               onChange={this.changeEmailState}
-               />
-             <br/>
-             <TextField
-               type = "password"
-               hintText="Enter your Password"
-               floatingLabelText="Password"
-               inputStyle={{ color: '#00D77E' }}
+                            onChange={this.changeEmailState}
+                        />
+                        <br />
+                        <TextField
+                            type="password"
+                            hintText="Enter your Password"
+                            floatingLabelText="Password"
+                            inputStyle={{ color: '#00D77E' }}
 
-               onChange={this.changePasswordState}
-               />
-             <br/>
+                            onChange={this.changePasswordState}
+                        />
+                        <br />
 
-           <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()}/>
-           <div>{this.state.error.message}</div>
-           <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
+                        <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()} />
+                        <div>{this.state.error.message}</div>
+                        <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
         )
     }
 }
