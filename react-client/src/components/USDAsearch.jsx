@@ -124,6 +124,7 @@ handleClick(num) {
 }
 
 handleSaveToDB() {
+    console.log('shaved ice', this.state.nutrients)
     var redesignedObj = helpers.redesign(this.state.nutrients)
     const { email } = this.props
     redesignedObj['email'] = email;
@@ -164,6 +165,7 @@ handleSaveToDB() {
         nutrientList =  <NdbnoResultsList
         nutrient={this.state.nutrients}
         itemName={this.state.itemName}
+        saveToDB={this.handleSaveToDB}
         /> : null  
 
 
@@ -187,7 +189,8 @@ handleSaveToDB() {
                 </label>
                 <FlatButton primary={true} label="Search" onClick={this.handleSubmit} />
             </form>
-            <div>
+            <div > 
+
                 {usda}
                 {button}
                 {nutrientList}
