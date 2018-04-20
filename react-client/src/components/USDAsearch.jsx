@@ -188,6 +188,7 @@ handleSaveToDB() {
                     </span>
                 </label>
                 <FlatButton primary={true} label="Search" onClick={this.handleSubmit} />
+                <FlatButton primary={true} label="Create" onClick={this.handleCreate} />
             </form>
             <div > 
 
