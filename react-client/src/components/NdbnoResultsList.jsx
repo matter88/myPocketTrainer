@@ -50,13 +50,13 @@ class NdbnoResultsList extends React.Component {
       </TableHeader> :
 
       <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-        <TableRow style={{backgroundColor:'gray',}}>
+        <TableRow style={{backgroundColor:'white',}}>
           <TableHeaderColumn>
             {this.props.itemName}
             <select  onChange={this.handleChange}>
               {this.props.nutrient[0].measures.map((measure, index) => 
               <option key={index} value={measure.label}>{measure.label}</option>)}
-            </select> GUAVA TEST <FloatingActionButton type="submit" value="add to my daily intake" onClick={this.handleSaveToDB}>
+            </select>  <FloatingActionButton type="submit" value="add to my daily intake" onClick={this.handleSaveToDB}>
                     <ContentAdd />
                 </FloatingActionButton> 
           </TableHeaderColumn>

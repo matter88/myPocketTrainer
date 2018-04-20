@@ -57,7 +57,7 @@ handleSearchInput(event) {
         if(event.key == 'Enter'){
             console.log('handlekeypress invoked')
             axios.post('/banx/usdaDB', {
-                searchTerm: this.state.searchInput,
+                searchTerm: this.state.searchInput + ' raw' ,
               })
             .then((response) => {
                 console.log(response.data)
@@ -182,7 +182,6 @@ handleSaveToDB() {
                     hintText="What are we eating?"
                     floatingLabelText="Macros"
                     floatingLabelFixed={false}
-                    // value={this.state.searchInput}
                     onChange={this.handleSearchInput}
                     hintStyle={styles.errorStyle} 
                     floatingLabelStyle={styles.errorStyle}

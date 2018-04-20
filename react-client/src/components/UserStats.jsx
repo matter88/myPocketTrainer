@@ -10,13 +10,13 @@ import { Redirect } from 'react-router-dom'
 import { TextField, ListItem, Checkbox, MenuItem, SelectField, FlatButton } from 'material-ui';
 
 const styles = {
-  customWidth: {
-    width: 200,
-  },
+    customWidth: {
+        width: 200,
+    },
 };
 
 class UserStats extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             activityLevel: "sedentary",
@@ -54,10 +54,10 @@ class UserStats extends React.Component {
         })
     }
 
-   handleActivityLevel(event, index, value) {
+    handleActivityLevel(event, index, value) {
         this.setState({
             activityLevel: value
-        })          
+        })
     }
 
     handleGender(event, index, value2) {
@@ -73,7 +73,7 @@ class UserStats extends React.Component {
     }
 
     handleWeight(event) {
-        let inputWeight = event.target.value  * 0.453592
+        let inputWeight = event.target.value * 0.453592
         this.setState({
             weight: inputWeight
         })
@@ -85,7 +85,7 @@ class UserStats extends React.Component {
         })
     }
 
-    calculateCalories(obj){
+    calculateCalories(obj) {
         let restingEnergy = null;
         let TDEE = null;
         let totalTDEE = null;
@@ -97,7 +97,7 @@ class UserStats extends React.Component {
             restingEnergy = 10 * this.state.weight + 6.25 * this.state.height - 5 * this.state.age - 161
         }
 
-        if (obj.activityLevel === "sedentary" ) {
+        if (obj.activityLevel === "sedentary") {
             TDEE = restingEnergy * 1.2;
         } else if (obj.activityLevel === "lightActivity") {
             TDEE = restingEnergy * 1.375;
@@ -108,15 +108,15 @@ class UserStats extends React.Component {
         }
 
         if (obj.goal === "lose") {
-            totalTDEE = TDEE - ( TDEE * .20 )
+            totalTDEE = TDEE - (TDEE * .20)
         } else if (obj.goal === "lose10%") {
-            totalTDEE = TDEE - ( TDEE * .10 )
+            totalTDEE = TDEE - (TDEE * .10)
         } else if (obj.goal === "gain") {
-            totalTDEE = TDEE + ( TDEE * .20)
+            totalTDEE = TDEE + (TDEE * .20)
         }
 
         return Math.round(totalTDEE);
-        
+
     }
 
     handleSubmitUserStats(event) {
@@ -131,33 +131,33 @@ class UserStats extends React.Component {
             gender: this.state.gender,
             goal: this.state.goal,
             activityLevel: this.state.activityLevel
-          }
-          
-        calcCalories = this.calculateCalories(userBodyData);  
+        }
+
+        calcCalories = this.calculateCalories(userBodyData);
         macrosNutrients = this.calculateMacros(calcCalories)
-        
+
         userBodyData["email"] = email;
         userBodyData["calories"] = calcCalories;
         userBodyData["protiens"] = macrosNutrients.protiens;
         userBodyData["carbohydrates"] = macrosNutrients.carbohydrates;
         userBodyData["fats"] = macrosNutrients.fats
-        userBodyData['createdAt']= new Date();
+        userBodyData['createdAt'] = new Date();
 
-       
-  
+
+
         store.dispatch(setUserStats(userBodyData))
 
 
         axios.post('banx/userStats', userBodyData)
-          .then((response)=>{
-            this.setState({
-                calories: calcCalories,
-                macros: macrosNutrients
+            .then((response) => {
+                this.setState({
+                    calories: calcCalories,
+                    macros: macrosNutrients
+                })
             })
-          })
-          .catch((error)=> {
-            console.log(error);
-          });
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     calculateMacros(calories) {
@@ -173,93 +173,94 @@ class UserStats extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-    
+
         this.setState({
-          gender: name
+            gender: name
         });
-      }
+    }
 
 
     render() {
         let userStats = this.props.stats[0]
         console.log('userstats state', userStats)
         if (this.state.macros) {
-            return <Redirect to="/Journal"/>
+            return <Redirect to="/Journal" />
         }
         if (this.props.email === undefined) {
-            return <Redirect to="/"/>
+            return <Redirect to="/" />
         }
         return (
-            <div className = "profile">
-               <h2>Body Statistics</h2>
-               <label>
+            <div className="profile">
+                <h2>Body Statistics</h2>
+
                 Female:
                 <input name="female" type="checkbox" checked={this.state.female} onChange={this.handleInputChange} />
-                </label>
-                <label>
+
+
                 Male:
                 <input name="male" type="checkbox" checked={this.state.male} onChange={this.handleInputChange} />
-                </label>
-                <br/>
-                    <TextField 
-                    type="number" 
+
+                <br />
+                <TextField
+                    type="number"
                     defaultValue={userStats.age}
                     floatingLabelText="Age"
                     onChange={this.handleAge}
-                    />
-                    <TextField 
-                    type="number" 
-                    defaultValue={Math.round(userStats.weight * 2.20462)} 
+                />
+                <TextField
+                    type="number"
+                    defaultValue={Math.round(userStats.weight * 2.20462)}
                     floatingLabelText="Weight"
                     onChange={this.handleWeight}
-                    /><br/>
+                /><br />
                 <TextField
-                type="number"
-                defaultValue={Math.floor(userStats.height / 12)}
-                floatingLabelText="Feet"
-                onChange={this.handleFeet}
+                    type="number"
+                    defaultValue={Math.floor(userStats.height / 12)}
+                    floatingLabelText="Feet"
+                    onChange={this.handleFeet}
                 />
-                 <TextField
-                type="number"
-                defaultValue={Math.round(userStats.height % 12)}
-                floatingLabelText="Inches"
-                onChange={this.handleInches}
+                <TextField
+                    type="number"
+                    defaultValue={Math.round(userStats.height % 12)}
+                    floatingLabelText="Inches"
+                    onChange={this.handleInches}
                 />
-           
-             
-               
-                 <SelectField
-          floatingLabelText="Activity Level"
-          value={userStats.activityLevel}
-          onChange={
-              this.handleActivityLevel
-             
-            }
-        >
-          <MenuItem value="sedentary" primaryText="Sedentary" />
-          <MenuItem value="lightActivity" primaryText="Light Activity" />
-          <MenuItem value="moderateActivity" primaryText="Moderate Activity" />
-          <MenuItem value="veryActive" primaryText="Very Active" />
-          <MenuItem value="weekly" primaryText="Weekly" />
-        </SelectField>
-                
-             
-                <SelectField 
-                value={userStats.goal}
-                floatingLabelText="Goal"
-                onChange={this.handleGoal}
+
+
+
+                <SelectField
+                    floatingLabelText="Activity Level"
+                    value={userStats.activityLevel}
+                    onChange={
+                        this.handleActivityLevel
+
+                    }
                 >
-                    <MenuItem value="lose" primaryText="Lose"/>
-                    <MenuItem value="lose10%" primaryText="Lose10%"/>
-                    <MenuItem value="maintain" primaryText="Maintain"/>
-                    <MenuItem value="gain" primaryText="Gain"/>
+                    <MenuItem value="sedentary" primaryText="Sedentary" />
+                    <MenuItem value="lightActivity" primaryText="Light Activity" />
+                    <MenuItem value="moderateActivity" primaryText="Moderate Activity" />
+                    <MenuItem value="veryActive" primaryText="Very Active" />
+                    <MenuItem value="weekly" primaryText="Weekly" />
                 </SelectField>
-                <br/>
-               
-                <FlatButton  
-                label="Update" 
-                primary={true} 
-                onClick={this.handleSubmitUserStats} />
+
+
+                <SelectField
+                    value={userStats.goal}
+                    floatingLabelText="Goal"
+                    onChange={this.handleGoal}
+                >
+                    <MenuItem value="lose" primaryText="Lose" />
+                    <MenuItem value="lose10%" primaryText="Lose10%" />
+                    <MenuItem value="maintain" primaryText="Maintain" />
+                    <MenuItem value="gain" primaryText="Gain" />
+                </SelectField>
+                <br />
+
+                <FlatButton
+                    label="Update"
+                    primary={true}
+                    onClick={this.handleSubmitUserStats} />
+                <SelectField></SelectField>
             </div>
         )
     }
@@ -267,7 +268,7 @@ class UserStats extends React.Component {
 
 
 
-var mapStateToProps = function(state) {
+var mapStateToProps = function (state) {
     const { email } = state.reducer
     const { stats } = state.getUserStats
     return {
