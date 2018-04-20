@@ -3,7 +3,6 @@ import Paper from 'material-ui/Paper';
 import SetCalories from './SetCalories.jsx';
 import CaloriesInputed from './CaloriesInputed.jsx';
 import RemainingCalories from './RemainingCalories.jsx';
-import NutrientTable from './NutrientTable.jsx'
 import { connect } from 'react-redux';
 import store from '../reducers/store.js';
 import axios from 'axios';
