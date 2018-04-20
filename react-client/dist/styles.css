@@ -28,7 +28,6 @@ html,
 }
 
 .loginForm {
-  /* background-color: white; */
   text-align: center ;
   position: absolute;
   margin: auto;
@@ -40,7 +39,6 @@ html,
 }
 
 .signupForm {
-  /* background-color: white; */
   text-align: right;
   position: absolute;
   margin: auto;
@@ -157,13 +155,13 @@ html,
 
  .table {
   color: #00D77E !important;
-  background-color: black !important;
-  border: 2px solid black !important;
+  /* background-color: black !important; */
+  border: 2px solid white !important;
  }
 
  .table-row {
   color: #00D77E;
-  background-color: black !important;
+  /* background-color: black !important; */
  }
 
  .appBar {
