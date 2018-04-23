@@ -11,7 +11,6 @@ class App extends React.Component {
         return (
             <div className="guava">
                 <Header />
-                Testing!!!!
                 <Main />
             </div>
         )
