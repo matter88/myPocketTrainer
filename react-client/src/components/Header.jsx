@@ -101,6 +101,8 @@ class Header extends React.Component {
             {dailySummary}
             {profile}
             {signOut}
+            <MenuItem onClick={this.handleRequestClose}><Link to='/Create'>Create</Link></MenuItem>
+
           </Drawer>
 
         </AppBar>
