@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 const CaloriesInputed = (props) => {
     return (
         <span>
-            {props.items === undefined ? 
-                2000 : 
+            {props.items === undefined ?
+                2000 :
                 helpers.calculateDailyCalories(props.items) + "   =   "}
-                 
+
         </span>
     )
 }
@@ -18,11 +18,11 @@ const mapStateToProps = (state) => {
     const { stats } = state.getUserStats
     const { email } = state.reducer
     const { items } = state.todaysEntries
-    return { 
+    return {
         email,
         items,
         stats
     }
 }
 
-export default connect (mapStateToProps, null)(CaloriesInputed);
+export default connect(mapStateToProps, null)(CaloriesInputed);

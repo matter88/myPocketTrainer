@@ -37,27 +37,7 @@ class NdbnoResultsList extends React.Component {
     store.dispatch(setServingSize(event.target.value))
   }
 
-  // handleSaveToDB() {
-  //   console.log('applesOranges', this.props)
-  //   // var redesignedObj = helpers.redesign(this.props.nutrients.nutrient)
-  //   const { email } = this.props
-  //   redesignedObj['email'] = email;
-  //   redesignedObj['createdAt']= new Date();
-  //   redesignedObj['Calories'] = redesignedObj['Energy']
-  //   redesignedObj['Fats'] = redesignedObj["Total lipid (fat)"]
-  //   redesignedObj['Name'] = this.state.itemName
-  //   console.log('redesigned obj', redesignedObj)
-  //   axios.post('/banx/caloriesInput', redesignedObj)
-  //   .then(() => {
-  //     this.setState({
-  //       items: [],
-  //       searchItem: ""
-  //     })
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-  // }
+ 
 
   render() {
     console.log('banana', this.props)
@@ -79,7 +59,7 @@ class NdbnoResultsList extends React.Component {
         backgroundColor: 'white',
         border: 'white'
       }}>
-      
+
         {this.props.nutrient.length === 0 ?
 
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -96,7 +76,7 @@ class NdbnoResultsList extends React.Component {
                   {this.props.nutrient[0].measures.map((measure, index) =>
                     <option key={index} value={measure.label}>{measure.label}</option>)}
                 </select>
-                <FloatingActionButton type="submit" value="add to my daily intake" onClick={() => {this.props.saveToDB()}}>
+                <FloatingActionButton type="submit" value="add to my daily intake" onClick={() => { this.props.saveToDB() }}>
                   <ContentAdd />
                 </FloatingActionButton>
               </TableHeaderColumn>
