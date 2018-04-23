@@ -11,6 +11,8 @@ import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
 import { logUser, logUserOUT } from '../actions/index.js';
 import reducer from '../reducers';
+import Toggle from 'material-ui/Toggle';
+
 
 class Header extends React.Component {
   constructor(props) {
@@ -87,7 +89,7 @@ class Header extends React.Component {
     return (
       <header >
 
-        <AppBar  className="appBar" title="MacroTracker" onClick={this.handleToggle} >
+        <AppBar title="MacroTracker" onClick={this.handleToggle} >
           <Drawer
             docked={false}
             width={200}
