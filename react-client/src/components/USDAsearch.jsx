@@ -9,7 +9,8 @@ import { connect } from 'react-redux'
 import helpers from '../helpers.js';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
-import { reouteToCreate } from '../actions'
+import { routeToCreate } from '../actions'
+import store from '../reducers/store.js'
 
 
 
@@ -175,9 +176,11 @@ handleSaveToDB() {
         saveToDB={this.handleSaveToDB}
         /> : null  
 
+        console.log('big island', this.props.tag)
    
     
     return (
+        
         <div className="usdaSearch">
             <form>
                 <label>
@@ -208,9 +211,14 @@ handleSaveToDB() {
 }
 
 const mapStateToProps = (state) => {
-    const { email } = state.reducer;
+    console.log('kalalau', state)
+    const { tag } = state.testCaseBanana
+    const { email
+    } = state.reducer;
+
     return {
-        email
+        email,
+        tag
     }
 }
 

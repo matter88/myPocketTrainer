@@ -6,11 +6,13 @@ import {
     ITEMS_FETCH_DATA_SUCCESS,
     GET_USERSTATS,
     SET_SERVING_SIZE,
+    REDIRECT_TO_CREATE
 } from '../constants';
 import { Redirect } from 'react-router-dom'
 import helpers from '../helpers.js';
 import axios from 'axios';
 import store from '../reducers/store.js';
+import React from 'react';
 
 
 
@@ -120,6 +122,14 @@ export function setServingSize(size) {
     }
 }
 
+export function routeToCreate() {
+    const action = {
+        type: REDIRECT_TO_CREATE,
+        routeToCreateState : true
+    }
+    return action;
+}
+
 export function getYesterday(email) {
     return (dispatch) => {
         axios.get('/banx/getYesterdayJournal', {
@@ -151,3 +161,5 @@ export function getTomorrowFoodAc(email) {
         })
     }
 }
+
+

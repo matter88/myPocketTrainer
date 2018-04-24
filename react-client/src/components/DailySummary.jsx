@@ -26,7 +26,7 @@ class DailySummary extends React.Component {
             todaysCalories: 0
 
         }
-        this.redirect = this.redirect.bind(this)
+        // this.redirect = this.redirect.bind(this)
         this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this)
         this.getYesterday = this.getYesterday.bind(this)
     }
@@ -53,9 +53,9 @@ class DailySummary extends React.Component {
         store.dispatch(getTodaysEntries(email))
     }
 
-    redirect() {
-        store.dispatch(redirectHome())
-    }
+    // redirect() {
+    //     store.dispatch(redirectHome())
+    // }
 
 
     render() {
@@ -95,6 +95,7 @@ class DailySummary extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    
     const { stats } = state.getUserStats
     const { email } = state.reducer
     const { items } = state.todaysEntries
