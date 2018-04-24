@@ -69,10 +69,6 @@ class DailySummary extends React.Component {
 
         return (
             <div className="container-1">
-                <div>
-                    {/* <span className='buttonLeft'><button onClick={this.getYesterday}>Yesterday</button></span>
-                    <span className='buttonright'> <button onClick={this.getTomorrowFoodEntries}> Tomorrow</button></span> */}
-                </div>
                 <div className="dailySummary">
                     <span><SetCalories /></span>
                     <span> <CaloriesInputed /></span>
