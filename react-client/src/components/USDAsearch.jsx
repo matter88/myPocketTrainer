@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import helpers from '../helpers.js';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
+import { reouteToCreate } from '../actions'
 
 
 
@@ -44,6 +45,7 @@ class USDAsearch extends React.Component {
         this.handleClick = this.handleClick.bind(this)
         this.handleSaveToDB = this.handleSaveToDB.bind(this)
         this.handleKeyPress = this.handleKeyPress.bind(this)
+        this.handleRerouteToCreate = this.handleRerouteToCreate.bind(this)
     }
 
 handleSearchInput(event) {
@@ -145,6 +147,11 @@ handleSaveToDB() {
     });
   }
 
+  handleRerouteToCreate() {
+    console.log('create reroute works')
+    store.dispatch(routeToCreate())
+}
+
     render() {
         let usda;
         let nutrientList;
@@ -168,9 +175,7 @@ handleSaveToDB() {
         saveToDB={this.handleSaveToDB}
         /> : null  
 
-    // handleCreate() {
-    //     let 
-    // }
+   
     
     return (
         <div className="usdaSearch">
@@ -190,7 +195,7 @@ handleSaveToDB() {
                     </span>
                 </label>
                 <FlatButton primary={true} label="Search" onClick={this.handleSubmit} />
-                <FlatButton primary={true} label="Create" onClick={this.handleCreate} />
+                <FlatButton primary={true} label="Create" onClick={this.handleRerouteToCreate} />
             </form>
             <div > 
 
