@@ -151,6 +151,7 @@ handleSaveToDB() {
   handleRerouteToCreate() {
     console.log('create reroute works')
     store.dispatch(routeToCreate())
+   
 }
 
     render() {
@@ -176,8 +177,8 @@ handleSaveToDB() {
         saveToDB={this.handleSaveToDB}
         /> : null  
 
-        console.log('big island', this.props.tag)
-   
+       
+    
     
     return (
         

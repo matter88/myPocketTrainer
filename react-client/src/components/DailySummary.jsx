@@ -53,10 +53,7 @@ class DailySummary extends React.Component {
         store.dispatch(getTodaysEntries(email))
     }
 
-    // redirect() {
-    //     store.dispatch(redirectHome())
-    // }
-
+   
 
     render() {
         let objArr;
