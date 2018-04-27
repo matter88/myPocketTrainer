@@ -177,7 +177,7 @@ handleSaveToDB() {
         saveToDB={this.handleSaveToDB}
         /> : null  
 
-       
+       console.log('test case', this.props.routeToCreateState)
     
     
     return (
@@ -213,13 +213,12 @@ handleSaveToDB() {
 
 const mapStateToProps = (state) => {
     console.log('kalalau', state)
-    const { tag } = state.testCaseBanana
-    const { email
-    } = state.reducer;
+    const { routeToCreateState } = state.testCaseBanana;
+    const { email } = state.reducer;
 
     return {
         email,
-        tag
+        routeToCreateState
     }
 }
 
