@@ -11,6 +11,8 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import { routeToCreate } from '../actions'
 import store from '../reducers/store.js'
+import { Redirect } from 'react-router-dom'
+
 
 
 
@@ -158,6 +160,7 @@ handleSaveToDB() {
         let usda;
         let nutrientList;
         let button;
+        let tag;
 
         if (this.state.testState) {
             return <div>hi</div>
@@ -177,12 +180,15 @@ handleSaveToDB() {
         saveToDB={this.handleSaveToDB}
         /> : null  
 
-       
+       if (this.props.routeToCreateState) {
+           return <Redirect to='/Create'/>
+       }
     
     
     return (
-        
+       
         <div className="usdaSearch">
+          
             <form>
                 <label>
                     <span >
@@ -213,13 +219,12 @@ handleSaveToDB() {
 
 const mapStateToProps = (state) => {
     console.log('kalalau', state)
-    const { tag } = state.testCaseBanana
-    const { email
-    } = state.reducer;
+    const { routeToCreateState } = state.testCaseBanana;
+    const { email } = state.reducer;
 
     return {
         email,
-        tag
+        routeToCreateState
     }
 }
 
