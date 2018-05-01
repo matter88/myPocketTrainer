@@ -186,9 +186,7 @@ handleSaveToDB() {
     
     
     return (
-       
         <div className="usdaSearch">
-          
             <form>
                 <label>
                     <span >
