@@ -12,10 +12,8 @@ class CreateFood extends React.Component {
     render () {
         return(
             <div>Hi From CreateFood
-            <h1> doea this work? </h1>
-            <span>kadjhfaljflajdf;ak</span>
-            <h1>hope this works</h1>
-            <h1>hope this works</h1>
+            <h1> I love you so much lobster </h1>
+            
             </div>
         )
     }
