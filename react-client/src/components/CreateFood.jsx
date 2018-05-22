@@ -16,6 +16,36 @@ class CreateFood extends React.Component {
           floatingLabelFixed={true}
         />
         <br />
+        <TextField
+        //   hintText="Food"
+          floatingLabelText="Calories"
+          floatingLabelFixed={true}
+        />
+        <br />
+        <TextField
+        //   hintText="Food"
+          floatingLabelText="Fats"
+          floatingLabelFixed={true}
+        />
+        <br />
+        <TextField
+        //   hintText="Food"
+          floatingLabelText="Proteins"
+          floatingLabelFixed={true}
+        />
+        <br />
+        <TextField
+        //   hintText="Food"
+          floatingLabelText="Carbohydrates"
+          floatingLabelFixed={true}
+        />
+        <br />
+        <TextField
+        //   hintText="Food"
+          floatingLabelText="Food Name"
+          floatingLabelFixed={true}
+        />
+        <br />
       </div>
     );
   }
