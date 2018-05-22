@@ -2,19 +2,23 @@ import React from "react";
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const styles = theme => ({
-    button: {
-      margin: theme.spacing.unit,
-    },
-    input: {
-      display: 'none',
-    },
-  });
+// const styles = theme => ({
+//     button: {
+//       margin: theme.spacing.unit,
+//     },
+//     input: {
+//       display: 'none',
+//     },
+//   });
 
 class CreateFood extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  handleSubmit() {
+      alert("DOES THIS SHOW UP")
   }
 
   render() {
@@ -50,14 +54,8 @@ class CreateFood extends React.Component {
           floatingLabelFixed={true}
         />
         <br />
-        <TextField
-        //   hintText="Food"
-          floatingLabelText="Food Name"
-          floatingLabelFixed={true}
-        />
-        <br />
    
-        <RaisedButton label="Create" primary={true} style={styles}/>
+        <RaisedButton onClick={this.handleSubmit} label="Create" primary={true} />
       </div>
     );
   }
