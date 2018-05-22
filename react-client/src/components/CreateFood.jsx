@@ -1,5 +1,15 @@
 import React from "react";
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const styles = theme => ({
+    button: {
+      margin: theme.spacing.unit,
+    },
+    input: {
+      display: 'none',
+    },
+  });
 
 class CreateFood extends React.Component {
   constructor(props) {
@@ -46,6 +56,8 @@ class CreateFood extends React.Component {
           floatingLabelFixed={true}
         />
         <br />
+   
+        <RaisedButton label="Create" primary={true} style={styles}/>
       </div>
     );
   }
