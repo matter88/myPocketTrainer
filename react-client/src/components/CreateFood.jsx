@@ -2,23 +2,34 @@ import React from "react";
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-// const styles = theme => ({
-//     button: {
-//       margin: theme.spacing.unit,
-//     },
-//     input: {
-//       display: 'none',
-//     },
-//   });
-
 class CreateFood extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      Name : "",
+      Calories : 0,
+
+    };
+    this.handleFoodName = this.handleFoodName.bind(this);
+    this.handleCalories = this.handleCalories.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleFoodName(event) {
+    this.setState = ({
+      Name: event.target.value
+    })
+  }
+
+  handleCalories(event) {
+    this.setState = ({
+      Calories: event.target.value
+    })
+    console.log(test)
   }
 
   handleSubmit() {
-      alert("DOES THIS SHOW UP")
+      alert(this.state)
   }
 
   render() {
@@ -28,12 +39,14 @@ class CreateFood extends React.Component {
         //   hintText="Food"
           floatingLabelText="Food Name"
           floatingLabelFixed={true}
+          onChange={this.handleFoodName}
         />
         <br />
         <TextField
         //   hintText="Food"
           floatingLabelText="Calories"
           floatingLabelFixed={true}
+          onChange = {this.handleCalories}
         />
         <br />
         <TextField
