@@ -13,7 +13,7 @@ class CreateFood extends React.Component {
     this.handleFoodName = this.handleFoodName.bind(this);
     this.handleCalories = this.handleCalories.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('test', 'test2')
+    console.log('test', 'test2', 'test3')
   }
 
   handleFoodName(event) {
