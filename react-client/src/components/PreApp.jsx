@@ -1,11 +1,13 @@
 import React from 'react';
-import App from './App.jsx';
 
 class PreApp extends React.Component {
     constructor(props) {
         super(props);
     }
 
+    handleRedirect() {
+      console.log('handleRedirect invoked')
+    }
   render() {
     return (
       <div className="body">
@@ -15,7 +17,7 @@ class PreApp extends React.Component {
                 myPocketTrainer
             </h1>
             <p>Your source of truth, from diet to workouts. We have got your bases covered.</p>
-            <a href="#" className='button'>Join Now</a>
+            <a href="#" className='button' onClick={this.handleRedirect}>Join Now</a>
         </header>
         <section id="section-a">
           <div className="container">
