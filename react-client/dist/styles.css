@@ -12,7 +12,7 @@ body {
 }
 
 #showcase {
-  background-image: url("diet.jpg");
+  background-image: url("./diet.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
