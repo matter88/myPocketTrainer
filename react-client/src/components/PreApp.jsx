@@ -68,6 +68,7 @@ class PreApp extends React.Component {
         <div className="box-2">Chat any time with our certified trainers for suggestions on nutritional intake or for customized workouts!</div>
         <div className="box-3">Track your fitness journey with our various tools to reach the fitness level of your goals!</div>
         </section>
+        <footer>copywrite myPocketTrainer 2019</footer>
       </div>
     );
   }
