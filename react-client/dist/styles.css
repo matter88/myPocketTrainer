@@ -11,7 +11,10 @@ body {
   overflow-x: hidden;
 }
 
-.v-header {
+#showcase {
+  background-image: url("diet.jpg");
+  background-size: cover;
+  background-position: center;
   height: 100vh;
   display: flex;
   align-items:center;
@@ -26,40 +29,51 @@ body {
   text-align: center;
 }
 
-.fullscreen-video-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+#showcase h1 {
+  font-size: 30px;
+  line-height: 1.2;
+  color: #fff;
+  margin-left: 50%;
 }
 
-.fullscreen-video-wrap video {
-  min-width: 100%;
-  min-height: 100%;
+#showcase p {
+  margin-left: 50%;
+  font-size: 18px;
+  color: #fff;
 }
 
-.header-overlay {
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #225470;
-  z-index: 1;
-  opacity: 0.85;
+#showcase .button {
+  font-size: 18px;
+  text-decoration: none;
+  color: #926239;
+  border: #926239 1px solid;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-left: 50%;
 }
 
-
-.header-content {
-  z-index: 2;
+#showcase .button:hover {
+  background: #926239;
+  color: #fff;
 }
 
-.header-content h1 {
-  font-size: 50px;
-  margin-bottom: 0;
+#section-a {
+  font-size: 15px;
+  padding: 20px;
+  background: #926239;
+  color: #fff;
+  text-align: center;
+}
 
+#section-b {
+  padding: 20px;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+#section-c {
+  display: flex;
 }
 
 .header-content p {
@@ -68,31 +82,17 @@ body {
   padding-bottom: 2rem;
 }
 
-.btn {
-  background: #34b3a0;
-  color: white;
-  font-size: 1.2rem;
-  padding: 1rem 2rem;
-  text-decoration: none;
+#section-c .box-1,
+#section-c .box-3 {
+  background: #926239;
+  color: #fff;
 }
 
 .section {
   padding : 20px 0;
 }
 
-.section-b {
-  background: #333;
-  color: #fff;
-}
-
-@media(max-width:960px) {
-  .container {
-    padding-right: 3rem;
-    padding-left: 3rem;
-  }
-}
-
-html,
+/* html,
 .guava  {
   background-color: white;
 }
@@ -141,10 +141,10 @@ html,
   bottom: 0;
   left: 0;
   width: 50%;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-}
+ 
+} */
 
-.profile {
+/* .profile {
   background-color: white;
   text-align: center;
   position: absolute;
@@ -202,36 +202,26 @@ html,
 
 .listItem {
   text-align: left
-}
+} */
 
-/* Space out content a bit */
-/* body {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  } */
-
-  /* Everything but the jumbotron gets side spacing for mobile first views */
-  .header,
+/* .header,
   .marketing,
   .footer {
     padding-right: 1rem;
     padding-left: 1rem;
   }
 
-  /* Custom page header */
   .header {
     padding-bottom: 1rem;
     border-bottom: .05rem solid #e5e5e5;
   }
 
-  /* Make the masthead heading the same height as the navigation */
   .header h3 {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 3rem;
   }
 
-  /* Custom page footer */
   .footer {
     padding-top: 1.5rem;
     color: #777;
@@ -241,21 +231,18 @@ html,
 
 
  .container-1 {
-  /* display: flex; */
   color:#00D77E;
   border:1px #ccc solid;
   padding:10px;
- }
+ } */
 
- .table {
+/* .table {
   color: #00D77E !important;
-  /* background-color: black !important; */
   border: 2px solid white !important;
  }
 
  .table-row {
   color: #00D77E;
-  /* background-color: black !important; */
  }
 
  .appBar {
@@ -270,4 +257,4 @@ html,
   border: 2px solid orange !important;
 
  }
-
+ */
