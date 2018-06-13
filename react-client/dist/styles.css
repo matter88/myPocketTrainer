@@ -33,11 +33,11 @@ body {
   font-size: 30px;
   line-height: 1.2;
   color: #fff;
-  margin-left: 50%;
+  /* margin-left: 50%; */
 }
 
 #showcase p {
-  margin-left: 50%;
+  /* margin-left: 50%; */
   font-size: 18px;
   color: #fff;
 }
@@ -50,7 +50,7 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 20px;
-  margin-left: 50%;
+  /* margin-left: 50%; */
 }
 
 #showcase .button:hover {
