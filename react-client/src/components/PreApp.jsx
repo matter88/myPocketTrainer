@@ -15,7 +15,7 @@ class PreApp extends React.Component {
                 myPocketTrainer
             </h1>
             <p>Your source of truth, from diet to workouts. We have got your bases covered.</p>
-            <a href="#" className='button'>Log In</a>
+            <a href="#" className='button'>Join Now</a>
         </header>
         <section id="section-a">
           <div className="container">
