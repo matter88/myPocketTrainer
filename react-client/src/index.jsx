@@ -6,6 +6,7 @@ import { firebaseApp } from './config/firebase.js' ;
 import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from './components/App.jsx'
+import PreApp from './components/PreApp.jsx'
 import { logUser, logUserOUT } from './actions/index.js';
 import store from './reducers/store.js';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
@@ -34,7 +35,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <MuiThemeProvider>
-        <App className="guava" />
+        <PreApp className="guava" />
       </MuiThemeProvider>
     </Router>
   </Provider>
