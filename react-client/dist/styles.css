@@ -12,7 +12,7 @@ body {
 }
 
 #showcase {
-  background-image: url('diet.jpg');
+  background-image: url("diet.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -25,12 +25,16 @@ body {
 }
 
 #showcase h1 {
-  font-size: 50px;
+  font-size: 30px;
   line-height: 1.2;
+  color: #fff;
+  margin-left: 50%;
 }
 
 #showcase p {
-  font-size: 20px;
+  margin-left: 50%;
+  font-size: 18px;
+  color: #fff;
 }
 
 #showcase .button {
@@ -41,40 +45,38 @@ body {
   padding: 10px 20px;
   border-radius: 10px;
   margin-top: 20px;
+  margin-left: 50%;
 }
 
-#showcase .button:hover
- {
-   background: #926239;
-   color: #fff;
- }
+#showcase .button:hover {
+  background: #926239;
+  color: #fff;
+}
 
- #section-a {
-   font-size: 15px;
-   padding: 20px;
-   background:  #926239;
+#section-a {
+  font-size: 15px;
+  padding: 20px;
+  background: #926239;
   color: #fff;
   text-align: center;
- }
+}
 
- #section-b {
+#section-b {
   padding: 20px;
-  background:  #f4f4f4;
- text-align: center;
+  background: #f4f4f4;
+  text-align: center;
 }
 
 #section-c {
-  display:flex;
-  /* padding: 20px;
-  background:  #926239;
- text-align: center; */
+  display: flex;
 }
 
 #section-c div {
   padding: 20px;
 }
 
-#section-c .box-1, #section-c .box-3 {
+#section-c .box-1,
+#section-c .box-3 {
   background: #926239;
   color: #fff;
 }
@@ -83,9 +85,7 @@ body {
   background: #f9f9f9;
 }
 
-
-
-html,
+/* html,
 .guava  {
   background-color: white;
 }
@@ -134,10 +134,10 @@ html,
   bottom: 0;
   left: 0;
   width: 50%;
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-}
+ 
+} */
 
-.profile {
+/* .profile {
   background-color: white;
   text-align: center;
   position: absolute;
@@ -195,36 +195,26 @@ html,
 
 .listItem {
   text-align: left
-}
+} */
 
-/* Space out content a bit */
-/* body {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  } */
-
-  /* Everything but the jumbotron gets side spacing for mobile first views */
-  .header,
+/* .header,
   .marketing,
   .footer {
     padding-right: 1rem;
     padding-left: 1rem;
   }
 
-  /* Custom page header */
   .header {
     padding-bottom: 1rem;
     border-bottom: .05rem solid #e5e5e5;
   }
 
-  /* Make the masthead heading the same height as the navigation */
   .header h3 {
     margin-top: 0;
     margin-bottom: 0;
     line-height: 3rem;
   }
 
-  /* Custom page footer */
   .footer {
     padding-top: 1.5rem;
     color: #777;
@@ -234,21 +224,18 @@ html,
 
 
  .container-1 {
-  /* display: flex; */
   color:#00D77E;
   border:1px #ccc solid;
   padding:10px;
- }
+ } */
 
- .table {
+/* .table {
   color: #00D77E !important;
-  /* background-color: black !important; */
   border: 2px solid white !important;
  }
 
  .table-row {
   color: #00D77E;
-  /* background-color: black !important; */
  }
 
  .appBar {
@@ -263,4 +250,4 @@ html,
   border: 2px solid orange !important;
 
  }
-
+ */
