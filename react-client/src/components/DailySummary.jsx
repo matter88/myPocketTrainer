@@ -1,19 +1,14 @@
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import SetCalories from './SetCalories.jsx';
 import CaloriesInputed from './CaloriesInputed.jsx';
 import RemainingCalories from './RemainingCalories.jsx';
 import { connect } from 'react-redux';
 import store from '../reducers/store.js';
-import axios from 'axios';
 import { PieChart, Pie, Legend, Tooltip } from 'recharts';
 import { Redirect } from 'react-router-dom'
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import { redirectHome, getTodaysEntries, getUserStats, getYesterday, getTomorrowFoodAc } from '../actions';
 import helpers from '../helpers.js';
 import TodaysEntries from './TodaysEntries.jsx';
-import { Table } from 'material-ui';
 
 class DailySummary extends React.Component {
     constructor(props) {

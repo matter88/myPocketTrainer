@@ -3,8 +3,6 @@ import axios from "axios";
 import USDAresultsList from "./USDAresultsList.jsx";
 import NdbnoResultsList from "./NdbnoResultsList.jsx";
 import TextField from "material-ui/TextField";
-import FloatingActionButton from "material-ui/FloatingActionButton";
-import ContentAdd from "material-ui/svg-icons/content/add";
 import { connect } from "react-redux";
 import helpers from "../helpers.js";
 import { orange500, blue500 } from "material-ui/styles/colors";

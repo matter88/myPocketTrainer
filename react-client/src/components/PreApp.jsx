@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header.jsx";
 import Main from "./Main.jsx";
-import { Route, Redirect } from 'react-router';
 
 
 class PreApp extends React.Component {

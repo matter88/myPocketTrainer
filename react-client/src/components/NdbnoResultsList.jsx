@@ -12,8 +12,7 @@ import { setServingSize } from '../actions/index.js'
 import { connect } from 'react-redux'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import helpers from '../helpers.js';
-import axios from 'axios';
+
 
 
 class NdbnoResultsList extends React.Component {
