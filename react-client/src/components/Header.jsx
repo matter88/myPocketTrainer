@@ -66,51 +66,53 @@ class Header extends React.Component {
     let redirect;
     let dailySummary;
     if (!email) {
-      signUp = (
-        <MenuItem onClick={this.handleRequestClose}>
+      signUp = 
+       
           <Link to="/SignUp">Sign Up</Link>
-        </MenuItem>
-      );
-      signIn = (
-        <MenuItem onClick={this.handleRequestClose}>
+       
+      ;
+      signIn = 
+        
           <Link to="/SignIn">Login</Link>
-        </MenuItem>
-      );
+        
+      ;
     } else {
-      signOut = <MenuItem onClick={() => this.signOut()}>SignOut</MenuItem>;
-      dailySummary = (
-        <MenuItem onClick={this.handleRequestClose}>
+      signOut = <li onClick={() => this.signOut()}>SignOut</li>;
+      dailySummary = 
           <Link to="/Journal">Journal</Link>
-        </MenuItem>
-      );
-      profile = (
-        <MenuItem onClick={this.handleRequestClose}>
+    
+      ;
+      profile = 
+   
           <Link to="/Profile">Profile</Link>
-        </MenuItem>
-      );
+
+      ;
     }
 
     return (
-      <header id="header">
-        {/* <AppBar title="MacroTracker" onClick={this.handleToggle}>
-          <Drawer
-            docked={false}
-            width={200}
-            open={this.state.open}
-            onRequestChange={open => this.setState({ open })}
-          >
-            <MenuItem onClick={this.handleRequestClose}>
+      <header>
+        <nav>
+        
+            
               <Link to="/">Home</Link>
-            </MenuItem>
+           
             {signIn}
             {dailySummary}
             {profile}
-            <MenuItem onClick={this.handleRequestClose}>
-              <Link to="/Create">Create</Link>
-            </MenuItem>
+           
+            <Link to="/Create">Create</Link>
+          
+           
+              <Link to="/roster">Roster</Link>
+           
+           
+              <Link to="/schedule">Schedule</Link>
+        
+            
             {signOut}
-          </Drawer>
-        </AppBar> */}
+            
+          
+        </nav>
       </header>
     );
   }
