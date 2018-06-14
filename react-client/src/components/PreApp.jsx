@@ -25,7 +25,7 @@ class PreApp extends React.Component {
       header = <Header/>
       main = <Main/>
       return(
-        <div>
+        <div className="header-main-body">
           {header}
           {main}
         </div>

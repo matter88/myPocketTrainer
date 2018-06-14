@@ -92,7 +92,7 @@ class Header extends React.Component {
 
     return (
       <header id="header">
-        <AppBar title="MacroTracker" onClick={this.handleToggle}>
+        {/* <AppBar title="MacroTracker" onClick={this.handleToggle}>
           <Drawer
             docked={false}
             width={200}
@@ -110,7 +110,7 @@ class Header extends React.Component {
             </MenuItem>
             {signOut}
           </Drawer>
-        </AppBar>
+        </AppBar> */}
       </header>
     );
   }
