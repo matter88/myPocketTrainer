@@ -1,4 +1,5 @@
-myPocketTrainer
+
+<h1>myPocketTrainer</h1>
 Social platform for customized workouts and nutrition plans supplemented by access to personal trainers to instant message.
 
 Functionality
