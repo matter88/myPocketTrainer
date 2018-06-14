@@ -1,5 +1,4 @@
 import React from "react";
-import USDAsearch from "./USDAsearch.jsx";
 import {
   Table,
   TableBody,

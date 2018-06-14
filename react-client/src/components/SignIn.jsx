@@ -1,15 +1,11 @@
-import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React from 'react';
 import { connect } from 'react-redux'
 import { firebaseApp } from '../config/firebase.js';
 import {
-    BrowserRouter as Router,
-    Route,
     Link,
     Redirect,
-    withRouter
 } from 'react-router-dom'
 
 

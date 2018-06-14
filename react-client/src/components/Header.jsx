@@ -91,7 +91,7 @@ class Header extends React.Component {
     }
 
     return (
-      <header>
+      <header id="header">
         <AppBar title="MacroTracker" onClick={this.handleToggle}>
           <Drawer
             docked={false}
@@ -123,4 +123,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(
+  mapStateToProps,
+  null
+)(Header);

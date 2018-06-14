@@ -1,19 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Landing from './Landing.jsx';
-import SetCalories from './SetCalories.jsx';
-import DailySummary from './DailySummary.jsx';
 import { setUserStats } from '../actions/index.js';
 import store from '../reducers/store.js';
 import { Redirect } from 'react-router-dom'
-import { TextField, ListItem, Checkbox, MenuItem, SelectField, FlatButton } from 'material-ui';
-
-const styles = {
-    customWidth: {
-        width: 200,
-    },
-};
+import { TextField,MenuItem, SelectField, FlatButton } from 'material-ui';
 
 class UserStats extends React.Component {
     constructor(props) {

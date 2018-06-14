@@ -11,7 +11,6 @@ import {
 import ActionDelete from "material-ui/svg-icons/action/delete";
 import RaisedButton from "material-ui/RaisedButton";
 import { connect } from "react-redux";
-import axios from "axios";
 import store from "../reducers/store.js";
 import { deleteEntry } from "../actions";
 
