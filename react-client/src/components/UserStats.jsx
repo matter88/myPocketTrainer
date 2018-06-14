@@ -4,7 +4,7 @@ import axios from 'axios';
 import { setUserStats } from '../actions/index.js';
 import store from '../reducers/store.js';
 import { Redirect } from 'react-router-dom'
-import { TextField, ListItem, Checkbox, MenuItem, SelectField, FlatButton } from 'material-ui';
+import { TextField,MenuItem, SelectField, FlatButton } from 'material-ui';
 
 class UserStats extends React.Component {
     constructor(props) {
