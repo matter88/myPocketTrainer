@@ -1,17 +1,10 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import { createStore } from "redux";
 import AppBar from "material-ui/AppBar";
 import { firebaseApp } from "../config/firebase.js";
 import { connect } from "react-redux";
-import Popover from "material-ui/Popover";
-import Menu from "material-ui/Menu";
-import RaisedButton from "material-ui/RaisedButton";
 import MenuItem from "material-ui/MenuItem";
 import Drawer from "material-ui/Drawer";
-import { logUser, logUserOUT } from "../actions/index.js";
-import reducer from "../reducers";
-import Toggle from "material-ui/Toggle";
 
 class Header extends React.Component {
   constructor(props) {

@@ -1,23 +1,48 @@
-import React from 'react';
+import React from "react";
+import Header from "./Header.jsx";
+import Main from "./Main.jsx";
+import { Route, Redirect } from 'react-router';
+
 
 class PreApp extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false
     }
+    this.handleRedirect = this.handleRedirect.bind(this)
+  }
 
-    handleRedirect() {
-      console.log('handleRedirect invoked')
-    }
+  handleRedirect() {
+    console.log('handle redirect invoked')
+    this.setState({
+      clicked:true
+    })
+  }
   render() {
-    return (
+    let header;
+    let main;
+    if (this.state.clicked) {
+      header = <Header/>
+      main = <Main/>
+      return(
+        <div>
+          {header}
+          {main}
+        </div>
+      )
+    }
+   else {return (
       <div className="body">
-       
         <header id="showcase">
-            <h1>Lets get fit with
-                myPocketTrainer
-            </h1>
-            <p>Your source of truth, from diet to workouts. We have got your bases covered.</p>
-            <a href="#" className='button' onClick={this.handleRedirect}>Join Now</a>
+          <h1>Lets get fit with myPocketTrainer</h1>
+          <p>
+            Your source of truth, from diet to workouts. We have got your bases
+            covered.
+          </p>
+          <a href="#" className="button" onClick={this.handleRedirect}>
+            Join Now
+          </a>
         </header>
         <section id="section-a">
           <div className="container">
@@ -66,13 +91,22 @@ class PreApp extends React.Component {
           </div>
         </section>
         <section id="section-c">
-        <div className="box-1">Customized daily workouts for varying routines, find the workout that is best for you or consult one of our certified trainers!</div>
-        <div className="box-2">Chat any time with our certified trainers for suggestions on nutritional intake or for customized workouts!</div>
-        <div className="box-3">Track your fitness journey with our various tools to reach the fitness level of your goals!</div>
+          <div className="box-1">
+            Customized daily workouts for varying routines, find the workout
+            that is best for you or consult one of our certified trainers!
+          </div>
+          <div className="box-2">
+            Chat any time with our certified trainers for suggestions on
+            nutritional intake or for customized workouts!
+          </div>
+          <div className="box-3">
+            Track your fitness journey with our various tools to reach the
+            fitness level of your goals!
+          </div>
         </section>
         <footer>copywrite myPocketTrainer 2019</footer>
       </div>
-    );
+    )}
   }
 }
 
