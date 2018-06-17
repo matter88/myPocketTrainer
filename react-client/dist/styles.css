@@ -108,21 +108,20 @@ body {
 }
 
 .container-daily-summary {
-  margin-left: 240px;
-  margin-right: 240px;
+  margin-left: 10px;
+  margin-right: 10px;
   border: solid;
   height: 100vh;
   flex-direction: column;
 }
 
-.daily-summary-header {
+/* .daily-summary-header {
   background: rgb(84, 84, 84);
   color: white;
-  padding-top: 10px;
-  padding-bottom: 1px;
-  padding-left: 15px;
-}
+} */
 
-.dailytest {
+.user-stats-container {
   border: solid;
+  margin: 10px;
+  padding: 10px;
 }
