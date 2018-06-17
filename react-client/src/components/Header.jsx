@@ -117,7 +117,7 @@ class Header extends React.Component {
       //   </nav>
       // </header>
       <Nav className="headerLinks" bsStyle="pills" activeKey={1} >
-      <span>
+  
       <NavItem className="homeLink" eventKey={1} href="/home">
         Home
       </NavItem>
@@ -126,14 +126,14 @@ class Header extends React.Component {
       <NavItem className="profileLink" eventKey={2} title="Profile">
         Profile
       </NavItem>
-     >
+     
       <NavItem className="signInLink" eventKey={3} >
         SignIn
       </NavItem>
-      </span>
-      <span>
+      
+    
       <USDAsearch className="searchBar"/>
-      </span>
+    
     </Nav>
  
 

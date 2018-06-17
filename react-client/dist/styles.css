@@ -91,13 +91,19 @@ body {
 
 .headerLinks {
   font-size: 15px;
-  border: solid black;
-  margin-right: auto;
 }
 
+
+
 .searchBar {
-  font-size: 15px;
-  border: solid black;
+  /* display:table;
+  width:100%;
+  margin: 0;
+  float:none;
+  display:table-cell;
+  text-align:center; */
+  width: 100vw;
+  margin: 5px;
 
 }
 

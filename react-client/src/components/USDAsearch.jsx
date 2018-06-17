@@ -10,6 +10,7 @@ import FlatButton from "material-ui/FlatButton";
 import { routeToCreate } from "../actions";
 import store from "../reducers/store.js";
 import { Redirect } from "react-router-dom";
+import {FormControl, FormGroup, ControlLabel, HelpBlock} from "react-bootstrap";
 
 const styles = {
   errorStyle: {
@@ -190,12 +191,11 @@ class USDAsearch extends React.Component {
 
     return (
       <div className="searchBar">
-        <form>
+        {/* <form>
           <label>
             <span>
               <TextField
                 hintText="What are we eating?"
-                floatingLabelText="Macros"
                 floatingLabelFixed={false}
                 onChange={this.handleSearchInput}
                 hintStyle={styles.errorStyle}
@@ -215,7 +215,20 @@ class USDAsearch extends React.Component {
             label="Create"
             onClick={this.handleRerouteToCreate}
           />
-        </form>
+        </form> */}
+        <form>
+        <FormGroup
+          controlId="formBasicText"
+        >
+                  <FormControl
+            type="text"
+            value={this.state.value}
+            placeholder="What are we eating today?"
+            onChange={this.handleChange}
+          />
+          <FormControl.Feedback />
+        </FormGroup>
+      </form>
         <div>
           {usda}
           {button}
