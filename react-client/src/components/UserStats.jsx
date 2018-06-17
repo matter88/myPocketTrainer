@@ -173,7 +173,6 @@ class UserStats extends React.Component {
 
     render() {
         let userStats = this.props.stats[0]
-        console.log('userstats state', userStats)
         if (this.state.macros) {
             return <Redirect to="/Journal" />
         }

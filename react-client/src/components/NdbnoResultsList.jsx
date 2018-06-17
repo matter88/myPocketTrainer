@@ -28,18 +28,15 @@ class NdbnoResultsList extends React.Component {
       itemName: ""
     }
     this.handleChange = this.handleChange.bind(this)
-    // this.handleSaveToDB = this.handleSaveToDB.bind(this)
   }
 
   handleChange(event) {
-    console.log('handleChange test ndbno list', event.target.value)
     store.dispatch(setServingSize(event.target.value))
   }
 
  
 
   render() {
-    console.log('banana', this.props)
     let size = this.props.size
     let temp = this.props.nutrient[0].measures
     let labelIndex;
@@ -102,7 +99,6 @@ class NdbnoResultsList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('ndbno results list inside map state to props', state)
   const { stats } = state.getUserStats
   const { email } = state.reducer
   const { items } = state.todaysEntries
