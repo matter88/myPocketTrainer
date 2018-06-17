@@ -189,7 +189,7 @@ class USDAsearch extends React.Component {
     }
 
     return (
-      <div className="usdaSearch">
+      <div className="searchBar">
         <form>
           <label>
             <span>
@@ -200,7 +200,7 @@ class USDAsearch extends React.Component {
                 onChange={this.handleSearchInput}
                 hintStyle={styles.errorStyle}
                 floatingLabelStyle={styles.errorStyle}
-                inputStyle={{ color: "#00D77E" }}
+                inputStyle={{ color: "#black" }}
                 onKeyPress={this.handleKeyPress}
               />
             </span>

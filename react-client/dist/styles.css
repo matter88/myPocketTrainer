@@ -86,23 +86,44 @@ body {
 }
 
 #header {
-  background-color: #926239
+  background-color: #926239;
 }
 
-.header-main-body {
-  background-image: url('./wood.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  
+.headerLinks {
+  font-size: 15px;
+  border: solid black;
+  margin-right: auto;
 }
 
+.searchBar {
+  font-size: 15px;
+  border: solid black;
+
+}
+
+.homeLink {
+  /* padding-left:30px; */
+  padding-right:10px;
+   margin-left:10px;
+  margin-right:10px;
+  margin-top: 10px;
+}
+
+.profileLink {
+  padding-left:10px;
+  padding-right:10px;
+   margin-left:10px;
+  margin-right:10px;
+  margin-top: 10px;
+}
+
+.signInLink {
+  padding-left:10px;
+  padding-right:10px;
+   margin-left:10px;
+  margin-right:10px;
+  margin-top: 10px;
+}
 /* html,
 .guava  {
   background-color: white;
