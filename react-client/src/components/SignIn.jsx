@@ -3,11 +3,7 @@ import TextField from 'material-ui/TextField';
 import React from 'react';
 import { connect } from 'react-redux'
 import { firebaseApp } from '../config/firebase.js';
-import {
-    Link,
-    Redirect,
-} from 'react-router-dom'
-
+import { Link, Redirect } from 'react-router-dom'
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -22,7 +18,6 @@ class SignIn extends React.Component {
         this.changeEmailState = this.changeEmailState.bind(this)
         this.changePasswordState = this.changePasswordState.bind(this)
     }
-
 
     changeEmailState(event) {
         this.setState({
