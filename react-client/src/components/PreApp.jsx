@@ -13,7 +13,6 @@ class PreApp extends React.Component {
   }
 
   handleRedirect() {
-    console.log('handle redirect invoked')
     this.setState({
       clicked:true
     })
@@ -40,7 +39,7 @@ class PreApp extends React.Component {
             covered.
           </p>
           <a href="#" className="button" onClick={this.handleRedirect}>
-            Join Now
+            Learn More
           </a>
         </header>
         <section id="section-a">

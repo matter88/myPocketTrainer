@@ -28,7 +28,6 @@ class DailySummary extends React.Component {
 
 
     getYesterday() {
-        console.log('banana test')
         let email = this.props.email;
         store.dispatch(getYesterday(email))
     }
