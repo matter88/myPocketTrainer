@@ -106,3 +106,22 @@ body {
   margin-right:10px;
   margin-top: 10px;
 }
+
+.container-daily-summary {
+  margin-left: 10px;
+  margin-right: 10px;
+  border: solid;
+  height: 100vh;
+  flex-direction: column;
+}
+
+/* .daily-summary-header {
+  background: rgb(84, 84, 84);
+  color: white;
+} */
+
+.user-stats-container {
+  border: solid;
+  margin: 10px;
+  padding: 10px;
+}

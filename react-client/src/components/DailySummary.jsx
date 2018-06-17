@@ -1,100 +1,121 @@
-import React from 'react';
-import SetCalories from './SetCalories.jsx';
-import CaloriesInputed from './CaloriesInputed.jsx';
-import RemainingCalories from './RemainingCalories.jsx';
-import { connect } from 'react-redux';
-import store from '../reducers/store.js';
-import { PieChart, Pie, Legend, Tooltip } from 'recharts';
-import { Redirect } from 'react-router-dom'
-import { redirectHome, getTodaysEntries, getUserStats, getYesterday, getTomorrowFoodAc } from '../actions';
-import helpers from '../helpers.js';
-import TodaysEntries from './TodaysEntries.jsx';
+import React from "react";
+import SetCalories from "./SetCalories.jsx";
+import CaloriesInputed from "./CaloriesInputed.jsx";
+import RemainingCalories from "./RemainingCalories.jsx";
+import { connect } from "react-redux";
+import store from "../reducers/store.js";
+import { Redirect } from "react-router-dom";
+import {
+  redirectHome,
+  getTodaysEntries,
+  getUserStats,
+  getYesterday,
+  getTomorrowFoodAc
+} from "../actions";
+import helpers from "../helpers.js";
+import { Button } from "react-bootstrap";
 
 class DailySummary extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            userStats: null,
-            redirect: true,
-            todaysEntries: [],
-            todaysMacros: [],
-            todaysCalories: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      userStats: null,
+      redirect: true,
+      todaysEntries: [],
+      todaysMacros: [],
+      todaysCalories: 0
+    };
+    // this.redirect = this.redirect.bind(this)
+    this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this);
+    this.getYesterday = this.getYesterday.bind(this);
+  }
 
-        }
-        // this.redirect = this.redirect.bind(this)
-        this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this)
-        this.getYesterday = this.getYesterday.bind(this)
+  getYesterday() {
+    let email = this.props.email;
+    store.dispatch(getYesterday(email));
+  }
+
+  getTomorrowFoodEntries() {
+    let email = this.props.email;
+    store.dispatch(getTomorrowFoodAc(email));
+  }
+
+  componentWillMount() {
+    let email = this.props.email;
+    store.dispatch(getUserStats(email));
+  }
+
+  componentDidMount() {
+    let email = this.props.email;
+    store.dispatch(getTodaysEntries(email));
+  }
+
+  render() {
+    let objArr;
+
+    if (this.props.email === undefined) {
+      return <Redirect to="/" />;
     }
 
+    this.props.items === undefined
+      ? null
+      : (objArr = helpers.designEntriesArray(this.props.items));
 
-    getYesterday() {
-        let email = this.props.email;
-        store.dispatch(getYesterday(email))
-    }
+    return (
+      <div className="container-daily-summary">
+        <section className="daily-summary-header">
+          <h5>Calorie Log</h5>
+        </section>
+        <section className="dailySummary">
+          <section className="dailytest">
+            <span>
+              Calories Remaining <a href="www.google.com">Update</a>
+            </span>
+            <br />
+            <SetCalories />
+            {/* Provides extra visual weight and identifies the primary action in a set of buttons */}
+            <Button bsStyle="primary" bsSize="small">
+              Add Exercise
+            </Button>
 
-    getTomorrowFoodEntries() {
-        let email = this.props.email;
-        store.dispatch(getTomorrowFoodAc(email))
-    }
-
-    componentWillMount() {
-        let email = this.props.email
-        store.dispatch(getUserStats(email))
-    }
-
-    componentDidMount() {
-        let email = this.props.email
-        store.dispatch(getTodaysEntries(email))
-    }
-
-   
-
-    render() {
-        let objArr;
-
-        if (this.props.email === undefined) { return <Redirect to="/" /> }
-
-        this.props.items === undefined ?
-            null :
-            objArr = helpers.designEntriesArray(this.props.items)
-
-        return (
-            <div className="container-1">
-                <div className="dailySummary">
-                    <span><SetCalories /></span>
-                    <span> <CaloriesInputed /></span>
-                    <span>
-                        <RemainingCalories
-                            userStats={this.state.userStats}
-                            todaysCalories={this.state.todaysCalories}
-                        />
-                    </span>
-                </div>
-                <div className="dailySummary">
-                    <PieChart width={800} height={400} className="dailySummary">
-                        <Pie isAnimationActive={false} data={objArr} dataKey="value" cx={200} cy={200} outerRadius={80} fill="#8884d8" label className="dailySummary" />
-                        <Pie data={objArr} dataKey="value" cx={500} cy={200} innerRadius={40} outerRadius={80} fill="#82ca9d" />
-                        <Tooltip />
-                    </PieChart>
-                </div>
-                <div>
+            {/* Indicates a successful or positive action */}
+            <Button bsStyle="success" bsSize="small">
+              Add Food
+            </Button>
+          </section>
+          <section className="dailytest">
+            <CaloriesInputed />
+          </section>
+          <section className="dailytest">
+            <RemainingCalories
+              userStats={this.state.userStats}
+              todaysCalories={this.state.todaysCalories}
+            />
+          </section>
+        </section>
+        <section className="daily-summary-header">
+          <h5>Here's some motivation from friends to keep you going!</h5>
+        </section>
+        {/* <div>
                     <TodaysEntries todaysEntries={this.state.todaysEntries} />
-                </div>
-            </div>
-        )
-    }
+                </div> */}
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    
-    const { stats } = state.getUserStats
-    const { email } = state.reducer
-    const { items } = state.todaysEntries
-    return {
-        email,
-        items,
-        stats
-    }
-}
+const mapStateToProps = state => {
+  const { stats } = state.getUserStats;
+  const { email } = state.reducer;
+  const { items } = state.todaysEntries;
+  return {
+    email,
+    items,
+    stats
+  };
+};
 
-export default connect(mapStateToProps, null)(DailySummary);
+export default connect(
+  mapStateToProps,
+  null
+)(DailySummary);
