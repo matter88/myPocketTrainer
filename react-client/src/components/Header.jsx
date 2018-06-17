@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { firebaseApp } from "../config/firebase.js";
 import { connect } from "react-redux";
 import USDAsearch from "./USDAsearch.jsx";
-import { Nav, NavItem, Tab, Tabs } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 
 class Header extends React.Component {
   constructor(props) {
@@ -50,7 +50,6 @@ class Header extends React.Component {
         });
       })
       .then(() => {
-        console.log(this.state);
         this.setState({
           signedIn: false
         });
@@ -63,6 +62,7 @@ class Header extends React.Component {
     let signIn;
     let signOut;
     let signUp;
+    let dailySummary;
     if (!email) {
       signUp = (
         <Link className="headerLink" to="/SignUp">
@@ -76,9 +76,9 @@ class Header extends React.Component {
       );
     } else {
       signOut = (
-        <li className="headerLink" onClick={() => this.signOut()}>
+        <Link className="headerLink" to="/" onClick={() => this.signOut()}>
           SignOut
-        </li>
+        </Link>
       );
       dailySummary = (
         <Link className="headerLink" to="/Journal">
@@ -93,17 +93,25 @@ class Header extends React.Component {
     }
 
     return (
-      <Nav className="headerLinks" bsStyle="pills" activeKey={1}>
-        <Link className="headerLink" to="/Journal">
+      <div className="test">
+      <div>
+         <Nav className="headerLink" bsStyle="pills" activeKey={1}>
+        <Link className="headerLink" to="/">
           Home
         </Link>
         {profile}
         {signIn}
+       
+        
+        {dailySummary}
         {signOut}
-        {signUp}
-
-        <USDAsearch className="searchBar" />
+        <div>
+      <USDAsearch className="searchBar" />
+      </div>
       </Nav>
+      </div>
+      
+      </div>
     );
   }
 }

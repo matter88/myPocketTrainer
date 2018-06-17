@@ -2,7 +2,6 @@ import React from 'react';
 import helpers from '../helpers.js';
 import { connect } from 'react-redux';
 
-
 const RemainingCalories = (props) => {
     return (
         <h3>
@@ -10,7 +9,6 @@ const RemainingCalories = (props) => {
         </h3>
     )
 }
-
 
 const mapStateToProps = (state) => {
     const { stats } = state.getUserStats
