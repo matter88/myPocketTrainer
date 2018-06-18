@@ -68,31 +68,43 @@ class DailySummary extends React.Component {
         </div>
         <div className="daily-summary">
           <div className="dailyApple">
-            <div className="ds-large-num">
-            Calories Remaining <a className="ds-update-button" href="www.google.com">Update</a>
-            <Button className="ds-button1" bsStyle="primary" bsSize="small">
-              Add Exercise
-            </Button>
-            <Button bsStyle="success" bsSize="small">
-              Add Food
-            </Button>
-            <br />
-            <SetCalories />
-            
+            <div>
+              <div>
+                Calories Remaining 
+                <a className="ds-update-button" href="www.google.com">
+                  Update
+                </a>
+              </div>
+              <div>
+                <span className="set-calories">
+                <SetCalories />
+                </span>
+               <span>
+               <Button className="ds-button1" bsStyle="primary" bsSize="small">
+                  Add Exercise
+                </Button>
+                <Button bsStyle="success" bsSize="small">
+                  Add Food
+                </Button>
+               </span>
+                
+              </div>
             </div>
-             <div className="ds-buttons">
-             
-             </div>
-            
-          </div>
-          <div className="dailytest">
-            <CaloriesInputed />
-          </div>
-          <div className="dailytest">
-            <RemainingCalories
-              userStats={this.state.userStats}
-              todaysCalories={this.state.todaysCalories}
-            />
+            <div className="ds-plus-minus">
+              <div className="ds-set-calories">
+                <SetCalories />
+              </div>
+              <div className="ds-calories-input">
+                <CaloriesInputed />
+              </div>
+              <div className="ds-more-calories">+ 0</div>
+              <div className="ds-remain-calories">
+                <RemainingCalories
+                  userStats={this.state.userStats}
+                  todaysCalories={this.state.todaysCalories}
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className="daily-summary-header">

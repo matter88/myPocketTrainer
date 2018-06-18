@@ -112,8 +112,9 @@ body {
   margin-right: 40px;
   /* border: solid; */
   height: 100vh;
-  flex-direction: column;
+  /* flex-direction: column; */
   background: #EBEBEB;
+  border: solid #EBEBEB;
 }
 
 .daily-summary-header {
@@ -133,14 +134,45 @@ body {
   margin: 10px;
 }
 
-
-.ds-large-num, .ds-buttons {
-  border: solid;
-}
-
 .ds-button1, .ds-update-button {
   margin : 10px;
 }
 
+.ds-plus-minus {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.ds-set-calories {
+  border-bottom-style: solid;
+  border-right-style: solid;
+}
 
 
+.ds-calories-input {
+  border-right-style: solid;
+  border-bottom-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ds-more-calories {
+  border-bottom-style: solid;
+  border-right-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ds-remain-calories {
+  border-bottom-style: solid;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.set-calories {
+  font-size: 50px;
+}
