@@ -7,6 +7,7 @@ import { searchUSDA } from "../actions/searchActions.js";
 import store from "../reducers/store.js";
 import { FormGroup, FormControl } from "react-bootstrap";
 import ResultsListUSDA from './ResultsListUSDA.jsx';
+import axios from 'axios';
 
 class Header extends React.Component {
   constructor(props) {
@@ -17,13 +18,15 @@ class Header extends React.Component {
         message: ""
       },
       signedIn: true,
-      searchTerm: ""
+      searchTerm: "",
+      ndbno: ""
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleResultListClick = this.handleResultListClick.bind(this);
   }
 
   handleClick(event) {
@@ -46,6 +49,31 @@ class Header extends React.Component {
     store.dispatch(searchUSDA(this.state.searchTerm));
   }
 
+  handleSubmitNDBNO() {
+    event.preventDefault();
+    axios
+      .get("banx/usdaReport", {
+        params: {
+          ndbno: this.state.ndbno
+        }
+      })
+      .then(response => {
+        console.log("clientside response", response.data.report);
+        // this.setState({
+        //   searchInput: "",
+        //   usdaList: [],
+        //   ndbno: null,
+        //   usdaResults: [],
+        //   testState: "",
+          // itemName: response.data.report.food.name,
+          // nutrients: response.data.report.food.nutrients
+        // });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   handleToggle() {
     this.setState({ open: !this.state.open });
   }
@@ -54,6 +82,17 @@ class Header extends React.Component {
     this.setState({
       open: false
     });
+  }
+
+  handleResultListClick(num) {
+    this.setState(
+      {
+        ndbno: num
+      },
+      () => {
+        this.handleSubmitNDBNO();
+      }
+    );
   }
 
   signOut() {
@@ -85,7 +124,9 @@ class Header extends React.Component {
         console.log(items)
         return (
         <div>
-          <ResultsListUSDA items={items.list.item}/>
+          <ResultsListUSDA 
+          items={items.list.item}
+          handleClick={this.handleResultListClick}/>
         </div>
       )
       }
