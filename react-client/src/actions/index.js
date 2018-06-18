@@ -4,12 +4,13 @@ import {
     SET_USERSTATS, 
     REDIRECT_HOME,
     ITEMS_FETCH_DATA_SUCCESS,
-    GET_USERSTATS
- } from '../constants';
+    GET_USERSTATS,
+    SET_SERVING_SIZE,
+    REDIRECT_TO_CREATE
+} from '../constants';
 import { Redirect } from 'react-router-dom'
-import helpers from '../helpers.js';
 import axios from 'axios';
-import store from '../reducers/store.js';
+import React from 'react';
 
 
 
@@ -63,15 +64,6 @@ export function getTodaysEntries(email) {
         .then((response) => {
             dispatch(itemsFetchDataSuccess(response.data))
         })
-        // .then(() => {
-        //     let objArr = helpers.designEntriesArray()
-        //     let totalCalories = helpers.calculateDailyCalories()
-        //     console.log('actions index objArr redesigned', objArr)
-        //     // this.setState({
-        //     //     todaysMacros: objArr,
-        //     //     todaysCalories: totalCalories
-        //     // })
-        // })
         .catch((error) => {
             console.log(error)
         })
@@ -93,7 +85,6 @@ export function getUserStats(email) {
             }
         })
         .then((response) => {
-            console.log('action index', response.data)
             dispatch(userStatsFetchedSuccess(response.data))
         })
         .catch((error) => {
@@ -114,7 +105,6 @@ export function deleteEntry(objId) {
             _id : objId
           })
           .then((response) => {
-            console.log(response);
             dispatch(getTodaysEntries())
           })
           .catch((error) => {
@@ -122,3 +112,52 @@ export function deleteEntry(objId) {
           });
     }
 }
+
+export function setServingSize(size) {
+    return {
+        type: 'SET_SERVING_SIZE',
+        size
+    }
+}
+
+export function routeToCreate() {
+    const action = {
+        type: REDIRECT_TO_CREATE,
+        routeToCreateState : true
+    }
+    return action;
+}
+
+export function getYesterday(email) {
+    return (dispatch) => {
+        axios.get('/banx/getYesterdayJournal', {
+            params: {
+                email: email
+            }
+        })
+        .then((response) => {
+            dispatch(itemsFetchDataSuccess(response.data))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+}
+
+export function getTomorrowFoodAc(email) {
+    return (dispatch) => {
+        axios.get('/banx/getTomorrowJournal', {
+            params: {
+                email: email
+            }
+        })
+        .then((response) => {
+            dispatch(itemsFetchDataSuccess(response.data))
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
+}
+
+

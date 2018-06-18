@@ -1,9 +1,6 @@
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React from 'react';
-import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { firebaseApp } from '../config/firebase.js';
@@ -41,11 +38,11 @@ class SignUp extends React.Component {
     signUp() {
         const { email, password } = this.state
         firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-        .catch((error) => {
-            this.setState({
-                error: error
+            .catch((error) => {
+                this.setState({
+                    error: error
+                })
             })
-        })
     }
 
     changeEmailState(event) {
@@ -63,34 +60,36 @@ class SignUp extends React.Component {
     signIn() {
         const { emailSignIn, passwordSignIn } = this.state
         firebaseApp.auth().signInWithEmailAndPassword(emailSignIn, passwordSignIn)
-        .catch((error) => {
-            this.setState({
-                error: error
+            .catch((error) => {
+                this.setState({
+                    error: error
+                })
             })
-          })
     }
 
 
 
     render() {
-        console.log('signup props',this.props)
+        console.log('signup props', this.props)
         const { email } = this.props;
         let redirect;
         if (email) {
             console.log("redirect invoked")
-            redirect = <Redirect to='/Profile'/>
+            redirect = <Redirect to='/Profile' />
         }
-        return(
+        return (
             <div>
-            <div className = 'loginForm'>
+                {/* <div className = 'loginForm'>
               <div>
                <TextField
+               inputStyle={{ color: '#00D77E' }}
                  hintText="Enter your email"
                  floatingLabelText="Email"
                  onChange={this.changeEmailStateSignIn}
                  />
                <br/>
                  <TextField
+                 inputStyle={{ color: '#00D77E' }}
                    type="password"
                    hintText="Enter your Password"
                    floatingLabelText="Password"
@@ -102,45 +101,49 @@ class SignUp extends React.Component {
                  <div><Link to={'/'}>Not registered? Sign up!</Link></div>
              </div>
           </div>
-          {/* <hr/> */}
-        <div className = 'signupForm'>
-         {redirect}
-            <div>
-             <TextField
-               hintText="Enter your First Name"
-               floatingLabelText="First Name"
+          <hr/> */}
+                <div className='signupForm'>
+                    {redirect}
+                    <div>
+                        <TextField
+                            hintText="Enter your First Name"
+                            floatingLabelText="First Name"
+                            inputStyle={{ color: '#00D77E' }}
 
-               />
-             <br/>
-             <TextField
-               hintText="Enter your Last Name"
-               floatingLabelText="Last Name"
+                        />
+                        <br />
+                        <TextField
+                            hintText="Enter your Last Name"
+                            floatingLabelText="Last Name"
+                            inputStyle={{ color: '#00D77E' }}
 
-               />
-             <br/>
-             <TextField
-               hintText="Enter your Email"
-               type="email"
-               floatingLabelText="Email"
-              
-               onChange={this.changeEmailState}
-               />
-             <br/>
-             <TextField
-               type = "password"
-               hintText="Enter your Password"
-               floatingLabelText="Password"
-               
-               onChange={this.changePasswordState}
-               />
-             <br/>
+                        />
+                        <br />
+                        <TextField
+                            hintText="Enter your Email"
+                            type="email"
+                            floatingLabelText="Email"
+                            inputStyle={{ color: '#00D77E' }}
 
-           <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()}/>
-           <div>{this.state.error.message}</div>
-           <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
+                            onChange={this.changeEmailState}
+                        />
+                        <br />
+                        <TextField
+                            type="password"
+                            hintText="Enter your Password"
+                            floatingLabelText="Password"
+                            inputStyle={{ color: '#00D77E' }}
+
+                            onChange={this.changePasswordState}
+                        />
+                        <br />
+
+                        <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()} />
+                        <div>{this.state.error.message}</div>
+                        <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
         )
     }
 }

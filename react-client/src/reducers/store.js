@@ -5,11 +5,21 @@ import thunk from 'redux-thunk';
 import reducer from './index.js';
 import todaysEntries from './getTodaysEntriesReducer.js';
 import getUserStats from './getUserStatsReducer.js';
+import setServingSize from './setServingSizeReducer.js';
+import testCaseBanana from './setRedirectReducer';
+import headerSearchReducer from './headerSearchReducer';
 
 const logger = createLogger();
 
 export default createStore(
-    combineReducers({ reducer, todaysEntries, getUserStats }),
+    combineReducers({ 
+         reducer,
+         todaysEntries, 
+         getUserStats, 
+         setServingSize, 
+         testCaseBanana,
+         headerSearchReducer
+        }),
     {},
     applyMiddleware(thunk)
 )
