@@ -89,6 +89,8 @@ body {
   background-color: #926239;
 }
 
+
+/* header */
 .headerLink {
   font-size: 15px;
   color: black;
@@ -101,8 +103,14 @@ body {
 }
 
 .searchBar {
-  width: 49vw;
+  width: 40vw;
   margin-top: 5px;
+}
+
+.header-button1 {
+ border: solid;
+ margin-top: 6px;
+ margin-left: 10px;
 }
 
 .headerLink {
