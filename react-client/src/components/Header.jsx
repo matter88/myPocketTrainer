@@ -93,22 +93,18 @@ class Header extends React.Component {
     }
 
     return (
-      <div className="test">
       <div>
-         <Nav className="headerLink" bsStyle="pills" activeKey={1}>
-        <Link className="headerLink" to="/">
-          Home
-        </Link>
-        {profile}
-        {signIn}
-        {dailySummary}
-        {signOut}
-        <div>
-      <USDAsearch className="searchBar" />
-      </div>
-      </Nav>
-      </div>
-      
+        <div className="header-header">
+          <Nav className="headerLink" bsStyle="pills" activeKey={1}>
+            <Link className="headerLink" to="/">Home</Link>
+            {profile}
+            {signIn}
+            {dailySummary}
+            {signOut}
+            
+          </Nav>
+          <span className="searchBar"><USDAsearch/></span>
+        </div>
       </div>
     );
   }

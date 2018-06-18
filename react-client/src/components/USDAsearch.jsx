@@ -190,7 +190,7 @@ class USDAsearch extends React.Component {
     }
 
     return (
-      <div className="searchBar">
+      <div >
         {/* <form>
           <label>
             <span>

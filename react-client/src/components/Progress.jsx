@@ -4,10 +4,17 @@ import { ProgressBar } from 'react-bootstrap';
 const Progress = () => {
     return (
         <div>
-  <ProgressBar active bsStyle="color: red" now={40} />
-  <ProgressBar bsStyle="color: green" now={20} />
+       
+           Calories
+  <ProgressBar striped bsStyle="success" now={40} />
+  Protien
+  <ProgressBar striped bsStyle="info" now={20} />
+  Fats
+  <ProgressBar striped bsStyle="warning" now={60} />
+  Carbohydrates
+  <ProgressBar striped bsStyle="danger" now={80} />
 
-</div>
+      </div>
     )
 }
 

@@ -94,10 +94,15 @@ body {
   color: black;
 }
 
+.header-header {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2px;
+}
+
 .searchBar {
-  width: 56.5vw;
-  margin-top: 2px;
-  /* height: 25px; */
+  width: 49vw;
+  margin-top: 5px;
 }
 
 .headerLink {
@@ -134,8 +139,22 @@ body {
   margin: 10px;
 }
 
-.ds-button1, .ds-update-button {
+/* daily-summary */
+.ds-large-num {
+  display: flex;
+  flex-direction: row
+}
+
+.ds-button1, .ds-button2, .ds-update-button {
   margin : 10px;
+}
+
+.ds-button1, .ds-button2 {
+    padding-bottom: 80px;
+}
+
+.ds-buttons {
+  padding-top: 8px;
 }
 
 .ds-plus-minus {
@@ -176,3 +195,5 @@ body {
 .set-calories {
   font-size: 50px;
 }
+
+
