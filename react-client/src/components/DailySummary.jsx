@@ -63,39 +63,38 @@ class DailySummary extends React.Component {
 
     return (
       <div className="container-daily-summary">
-        <section className="daily-summary-header">
+        <div className="daily-summary-header">
           <h5>Calorie Log</h5>
-        </section>
-        <section className="dailySummary">
-          <section className="dailytest">
-            <span>
-              Calories Remaining <a href="www.google.com">Update</a>
-            </span>
+        </div>
+        <div className="dailySummary">
+          <div className="dailytest">
+            <div className="ds-large-num">
+            Calories Remaining <a href="www.google.com">Update</a>
             <br />
             <SetCalories />
-            {/* Provides extra visual weight and identifies the primary action in a set of buttons */}
+            
+            </div>
+             
             <Button bsStyle="primary" bsSize="small">
               Add Exercise
             </Button>
-
-            {/* Indicates a successful or positive action */}
             <Button bsStyle="success" bsSize="small">
               Add Food
             </Button>
-          </section>
-          <section className="dailytest">
+          </div>
+          <div className="dailytest">
             <CaloriesInputed />
-          </section>
-          <section className="dailytest">
+          </div>
+          <div className="dailytest">
             <RemainingCalories
               userStats={this.state.userStats}
               todaysCalories={this.state.todaysCalories}
             />
-          </section>
-        </section>
-        <section className="daily-summary-header">
+          </div>
+        </div>
+        <div className="daily-summary-header">
           <h5>Here's some motivation from friends to keep you going!</h5>
-        </section>
+        </div>
         {/* <div>
                     <TodaysEntries todaysEntries={this.state.todaysEntries} />
                 </div> */}
