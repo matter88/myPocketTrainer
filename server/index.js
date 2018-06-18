@@ -1,16 +1,9 @@
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
-var session = require('express-session');
 var bodyParser = require('body-parser')
-var axios = require('axios')
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
 //router
 var router = require('./routes.js');
@@ -26,10 +19,7 @@ app.set('view engine', 'ejs');
 //bodyparser middleware
 app.use(logger('dev'));
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
+
 app.use(cookieParser());
 
 

@@ -15,7 +15,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 // const store = createStore(combineReducers({ reducer }), {}, applyMiddleware());
-let redirect;
 
 firebaseApp.auth().onAuthStateChanged(function(user) {
   if (user) {

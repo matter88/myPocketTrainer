@@ -84,7 +84,7 @@ class DailySummary extends React.Component {
                <Button className="ds-button1" bsStyle="primary" bsSize="small">
                   Add Exercise
                 </Button>
-                <Button className="ds-button2" bsSize="small">
+                <Button className="ds-button2"  bsStyle="primary" bsSize="small">
                   Add Food
                 </Button>
                </div>

@@ -9,9 +9,7 @@ import {
     REDIRECT_TO_CREATE
 } from '../constants';
 import { Redirect } from 'react-router-dom'
-import helpers from '../helpers.js';
 import axios from 'axios';
-import store from '../reducers/store.js';
 import React from 'react';
 
 

@@ -113,8 +113,8 @@ body {
 }
 
 .container-daily-summary {
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
   /* border: solid; */
   height: 100vh;
   /* flex-direction: column; */
