@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header.jsx";
 import Main from "./Main.jsx";
+import Footer from "./Footer.jsx";
 
 
 class PreApp extends React.Component {
@@ -20,13 +21,16 @@ class PreApp extends React.Component {
   render() {
     let header;
     let main;
+    let footer;
     if (this.state.clicked) {
       header = <Header/>
       main = <Main/>
+      footer = <Footer/>
       return(
         <div className="header-main-body">
           {header}
           {main}
+          {footer}
         </div>
       )
     }
