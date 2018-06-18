@@ -133,3 +133,14 @@ body {
   margin: 10px;
 }
 
+
+.ds-large-num, .ds-buttons {
+  border: solid;
+}
+
+.ds-button1, .ds-update-button {
+  margin : 10px;
+}
+
+
+

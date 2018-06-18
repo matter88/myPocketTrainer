@@ -66,21 +66,24 @@ class DailySummary extends React.Component {
         <div className="daily-summary-header">
           <h5>Calorie Log</h5>
         </div>
-        <div className="dailySummary">
-          <div className="dailytest">
+        <div className="daily-summary">
+          <div className="dailyApple">
             <div className="ds-large-num">
-            Calories Remaining <a href="www.google.com">Update</a>
-            <br />
-            <SetCalories />
-            
-            </div>
-             
-            <Button bsStyle="primary" bsSize="small">
+            Calories Remaining <a className="ds-update-button" href="www.google.com">Update</a>
+            <Button className="ds-button1" bsStyle="primary" bsSize="small">
               Add Exercise
             </Button>
             <Button bsStyle="success" bsSize="small">
               Add Food
             </Button>
+            <br />
+            <SetCalories />
+            
+            </div>
+             <div className="ds-buttons">
+             
+             </div>
+            
           </div>
           <div className="dailytest">
             <CaloriesInputed />
