@@ -1,9 +1,9 @@
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { firebaseApp } from '../config/firebase.js';
+import { FormControl, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -78,71 +78,45 @@ class SignUp extends React.Component {
             redirect = <Redirect to='/Profile' />
         }
         return (
-            <div>
-                {/* <div className = 'loginForm'>
-              <div>
-               <TextField
-               inputStyle={{ color: '#00D77E' }}
-                 hintText="Enter your email"
-                 floatingLabelText="Email"
-                 onChange={this.changeEmailStateSignIn}
-                 />
-               <br/>
-                 <TextField
-                 inputStyle={{ color: '#00D77E' }}
-                   type="password"
-                   hintText="Enter your Password"
-                   floatingLabelText="Password"
-                   onChange={this.changePasswordStateSignIn}
-                   />
-                 <br/>
-                 <RaisedButton label="Sign In" primary={true}  onClick={() => this.signIn()}/>
-                 <div>{this.state.error.message}</div>
-                 <div><Link to={'/'}>Not registered? Sign up!</Link></div>
-             </div>
-          </div>
-          <hr/> */}
                 <div className='signupForm'>
                     {redirect}
-                    <div>
-                        <TextField
-                            hintText="Enter your First Name"
-                            floatingLabelText="First Name"
-                            inputStyle={{ color: '#00D77E' }}
-
-                        />
-                        <br />
-                        <TextField
-                            hintText="Enter your Last Name"
-                            floatingLabelText="Last Name"
-                            inputStyle={{ color: '#00D77E' }}
-
-                        />
-                        <br />
-                        <TextField
-                            hintText="Enter your Email"
-                            type="email"
-                            floatingLabelText="Email"
-                            inputStyle={{ color: '#00D77E' }}
-
-                            onChange={this.changeEmailState}
-                        />
-                        <br />
-                        <TextField
-                            type="password"
-                            hintText="Enter your Password"
-                            floatingLabelText="Password"
-                            inputStyle={{ color: '#00D77E' }}
-
-                            onChange={this.changePasswordState}
-                        />
-                        <br />
-
-                        <RaisedButton label="Sign Up" primary={true} onClick={() => this.signUp()} />
+                <div className="sign-up">
+                <FormControl
+          type="first-name"
+          // value={this.state.value}
+          placeholder="First Name"
+          // onChange={this.handleChange}
+          onChange={this.changeEmailState}
+        />
+            <FormControl
+          type="last-name"
+          // value={this.state.value}
+          placeholder="Last Name"
+          // onChange={this.handleChange}
+          onChange={this.changePasswordState}
+        />
+          <FormControl
+          type="email"
+          // value={this.state.value}
+          placeholder="Email"
+          // onChange={this.handleChange}
+          onChange={this.changeEmailState}
+        />
+            <FormControl
+          type="password"
+          // value={this.state.value}
+          placeholder="Password"
+          // onChange={this.handleChange}
+          onChange={this.changePasswordState}
+        />
+         <Button bsStyle="primary" bsSize="small" onClick={() => this.signUp()}>
+        Sign Up
+                </Button>
                         <div>{this.state.error.message}</div>
                         <div><Link to={'/SignIn'}>Already a user? Sign in instead.</Link></div>
-                    </div>
-                </div>
+
+        </div>
+       
             </div>
         )
     }
