@@ -2,9 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const SetCalories = (props) => {
+    let calories = 2000;
+    if (props.stats !== undefined) {
+        if (props.stats.length) {
+            calories = props.stats[0].calories;
+        }
+    } 
     return ( 
         <span >
-            {props.stats === undefined ? 2000 : props.stats[0].calories}
+            {calories}
+            {/* {props.stats === undefined ? 2000 : props.stats[0].calories} */}
         </span>
     )
 }

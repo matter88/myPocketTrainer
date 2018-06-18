@@ -3,9 +3,16 @@ import helpers from '../helpers.js';
 import { connect } from 'react-redux';
 
 const RemainingCalories = (props) => {
+    let calories = 2000;
+    if (props.stats !== undefined) {
+        if (props.stats.length > 0) {
+            calories = props.stats[0].calories - helpers.calculateDailyCalories(props.items);
+        }
+    }
     return (
         <div>
-            {props.stats === undefined ? null : props.stats[0].calories - helpers.calculateDailyCalories(props.items) + "  calories remain"}
+            {calories}
+            {/* {props.stats === undefined ? 2000 : props.stats[0].calories - helpers.calculateDailyCalories(props.items) + "  calories remain"} */}
         </div>
     )
 }
