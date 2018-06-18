@@ -76,18 +76,18 @@ class DailySummary extends React.Component {
                   Update
                 </a>
               </div>
-              <div>
-                <span className="set-calories">
+              <div className="ds-large-num">
+                <div className="set-calories">
                 <SetCalories />
-                </span>
-               <span>
+                </div>
+               <div className="ds-buttons">
                <Button className="ds-button1" bsStyle="primary" bsSize="small">
                   Add Exercise
                 </Button>
-                <Button bsStyle="success" bsSize="small">
+                <Button className="ds-button2" bsSize="small">
                   Add Food
                 </Button>
-               </span>
+               </div>
                 
               </div>
             </div>
@@ -111,10 +111,10 @@ class DailySummary extends React.Component {
         <div className="progress-bars">
         <div>
   <Progress />
-</div>;
+</div>
         </div>
         <div className="daily-summary-header">
-          <h5>Here's some motivation from friends to keep you going!</h5>
+          <h5>Motivation Feed</h5>
         </div>
         {/* <div>
                     <TodaysEntries todaysEntries={this.state.todaysEntries} />
