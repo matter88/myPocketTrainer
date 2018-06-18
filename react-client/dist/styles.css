@@ -146,9 +146,9 @@ body {
 }
 
 .login-form {
-  border: solid;
-  margin: 10px;
-  border-radius: 25px;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
 
 /* daily-summary */
@@ -264,6 +264,12 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.sign-up {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
 .account-wall
 {
