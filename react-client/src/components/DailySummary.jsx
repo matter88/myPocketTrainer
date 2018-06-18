@@ -14,6 +14,7 @@ import {
 } from "../actions";
 import helpers from "../helpers.js";
 import { Button } from "react-bootstrap";
+import Progress from "./Progress.jsx";
 
 class DailySummary extends React.Component {
   constructor(props) {
@@ -106,6 +107,11 @@ class DailySummary extends React.Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className="progress-bars">
+        <div>
+  <Progress />
+</div>;
         </div>
         <div className="daily-summary-header">
           <h5>Here's some motivation from friends to keep you going!</h5>
