@@ -101,8 +101,6 @@ class Header extends React.Component {
         </Link>
         {profile}
         {signIn}
-       
-        
         {dailySummary}
         {signOut}
         <div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 const SetCalories = (props) => {
     return ( 
-        <span>
+        <span >
             {props.stats === undefined ? 2000 : props.stats[0].calories}  {"      -  "}
         </span>
     )

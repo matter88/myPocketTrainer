@@ -14,6 +14,7 @@ import {
 } from "../actions";
 import helpers from "../helpers.js";
 import { Button } from "react-bootstrap";
+import Progress from "./Progress.jsx";
 
 class DailySummary extends React.Component {
   constructor(props) {
@@ -66,31 +67,51 @@ class DailySummary extends React.Component {
         <div className="daily-summary-header">
           <h5>Calorie Log</h5>
         </div>
-        <div className="dailySummary">
-          <div className="dailytest">
-            <div className="ds-large-num">
-            Calories Remaining <a href="www.google.com">Update</a>
-            <br />
-            <SetCalories />
-            
+        <div className="daily-summary">
+          <div className="dailyApple">
+            <div>
+              <div>
+                Calories Remaining 
+                <a className="ds-update-button" href="www.google.com">
+                  Update
+                </a>
+              </div>
+              <div>
+                <span className="set-calories">
+                <SetCalories />
+                </span>
+               <span>
+               <Button className="ds-button1" bsStyle="primary" bsSize="small">
+                  Add Exercise
+                </Button>
+                <Button bsStyle="success" bsSize="small">
+                  Add Food
+                </Button>
+               </span>
+                
+              </div>
             </div>
-             
-            <Button bsStyle="primary" bsSize="small">
-              Add Exercise
-            </Button>
-            <Button bsStyle="success" bsSize="small">
-              Add Food
-            </Button>
+            <div className="ds-plus-minus">
+              <div className="ds-set-calories">
+                <SetCalories />
+              </div>
+              <div className="ds-calories-input">
+                <CaloriesInputed />
+              </div>
+              <div className="ds-more-calories">+ 0</div>
+              <div className="ds-remain-calories">
+                <RemainingCalories
+                  userStats={this.state.userStats}
+                  todaysCalories={this.state.todaysCalories}
+                />
+              </div>
+            </div>
           </div>
-          <div className="dailytest">
-            <CaloriesInputed />
-          </div>
-          <div className="dailytest">
-            <RemainingCalories
-              userStats={this.state.userStats}
-              todaysCalories={this.state.todaysCalories}
-            />
-          </div>
+        </div>
+        <div className="progress-bars">
+        <div>
+  <Progress />
+</div>;
         </div>
         <div className="daily-summary-header">
           <h5>Here's some motivation from friends to keep you going!</h5>

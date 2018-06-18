@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 const RemainingCalories = (props) => {
     return (
-        <h3>
+        <div>
             {props.stats === undefined ? null : props.stats[0].calories - helpers.calculateDailyCalories(props.items) + "  calories remain"}
-        </h3>
+        </div>
     )
 }
 
