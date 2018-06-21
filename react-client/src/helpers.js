@@ -60,7 +60,7 @@ module.exports = {
     calculateDailyCalories: (array) => {
         let totalCalories = 0;
 
-        if (array.length === undefined) {
+        if (!array) {
             return totalCalories
         }
 
