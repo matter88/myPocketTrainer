@@ -1,4 +1,4 @@
-import { ITEMS_FETCH_DATA_SUCCESS_HEADER } from "../constants"
+import { ITEMS_FETCH_DATA_SUCCESS_HEADER, NDBNO_SUBMITTEDD_SUCCESS } from "../constants"
 
 export default (state = [], action) => {
     switch (action.type) {
@@ -7,6 +7,15 @@ export default (state = [], action) => {
             return {
                 items
             }
+        case NDBNO_SUBMITTEDD_SUCCESS:
+            const {
+                itemName,
+                nutrients
+                } = action;
+        return {
+            itemName,
+            nutrients
+        }
      default: 
         return state       
     }
