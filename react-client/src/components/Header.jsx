@@ -103,10 +103,8 @@ class Header extends React.Component {
     let signOut;
     let signUp;
     let dailySummary;
-    console.log(itemName, nutrients)
 
     if (itemName || nutrients) {
-      console.log('invoked plus head')
       return (
         <NdbnoResultsList
         itemName={itemName}

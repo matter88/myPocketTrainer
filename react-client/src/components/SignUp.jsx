@@ -123,7 +123,6 @@ class SignUp extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('sign up state', state)
     const { email } = state.reducer;
     return {
         email
