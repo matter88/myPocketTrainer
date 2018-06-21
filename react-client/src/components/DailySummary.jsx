@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import store from "../reducers/store.js";
 import { Redirect } from "react-router-dom";
 import {
-  redirectHome,
   getTodaysEntries,
   getUserStats,
   getYesterday,
@@ -26,7 +25,6 @@ class DailySummary extends React.Component {
       todaysMacros: [],
       todaysCalories: 0
     };
-    // this.redirect = this.redirect.bind(this)
     this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this);
     this.getYesterday = this.getYesterday.bind(this);
   }

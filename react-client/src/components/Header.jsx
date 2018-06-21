@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { firebaseApp } from "../config/firebase.js";
 import { connect } from "react-redux";
 import { Nav, Button } from "react-bootstrap";
-import { searchUSDA } from "../actions/searchActions.js";
+import { searchUSDA, submitNDBNO } from "../actions/searchActions.js";
 import store from "../reducers/store.js";
 import { FormGroup, FormControl } from "react-bootstrap";
 import ResultsListUSDA from './ResultsListUSDA.jsx';
+import NdbnoResultsList from './NdbnoResultsList.jsx';
 import axios from 'axios';
 
 class Header extends React.Component {
@@ -19,7 +20,9 @@ class Header extends React.Component {
       },
       signedIn: true,
       searchTerm: "",
-      ndbno: ""
+      ndbno: "",
+      itemName: "",
+      nutrients: [],
     };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -50,28 +53,7 @@ class Header extends React.Component {
   }
 
   handleSubmitNDBNO() {
-    event.preventDefault();
-    axios
-      .get("banx/usdaReport", {
-        params: {
-          ndbno: this.state.ndbno
-        }
-      })
-      .then(response => {
-        console.log("clientside response", response.data.report);
-        // this.setState({
-        //   searchInput: "",
-        //   usdaList: [],
-        //   ndbno: null,
-        //   usdaResults: [],
-        //   testState: "",
-          // itemName: response.data.report.food.name,
-          // nutrients: response.data.report.food.nutrients
-        // });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    store.dispatch(submitNDBNO(this.state.ndbno));
   }
 
   handleToggle() {
@@ -84,10 +66,10 @@ class Header extends React.Component {
     });
   }
 
-  handleResultListClick(num) {
+  handleResultListClick(string) {
     this.setState(
       {
-        ndbno: num
+        ndbno: string
       },
       () => {
         this.handleSubmitNDBNO();
@@ -114,14 +96,26 @@ class Header extends React.Component {
   render() {
     const { email } = this.props;
     const { items } = this.props;
+    const { itemName } = this.props;
+    const { nutrients } = this.props;
     let profile;
     let signIn;
     let signOut;
     let signUp;
     let dailySummary;
+    console.log(itemName, nutrients)
+
+    if (itemName || nutrients) {
+      console.log('invoked plus head')
+      return (
+        <NdbnoResultsList
+        itemName={itemName}
+        nutrients={nutrients}
+        />
+      )
+    }
     if (items) {
       if (Object.keys(items).length) {
-        console.log(items)
         return (
         <div>
           <ResultsListUSDA 
@@ -207,10 +201,18 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   const { email } = state.reducer;
-  const { items } = state.headerSearchReducer;
+  const { 
+    items,
+    itemName,
+    nutrients
+   } = state.headerSearchReducer;
+
+
   return {
     email,
-    items
+    items,
+    itemName,
+    nutrients
   };
 };
 
