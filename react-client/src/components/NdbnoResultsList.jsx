@@ -15,30 +15,30 @@ class NdbnoResultsList extends React.Component {
       testState: "",
       ndbno: "",
       nutrients: [],
-      itemName: ""
+      itemName: "",
+      value: this.props.nutrients[0].measures[0].label
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleChangeSelect = this.handleChangeSelect.bind(this);
     this.handleSaveToDailyIntake = this.handleSaveToDailyIntake.bind(this);
+    this.handleGetNutrition = this.handleGetNutrition.bind(this);
   }
 
   handleChange(event) {
-    store.dispatch(setServingSize(event.target.value));
+      this.setState({
+        value : event.target.value
+      })
   }
 
-  handleChangeSelect(size) {
-    store.dispatch(setServingSize(size));
+  handleGetNutrition() {
+    store.dispatch(setServingSize(this.state.value));
   }
 
-  handleSaveToDailyIntake(foodObj) {
+  handleSaveToDailyIntake() {
     store.dispatch(saveToDailyIntake(this.props.nutrients, this.props.itemName, this.props.email));
   }
 
   render() {
     let size = this.props.size;
-    let measuresArr = this.props.nutrients[0].measures;
-    let loneMeasure = measuresArr[0].label;
-    measuresArr.length === 1 ? this.handleChangeSelect(loneMeasure) : null;
     let temp = this.props.nutrients[0].measures;
     let labelIndex;
     if (temp) {
@@ -52,11 +52,7 @@ class NdbnoResultsList extends React.Component {
     }
     return (
       <div className="result-list">
-        <div className="table-nutrients">
-          <Table striped bordered condensed hover>
-            <thead>
-              <th>Serving Size??</th>
-              <select onChange={this.handleChange}>
+       <select onChange={this.handleChange} value={this.state.value}>
                 {this.props.nutrients[0].measures.map((measure, index) => (
                   <option key={index} value={measure.label}>
                     {measure.label}
@@ -64,12 +60,23 @@ class NdbnoResultsList extends React.Component {
                 ))}
               </select>
               <Button
+                onClick={this.handleGetNutrition}
+                bsStyle="primary"
+                bsSize="xsmall"
+              >
+                Get Nutrition
+              </Button>
+              <Button
                 onClick={this.handleSaveToDailyIntake}
                 bsStyle="primary"
                 bsSize="xsmall"
               >
-                Primary
+                Add to Journal
               </Button>
+        <div className="table-nutrients">
+          <Table striped bordered condensed hover>
+            <thead>  
+              Nutrition          
             </thead>
             <tbody>
               {labelIndex !== undefined ? (
@@ -96,7 +103,6 @@ class NdbnoResultsList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
   const { stats } = state.getUserStats;
   const { email } = state.reducer;
   const { items } = state.todaysEntries;
