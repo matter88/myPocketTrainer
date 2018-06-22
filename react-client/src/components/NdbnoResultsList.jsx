@@ -19,16 +19,24 @@ class NdbnoResultsList extends React.Component {
       itemName: "",
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeSelect = this.handleChangeSelect.bind(this)
   }
 
   handleChange(event) {
     store.dispatch(setServingSize(event.target.value))
   }
 
+  handleChangeSelect(size) {
+    store.dispatch(setServingSize(size))
+  }
+
  
 
   render() {
     let size = this.props.size
+    let measuresArr = this.props.nutrients[0].measures;
+    let loneMeasure = measuresArr[0].label;
+    measuresArr.length === 1 ? this.handleChangeSelect(loneMeasure) : null;
     let temp = this.props.nutrients[0].measures;
     let labelIndex;
     if (temp) {
@@ -45,27 +53,21 @@ class NdbnoResultsList extends React.Component {
 
       
 <div className="result-list">
-{/* <div className="select-size">
-</div> */}
+
 
    <div className="table-nutrients">
    <Table striped bordered condensed hover>
 <thead>
 
-  <tr>
+
     <th>Serving Size??</th>  
     <select onChange={this.handleChange} >
               {this.props.nutrients[0].measures.map((measure, index) =>
                 <option key={index} value={measure.label}>{measure.label}</option>)}
           </select>
-  </tr>
 </thead>
 <tbody>
-  {/* {this.props.nutrients.map((nutrient, index) => 
-   ( <tr key={index}>
-      <td>{nutrient.name}</td>
-    </tr>)
-  )} */}
+
 
   {labelIndex !== undefined ?
 this.props.nutrients.map((nutrient, index) =>
