@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import store from "../reducers/store.js";
 import { Redirect } from "react-router-dom";
 import {
-  redirectHome,
   getTodaysEntries,
   getUserStats,
   getYesterday,
@@ -26,7 +25,6 @@ class DailySummary extends React.Component {
       todaysMacros: [],
       todaysCalories: 0
     };
-    // this.redirect = this.redirect.bind(this)
     this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this);
     this.getYesterday = this.getYesterday.bind(this);
   }
@@ -71,24 +69,31 @@ class DailySummary extends React.Component {
           <div className="dailyApple">
             <div>
               <div>
-                Calories Remaining 
+                Calories Remaining
                 <a className="ds-update-button" href="www.google.com">
                   Update
                 </a>
               </div>
               <div className="ds-large-num">
                 <div className="set-calories">
-                <SetCalories />
+                  <SetCalories />
                 </div>
-               <div className="ds-buttons">
-               <Button className="ds-button1" bsStyle="primary" bsSize="small">
-                  Add Exercise
-                </Button>
-                <Button className="ds-button2"  bsStyle="primary" bsSize="small">
-                  Add Food
-                </Button>
-               </div>
-                
+                <div className="ds-buttons">
+                  <Button
+                    className="ds-button1"
+                    bsStyle="primary"
+                    bsSize="small"
+                  >
+                    Add Exercise
+                  </Button>
+                  <Button
+                    className="ds-button2"
+                    bsStyle="primary"
+                    bsSize="small"
+                  >
+                    Add Food
+                  </Button>
+                </div>
               </div>
             </div>
             <div className="ds-plus-minus">
@@ -109,9 +114,9 @@ class DailySummary extends React.Component {
           </div>
         </div>
         <div className="progress-bars">
-        <div>
-  <Progress />
-</div>
+          <div>
+            <Progress />
+          </div>
         </div>
         <div className="daily-summary-header">
           <h5>Motivation Feed</h5>
