@@ -12,10 +12,11 @@ export default (state = [], action) => {
                 itemName,
                 nutrients
                 } = action;
-        return {
-            itemName,
-            nutrients
-        }
+            return {
+                itemName,
+                nutrients
+            }
+       
      default: 
         return state       
     }

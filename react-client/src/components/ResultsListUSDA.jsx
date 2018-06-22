@@ -8,26 +8,28 @@ class ResultsListUSDA extends React.Component {
 
   render() {
     return (
-     
       <div className="result-list">
-    
-      <Table striped bordered condensed hover>
-      <thead>
-        <tr>
-          <th>Which one?</th>
-        </tr>
-      </thead>
-      <tbody>
-        {this.props.items.map((item, index) => 
-         ( <tr key={index}>
-            <td onClick={() => {
+        <Table striped bordered condensed hover>
+          <thead>
+            <tr>
+              <th>Which one?</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.props.items.map((item, index) => (
+              <tr key={index}>
+                <td
+                  onClick={() => {
                     this.props.handleClick(item.ndbno);
-                  }}>{item.name}</td>
-          </tr>)
-        )}
-      </tbody>
-    </Table>
-    </div>
+                  }}
+                >
+                  {item.name}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     );
   }
 }

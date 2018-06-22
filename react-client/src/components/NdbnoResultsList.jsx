@@ -1,9 +1,9 @@
 import React from "react";
 import { MenuItem, ButtonToolbar, DropdownButton } from "react-bootstrap";
 import store from "../reducers/store.js";
-import { setServingSize } from "../actions/index.js";
+import { setServingSize, saveToDailyIntake } from "../actions/index.js";
 import { connect } from "react-redux";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 
 class NdbnoResultsList extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class NdbnoResultsList extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeSelect = this.handleChangeSelect.bind(this);
+    this.handleSaveToDailyIntake = this.handleSaveToDailyIntake.bind(this);
   }
 
   handleChange(event) {
@@ -27,6 +28,10 @@ class NdbnoResultsList extends React.Component {
 
   handleChangeSelect(size) {
     store.dispatch(setServingSize(size));
+  }
+
+  handleSaveToDailyIntake(foodObj) {
+    store.dispatch(saveToDailyIntake(this.props.nutrients, this.props.itemName, this.props.email));
   }
 
   render() {
@@ -45,7 +50,6 @@ class NdbnoResultsList extends React.Component {
         }
       }
     }
-    console.log("label", labelIndex);
     return (
       <div className="result-list">
         <div className="table-nutrients">
@@ -59,6 +63,13 @@ class NdbnoResultsList extends React.Component {
                   </option>
                 ))}
               </select>
+              <Button
+                onClick={this.handleSaveToDailyIntake}
+                bsStyle="primary"
+                bsSize="xsmall"
+              >
+                Primary
+              </Button>
             </thead>
             <tbody>
               {labelIndex !== undefined ? (
@@ -85,15 +96,18 @@ class NdbnoResultsList extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state', state)
   const { stats } = state.getUserStats;
   const { email } = state.reducer;
   const { items } = state.todaysEntries;
   const { size } = state.setServingSize;
+  const { itemName } = state.headerSearchReducer;
   return {
     email,
     items,
     stats,
-    size
+    size,
+    itemName
   };
 };
 

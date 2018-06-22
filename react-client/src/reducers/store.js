@@ -1,4 +1,3 @@
-import { create } from "domain";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk';
@@ -6,10 +5,7 @@ import reducer from './index.js';
 import todaysEntries from './getTodaysEntriesReducer.js';
 import getUserStats from './getUserStatsReducer.js';
 import setServingSize from './setServingSizeReducer.js';
-import testCaseBanana from './setRedirectReducer';
 import headerSearchReducer from './headerSearchReducer';
-
-const logger = createLogger();
 
 export default createStore(
     combineReducers({ 
@@ -17,7 +13,6 @@ export default createStore(
          todaysEntries, 
          getUserStats, 
          setServingSize, 
-         testCaseBanana,
          headerSearchReducer
         }),
     {},

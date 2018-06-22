@@ -6,25 +6,20 @@ import { Nav, Button } from "react-bootstrap";
 import { searchUSDA, submitNDBNO } from "../actions/searchActions.js";
 import store from "../reducers/store.js";
 import { FormGroup, FormControl } from "react-bootstrap";
-import ResultsListUSDA from './ResultsListUSDA.jsx';
-import NdbnoResultsList from './NdbnoResultsList.jsx';
-import axios from 'axios';
+import ResultsListUSDA from "./ResultsListUSDA.jsx";
+import NdbnoResultsList from "./NdbnoResultsList.jsx";
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      error: {
-        message: ""
-      },
       signedIn: true,
       searchTerm: "",
       ndbno: "",
       itemName: "",
-      nutrients: [],
+      nutrients: []
     };
-    this.handleToggle = this.handleToggle.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +28,6 @@ class Header extends React.Component {
   }
 
   handleClick(event) {
-    // This prevents ghost click.
     event.preventDefault();
     this.setState({
       open: true,
@@ -54,10 +48,6 @@ class Header extends React.Component {
 
   handleSubmitNDBNO() {
     store.dispatch(submitNDBNO(this.state.ndbno));
-  }
-
-  handleToggle() {
-    this.setState({ open: !this.state.open });
   }
 
   handleRequestClose() {
@@ -105,25 +95,20 @@ class Header extends React.Component {
     let dailySummary;
 
     if (itemName || nutrients) {
-      return (
-        <NdbnoResultsList
-        itemName={itemName}
-        nutrients={nutrients}
-        />
-      )
+      return <NdbnoResultsList itemName={itemName} nutrients={nutrients} />;
     }
     if (items) {
       if (Object.keys(items).length) {
         return (
-        <div>
-          <ResultsListUSDA 
-          items={items.list.item}
-          handleClick={this.handleResultListClick}/>
-        </div>
-      )
+          <div>
+            <ResultsListUSDA
+              items={items.list.item}
+              handleClick={this.handleResultListClick}
+            />
+          </div>
+        );
       }
-      
-    } 
+    }
     if (!email) {
       signUp = (
         <Link className="headerLink" to="/SignUp">
@@ -166,7 +151,6 @@ class Header extends React.Component {
             {signOut}
           </Nav>
           <span className="searchBar">
-            
             <form>
               <FormGroup controlId="formBasicText">
                 <FormControl
@@ -199,12 +183,7 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   const { email } = state.reducer;
-  const { 
-    items,
-    itemName,
-    nutrients
-   } = state.headerSearchReducer;
-
+  const { items, itemName, nutrients } = state.headerSearchReducer;
 
   return {
     email,
