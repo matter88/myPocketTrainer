@@ -130,6 +130,7 @@ class DailySummary extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('daily summary', state)
   const { stats } = state.getUserStats;
   const { email } = state.reducer;
   const { items } = state.todaysEntries;

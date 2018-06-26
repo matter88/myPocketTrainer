@@ -7,11 +7,6 @@ export default (state = {}, action) => {
         return {
             size
         }
-        case SUCCESS_SAVED_TO_DAILY_INTAKE:
-        const { lastObjSaved } = action;
-        return{
-            lastObjSaved
-        }
     default:
         return state
     }
