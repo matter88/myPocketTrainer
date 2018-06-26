@@ -54,13 +54,11 @@ class USDAsearch extends React.Component {
 
   handleKeyPress(event) {
     if (event.key == "Enter") {
-      console.log("handlekeypress invoked");
       axios
         .post("/banx/usdaDB", {
           searchTerm: this.state.searchInput + " raw"
         })
         .then(response => {
-          console.log(response.data);
           this.setState({
             usdaResults: response.data.list.item
           });
@@ -73,14 +71,12 @@ class USDAsearch extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log("handle submit invoked");
     event.preventDefault();
     axios
       .post("/banx/usdaDB", {
         searchTerm: this.state.searchInput
       })
       .then(response => {
-        console.log(response.data);
         this.setState({
           usdaResults: response.data.list.item
         });
@@ -99,7 +95,6 @@ class USDAsearch extends React.Component {
         }
       })
       .then(response => {
-        console.log("clientside response", response.data.report);
         this.setState({
           searchInput: "",
           usdaList: [],
@@ -127,7 +122,6 @@ class USDAsearch extends React.Component {
   }
 
   handleSaveToDB() {
-    console.log("shaved ice", this.state.nutrients);
     var redesignedObj = helpers.redesign(this.state.nutrients);
     const { email } = this.props;
     redesignedObj["email"] = email;
@@ -135,7 +129,6 @@ class USDAsearch extends React.Component {
     redesignedObj["Calories"] = redesignedObj["Energy"];
     redesignedObj["Fats"] = redesignedObj["Total lipid (fat)"];
     redesignedObj["Name"] = this.state.itemName;
-    console.log("redesigned obj", redesignedObj);
     axios
       .post("/banx/caloriesInput", redesignedObj)
       .then(() => {
@@ -150,7 +143,6 @@ class USDAsearch extends React.Component {
   }
 
   handleRerouteToCreate() {
-    console.log("create reroute works");
     store.dispatch(routeToCreate());
   }
 
