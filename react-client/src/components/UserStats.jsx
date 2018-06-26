@@ -13,7 +13,6 @@ import {
   FormControl,
   Button
 } from "react-bootstrap";
-import { TextField, MenuItem, SelectField, FlatButton } from "material-ui";
 
 class UserStats extends React.Component {
   constructor(props) {
@@ -29,36 +28,38 @@ class UserStats extends React.Component {
       macros: null,
       value: 1
     };
-    // this.handleActivityLevel = this.handleActivityLevel.bind(this)
+    this.handleActivityLevel = this.handleActivityLevel.bind(this)
     // this.handleGender = this.handleGender.bind(this)
     // this.handleSubmitUserStats = this.handleSubmitUserStats.bind(this)
-    // this.handleGoal = this.handleGoal.bind(this)
-    // this.handleAge = this.handleAge.bind(this)
-    // this.handleFeet = this.handleFeet.bind(this)
-    // this.handleInches = this.handleInches.bind(this)
-    // this.handleWeight = this.handleWeight.bind(this)
+    this.handleGoal = this.handleGoal.bind(this)
+    this.handleAge = this.handleAge.bind(this)
+    this.handleFeet = this.handleFeet.bind(this)
+    this.handleInches = this.handleInches.bind(this)
+    this.handleWeight = this.handleWeight.bind(this)
     // this.handleInputChange = this.handleInputChange.bind(this)
   }
 
-  // handleFeet(event) {
-  //     var feetInCM = event.target.value * 30.48
-  //     this.setState({
-  //         height: this.state.height + feetInCM
-  //     })
-  // }
+  handleFeet(event) {
+      var feetInCM = event.target.value * 30.48
+      this.setState({
+          height: this.state.height + feetInCM
+      })
+  }
 
-  // handleInches(event) {
-  //     var inchesInCM = event.target.value * 2.54
-  //     this.setState({
-  //         height: this.state.height + inchesInCM
-  //     })
-  // }
+  handleInches(event) {
+      var inchesInCM = event.target.value * 2.54
+      this.setState({
+          height: this.state.height + inchesInCM
+      })
+  }
 
-  // handleActivityLevel(event, index, value) {
-  //     this.setState({
-  //         activityLevel: value
-  //     })
-  // }
+
+
+  handleActivityLevel(event) {
+      this.setState({
+          activityLevel: event.target.value
+      })
+  }
 
   // handleGender(event, index, value2) {
   //     this.setState({
@@ -66,24 +67,24 @@ class UserStats extends React.Component {
   //     })
   // }
 
-  // handleGoal(event, index, value) {
-  //     this.setState({
-  //         goal: value
-  //     })
-  // }
+  handleGoal(event) {
+      this.setState({
+          goal: event.target.value
+      })
+  }
 
-  // handleWeight(event) {
-  //     let inputWeight = event.target.value * 0.453592
-  //     this.setState({
-  //         weight: inputWeight
-  //     })
-  // }
+  handleWeight(event) {
+      let inputWeight = event.target.value * 0.453592
+      this.setState({
+          weight: inputWeight
+      })
+  }
 
-  // handleAge(event) {
-  //     this.setState({
-  //         age: event.target.value
-  //     })
-  // }
+  handleAge(event) {
+      this.setState({
+          age: event.target.value
+      })
+  }
 
   // calculateCalories(obj) {
   //     let restingEnergy = null;
@@ -176,6 +177,7 @@ class UserStats extends React.Component {
   // }
 
   render() {
+    console.log('user stats ' ,this.state)
     // let userStats = this.props.stats[0]
     // if (this.state.macros) {
     //     return <Redirect to="/Journal" />
@@ -219,31 +221,6 @@ class UserStats extends React.Component {
       //         onChange={this.handleInches}
       //     />
 
-      //     <SelectField
-      //         floatingLabelText="Activity Level"
-      //         value={userStats.activityLevel}
-      //         onChange={
-      //             this.handleActivityLevel
-
-      //         }
-      //     >
-      //         <MenuItem value="sedentary" primaryText="Sedentary" />
-      //         <MenuItem value="lightActivity" primaryText="Light Activity" />
-      //         <MenuItem value="moderateActivity" primaryText="Moderate Activity" />
-      //         <MenuItem value="veryActive" primaryText="Very Active" />
-      //         <MenuItem value="weekly" primaryText="Weekly" />
-      //     </SelectField>
-
-      //     <SelectField
-      //         value={userStats.goal}
-      //         floatingLabelText="Goal"
-      //         onChange={this.handleGoal}
-      //     >
-      //         <MenuItem value="lose" primaryText="Lose" />
-      //         <MenuItem value="lose10%" primaryText="Lose10%" />
-      //         <MenuItem value="maintain" primaryText="Maintain" />
-      //         <MenuItem value="gain" primaryText="Gain" />
-      //     </SelectField>
       //     <br />
 
       //     <FlatButton
@@ -263,30 +240,41 @@ class UserStats extends React.Component {
         <Checkbox checked readOnly>
           Female
         </Checkbox>
+        <ControlLabel>Height:</ControlLabel>
+        <div className="height">
         <FormControl
           type="height"
           // value={this.state.value}
-          placeholder="Height"
-          // onChange={this.handleChange}
+          placeholder="Feet"
+          onChange={this.handleFeet}
         />
+         <FormControl
+          type="height"
+          // value={this.state.value}
+          placeholder="Inches"
+          onChange={this.handleInches}
+        />
+        </div>
+        <ControlLabel>Weight:</ControlLabel>
         <FormControl
           type="weight"
           // value={this.state.value}
           placeholder="Weight"
-          // onChange={this.handleChange}
+          onChange={this.handleWeight}
         />
+    <ControlLabel>Age:</ControlLabel>
         <FormControl
           type="age"
           // value={this.state.value}
           placeholder="Age"
-          // onChange={this.handleChange}
+          onChange={this.handleAge}
         />
         <FormGroup controlId="formControlsSelect">
           <ControlLabel>Select Activity Level</ControlLabel>
-          <FormControl componentClass="select" placeholder="select">
+          <FormControl onChange={this.handleActivityLevel} componentClass="select" placeholder="select">
             <option value="sedentary">Sedentary</option>
             <option value="lightActivity">Light Activity</option>
-            <option value="moderateActivity" primaryText="">
+            <option value="moderateActivity" >
               Moderate Activity
             </option>
             <option value="veryActive">Very Active</option>
@@ -295,21 +283,22 @@ class UserStats extends React.Component {
         <FormGroup>
           <ControlLabel>Select Goal</ControlLabel>
 
-          <FormControl componentClass="select" placeholder="select">
-            <option value="lose" primaryText="Lose">
+          <FormControl onChange={this.handleGoal} componentClass="select" placeholder="select">
+            <option value="lose" >
               Lose
             </option>
-            <option value="lose10%" primaryText="Lose10%">
+            <option value="lose10%" >
               Lose10%
             </option>
-            <option value="maintain" primaryText="Maintain">
+            <option value="maintain" >
               Maintain
             </option>
-            <option value="gain" primaryText="Gain">
+            <option value="gain" >
               Gain
             </option>
           </FormControl>
         </FormGroup>
+        <Button bsStyle="primary">Update my stats</Button>
       </form>
       </div>
     );

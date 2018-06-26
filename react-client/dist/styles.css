@@ -306,3 +306,9 @@ body {
     display: block;
     margin-top: 10px;
 }
+/* user profile */
+
+.height {
+  display: flex;
+  flex-direction: row
+}
