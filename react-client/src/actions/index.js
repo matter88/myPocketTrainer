@@ -166,8 +166,9 @@ export function getTomorrowFoodAc(email) {
 
 export function savetoDailyIntakeSuccess(lastObjSaved) {
   let action = {
-    type: "SUCCESS_SAVED_TO_DAILY_INTAKE",
-    lastObjSaved
+    type: SUCCESS_SAVED_TO_DAILY_INTAKE,
+    lastObjSaved,
+    added: true
   }
   return action;
 }

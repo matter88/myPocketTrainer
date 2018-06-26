@@ -4,6 +4,7 @@ import helpers from "../helpers.js";
 import { connect } from "react-redux";
 
 const CaloriesInputed = props => {
+  console.log('calories inputerd', props.items)
   return (
     <span>
       {props.items === undefined

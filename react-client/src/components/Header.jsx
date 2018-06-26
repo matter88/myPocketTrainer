@@ -96,7 +96,7 @@ class Header extends React.Component {
 
     if (itemName || nutrients) {
       return <NdbnoResultsList itemName={itemName} nutrients={nutrients} />;
-    }
+    } 
     if (items) {
       if (Object.keys(items).length) {
         return (
@@ -183,13 +183,14 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   const { email } = state.reducer;
-  const { items, itemName, nutrients } = state.headerSearchReducer;
+  const { items, itemName, nutrients, added } = state.headerSearchReducer;
 
   return {
     email,
     items,
     itemName,
-    nutrients
+    nutrients,
+    added
   };
 };
 
