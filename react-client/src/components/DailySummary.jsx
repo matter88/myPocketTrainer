@@ -68,7 +68,7 @@ class DailySummary extends React.Component {
         <div className="daily-summary">
           <div className="dailyApple">
             <div>
-              <div>
+              <div className="calories-remaining">
                 Calories Remaining
                 <a className="ds-update-button" href="www.google.com">
                   Update
@@ -76,7 +76,7 @@ class DailySummary extends React.Component {
               </div>
               <div className="ds-large-num">
                 <div className="set-calories">
-                  <SetCalories />
+                  <RemainingCalories />
                 </div>
                 <div className="ds-buttons">
                   <Button
@@ -101,7 +101,7 @@ class DailySummary extends React.Component {
                 <SetCalories />
               </div>
               <div className="ds-calories-input">
-                <CaloriesInputed />
+              {"-  "}<CaloriesInputed />
               </div>
               <div className="ds-more-calories">+ 0</div>
               <div className="ds-remain-calories">
@@ -121,16 +121,12 @@ class DailySummary extends React.Component {
         <div className="daily-summary-header">
           <h5>Motivation Feed</h5>
         </div>
-        {/* <div>
-                    <TodaysEntries todaysEntries={this.state.todaysEntries} />
-                </div> */}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log('daily summary', state)
   const { stats } = state.getUserStats;
   const { email } = state.reducer;
   const { items } = state.todaysEntries;

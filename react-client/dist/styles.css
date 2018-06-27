@@ -154,7 +154,9 @@ body {
 /* daily-summary */
 .ds-large-num {
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  padding-left : 10px;
+  
 }
 
 .ds-button1, .ds-button2, .ds-update-button {
@@ -175,6 +177,7 @@ body {
   margin-top: 10px;
   margin-right: 10px;
   margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 .ds-set-calories {
@@ -206,6 +209,23 @@ body {
 
 .set-calories {
   font-size: 50px;
+}
+
+.progress-bars {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.calories-remaining {
+  padding-left: 10px;
+}
+
+.daily-summary-header {
+  padding-left: 10px;
+}
+
+.ds-set-calories {
+  padding-right: 10px;
 }
 
 
