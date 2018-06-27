@@ -4,6 +4,7 @@ import axios from "axios";
 import { setUserStats } from "../actions/index.js";
 import store from "../reducers/store.js";
 import { Redirect } from "react-router-dom";
+import helpers from "../helpers.js";
 import {
   FieldGroup,
   Checkbox,
@@ -20,22 +21,22 @@ class UserStats extends React.Component {
     this.state = {
       activityLevel: "sedentary",
       goal: "lose",
-      gender: "Male",
+      gender: "male",
       weight: 0,
       height: 0,
       age: 0,
       calories: "",
       macros: null,
-      value: 1
+      value: 1,
     };
     this.handleActivityLevel = this.handleActivityLevel.bind(this)
-    // this.handleGender = this.handleGender.bind(this)
-    // this.handleSubmitUserStats = this.handleSubmitUserStats.bind(this)
+    this.handleSubmitUserStats = this.handleSubmitUserStats.bind(this)
     this.handleGoal = this.handleGoal.bind(this)
     this.handleAge = this.handleAge.bind(this)
     this.handleFeet = this.handleFeet.bind(this)
     this.handleInches = this.handleInches.bind(this)
     this.handleWeight = this.handleWeight.bind(this)
+    this.handleGender = this.handleGender.bind(this)
     // this.handleInputChange = this.handleInputChange.bind(this)
   }
 
@@ -60,12 +61,6 @@ class UserStats extends React.Component {
           activityLevel: event.target.value
       })
   }
-
-  // handleGender(event, index, value2) {
-  //     this.setState({
-  //         value2
-  //     })
-  // }
 
   handleGoal(event) {
       this.setState({
@@ -176,15 +171,38 @@ class UserStats extends React.Component {
   //     });
   // }
 
+  handleSubmitUserStats() {
+    const { email } = this.props
+    var userBodyData = {
+      age: this.state.age,
+      weight: this.state.weight,
+      height: this.state.height,
+      gender: this.state.gender,
+      goal: this.state.goal,
+      activityLevel: this.state.activityLevel
+    }
+
+    let calcCalories = helpers.calculateCalories(userBodyData)
+    let macrosNutrients = helpers.calculateMacros(calcCalories)
+
+      userBodyData["email"] = email;
+      userBodyData["calories"] = calcCalories;
+      userBodyData["protiens"] = macrosNutrients.protiens;
+      userBodyData["carbohydrates"] = macrosNutrients.carbohydrates;
+      userBodyData["fats"] = macrosNutrients.fats
+      userBodyData['createdAt'] = new Date();
+    
+      store.dispatch(setUserStats(userBodyData))
+    
+  }
+
+  handleGender(event) {
+    this.setState({
+      gender : event.target.value
+    })
+  }
+
   render() {
-    console.log('user stats ' ,this.state)
-    // let userStats = this.props.stats[0]
-    // if (this.state.macros) {
-    //     return <Redirect to="/Journal" />
-    // }
-    // if (this.props.email === undefined) {
-    //     return <Redirect to="/" />
-    // }
     return (
       // <div className="profile">
       //     <h2>Body Statistics</h2>
@@ -234,12 +252,13 @@ class UserStats extends React.Component {
         <h5>Body Statistics</h5>
       </div>
       <form>
-        <Checkbox checked readOnly>
-          Male
-        </Checkbox>
-        <Checkbox checked readOnly>
-          Female
-        </Checkbox>
+      <FormGroup controlId="select-sex">
+          <ControlLabel>Select Gender</ControlLabel>
+          <FormControl onChange={this.handleGender} value={this.state.gender} componentClass="select" placeholder="select">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </FormControl>
+        </FormGroup>
         <ControlLabel>Height:</ControlLabel>
         <div className="height">
         <FormControl
@@ -298,7 +317,7 @@ class UserStats extends React.Component {
             </option>
           </FormControl>
         </FormGroup>
-        <Button bsStyle="primary">Update my stats</Button>
+        <Button bsStyle="primary" onClick={this.handleSubmitUserStats}>Update my stats</Button>
       </form>
       </div>
     );
@@ -306,6 +325,7 @@ class UserStats extends React.Component {
 }
 
 var mapStateToProps = function(state) {
+  console.log('userstas', state)
   const { email } = state.reducer;
   const { stats } = state.getUserStats;
   return {

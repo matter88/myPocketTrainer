@@ -1,7 +1,7 @@
 import {
   SIGNED_IN,
   SIGNED_OUT,
-  SET_USERSTATS,
+  SET_USERSTATS_SUCCESS,
   REDIRECT_HOME,
   ITEMS_FETCH_DATA_SUCCESS,
   GET_USERSTATS,
@@ -30,12 +30,24 @@ export function logUserOUT() {
   return action;
 }
 
-export function setUserStats(userObj) {
+export function setUserStatsSuccess(userObj) {
   const action = {
-    type: SET_USERSTATS,
+    type: SET_USERSTATS_SUCCESS,
     userObj
   };
   return action;
+}
+
+export function setUserStats(userBodyData) {
+  return (dispatch) => {
+         axios.post('banx/userStats', userBodyData)
+          .then(() => {
+             dispatch(setUserStatsSuccess(userBodyData))
+          })
+          .catch((error) => {
+              console.log(error);
+          });
+  }
 }
 
 export function redirectHome() {

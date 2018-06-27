@@ -6507,6 +6507,7 @@ Object.defineProperty(exports, "__esModule", {
 var SIGNED_IN = exports.SIGNED_IN = 'SIGNED_IN';
 var SIGNED_OUT = exports.SIGNED_OUT = 'SIGNED_OUT';
 var SET_USERSTATS = exports.SET_USERSTATS = 'SET_USERSTATS';
+var SET_USERSTATS_SUCCESS = exports.SET_USERSTATS_SUCCESS = 'SET_USERSTATS_SUCCESS';
 var REDIRECT_HOME = exports.REDIRECT_HOME = 'REDIRECT_HOME';
 var ITEMS_FETCH_DATA_SUCCESS = exports.ITEMS_FETCH_DATA_SUCCESS = 'ITEMS_FETCH_DATA_SUCCESS';
 var GET_USERSTATS = exports.GET_USERSTATS = 'GET_USERSTATS';
@@ -7114,6 +7115,10 @@ var _headerSearchReducer = __webpack_require__(477);
 
 var _headerSearchReducer2 = _interopRequireDefault(_headerSearchReducer);
 
+var _userBodyStatsReducer = __webpack_require__(865);
+
+var _userBodyStatsReducer2 = _interopRequireDefault(_userBodyStatsReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.createStore)((0, _redux.combineReducers)({
@@ -7121,7 +7126,8 @@ exports.default = (0, _redux.createStore)((0, _redux.combineReducers)({
     todaysEntries: _getTodaysEntriesReducer2.default,
     getUserStats: _getUserStatsReducer2.default,
     setServingSize: _setServingSizeReducer2.default,
-    headerSearchReducer: _headerSearchReducer2.default
+    headerSearchReducer: _headerSearchReducer2.default,
+    userBodyStatsReducer: _userBodyStatsReducer2.default
 }), {}, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 /***/ }),
@@ -7918,6 +7924,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.logUser = logUser;
 exports.logUserOUT = logUserOUT;
+exports.setUserStatsSuccess = setUserStatsSuccess;
 exports.setUserStats = setUserStats;
 exports.redirectHome = redirectHome;
 exports.itemsFetchDataSuccess = itemsFetchDataSuccess;
@@ -7967,12 +7974,22 @@ function logUserOUT() {
   return action;
 }
 
-function setUserStats(userObj) {
+function setUserStatsSuccess(userObj) {
   var action = {
-    type: _constants.SET_USERSTATS,
+    type: _constants.SET_USERSTATS_SUCCESS,
     userObj: userObj
   };
   return action;
+}
+
+function setUserStats(userBodyData) {
+  return function (dispatch) {
+    _axios2.default.post('banx/userStats', userBodyData).then(function () {
+      dispatch(setUserStatsSuccess(userBodyData));
+    }).catch(function (error) {
+      console.log(error);
+    });
+  };
 }
 
 function redirectHome() {
@@ -8623,74 +8640,114 @@ function taskStateFromInternalTaskState(state) {
 
 
 module.exports = {
+  calculateCalories: function calculateCalories(obj) {
+    var restingEnergy = null;
+    var TDEE = null;
+    var totalTDEE = null;
 
-    redesign: function redesign(array) {
-        var redesignedObj = {};
-        var name = void 0;
-
-        for (var i = 0; i < array.length; i++) {
-            var obj = array[i];
-            name = obj.name;
-
-            for (var j = 0; j < name.length; j++) {
-                var char = name[j];
-                if (char === ',') {
-                    name = name.slice(0, j);
-                }
-            }
-
-            redesignedObj[name] = obj.value;
-        }
-        return redesignedObj;
-    },
-
-    designEntriesArray: function designEntriesArray(array) {
-        var resultsArray = [];
-        var f = {
-            name: "Fats",
-            value: 0
-        };
-        var p = {
-            name: "Proteins",
-            value: 0
-        };
-        var c = {
-            name: "Carbohydrates",
-            value: 0
-        };
-
-        for (var i = 0; i < array.length; i++) {
-            var obj = array[i];
-
-            p["name"] = "Protein";
-            c["name"] = "Carbohydrate";
-            f["name"] = "Fats";
-            p["value"] += Math.round(obj["Protein"]);
-            c["value"] += Math.round(obj["Carbohydrate"]);
-            f["value"] += Math.round(obj["Fats"]);
-        }
-
-        resultsArray.push(f);
-        resultsArray.push(p);
-        resultsArray.push(c);
-        return resultsArray;
-    },
-
-    calculateDailyCalories: function calculateDailyCalories(array) {
-        var totalCalories = 0;
-
-        if (!array) {
-            return totalCalories;
-        }
-
-        for (var i = 0; i < array.length; i++) {
-            var entryCalories = array[i].Calories;
-
-            totalCalories += entryCalories;
-        }
-
-        return totalCalories;
+    if (obj.gender === "male") {
+      restingEnergy = 10 * obj.weight + 6.25 * obj.height - 5 * obj.age + 5;
+    } else if (obj.gender === "female") {
+      restingEnergy = 10 * obj.weight + 6.25 * obj.height - 5 * obj.age - 161;
     }
+
+    if (obj.activityLevel === "sedentary") {
+      TDEE = restingEnergy * 1.2;
+    } else if (obj.activityLevel === "lightActivity") {
+      TDEE = restingEnergy * 1.375;
+    } else if (obj.activityLevel === "moderateActivity") {
+      TDEE = restingEnergy * 1.55;
+    } else if (obj.activityLevel === "veryActive") {
+      TDEE = restingEnergy * 1.725;
+    }
+
+    if (obj.goal === "lose") {
+      totalTDEE = TDEE - TDEE * 0.2;
+    } else if (obj.goal === "lose10%") {
+      totalTDEE = TDEE - TDEE * 0.1;
+    } else if (obj.goal === "gain") {
+      totalTDEE = TDEE + TDEE * 0.2;
+    }
+
+    return Math.round(totalTDEE);
+  },
+
+  calculateMacros: function calculateMacros(calories) {
+    var obj = {};
+    obj["protiens"] = Math.round(calories / 4);
+    obj["carbohydrates"] = Math.round(calories / 4);
+    obj["fats"] = Math.round(calories / 9);
+
+    return obj;
+  },
+
+  redesign: function redesign(array) {
+    var redesignedObj = {};
+    var name = void 0;
+
+    for (var i = 0; i < array.length; i++) {
+      var obj = array[i];
+      name = obj.name;
+
+      for (var j = 0; j < name.length; j++) {
+        var char = name[j];
+        if (char === ",") {
+          name = name.slice(0, j);
+        }
+      }
+
+      redesignedObj[name] = obj.value;
+    }
+    return redesignedObj;
+  },
+
+  designEntriesArray: function designEntriesArray(array) {
+    var resultsArray = [];
+    var f = {
+      name: "Fats",
+      value: 0
+    };
+    var p = {
+      name: "Proteins",
+      value: 0
+    };
+    var c = {
+      name: "Carbohydrates",
+      value: 0
+    };
+
+    for (var i = 0; i < array.length; i++) {
+      var obj = array[i];
+
+      p["name"] = "Protein";
+      c["name"] = "Carbohydrate";
+      f["name"] = "Fats";
+      p["value"] += Math.round(obj["Protein"]);
+      c["value"] += Math.round(obj["Carbohydrate"]);
+      f["value"] += Math.round(obj["Fats"]);
+    }
+
+    resultsArray.push(f);
+    resultsArray.push(p);
+    resultsArray.push(c);
+    return resultsArray;
+  },
+
+  calculateDailyCalories: function calculateDailyCalories(array) {
+    var totalCalories = 0;
+
+    if (!array) {
+      return totalCalories;
+    }
+
+    for (var i = 0; i < array.length; i++) {
+      var entryCalories = array[i].Calories;
+
+      totalCalories += entryCalories;
+    }
+
+    return totalCalories;
+  }
 };
 
 /***/ }),
@@ -51086,7 +51143,7 @@ var CaloriesInputed = function CaloriesInputed(props) {
   return _react2.default.createElement(
     "span",
     null,
-    props.items === undefined ? 2000 : _helpers2.default.calculateDailyCalories(props.items) + "   =   "
+    props.items === undefined ? 2000 : _helpers2.default.calculateDailyCalories(props.items)
   );
 };
 
@@ -52823,6 +52880,10 @@ var _store2 = _interopRequireDefault(_store);
 
 var _reactRouterDom = __webpack_require__(41);
 
+var _helpers = __webpack_require__(87);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
 var _reactBootstrap = __webpack_require__(44);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -52844,7 +52905,7 @@ var UserStats = function (_React$Component) {
     _this.state = {
       activityLevel: "sedentary",
       goal: "lose",
-      gender: "Male",
+      gender: "male",
       weight: 0,
       height: 0,
       age: 0,
@@ -52853,13 +52914,13 @@ var UserStats = function (_React$Component) {
       value: 1
     };
     _this.handleActivityLevel = _this.handleActivityLevel.bind(_this);
-    // this.handleGender = this.handleGender.bind(this)
-    // this.handleSubmitUserStats = this.handleSubmitUserStats.bind(this)
+    _this.handleSubmitUserStats = _this.handleSubmitUserStats.bind(_this);
     _this.handleGoal = _this.handleGoal.bind(_this);
     _this.handleAge = _this.handleAge.bind(_this);
     _this.handleFeet = _this.handleFeet.bind(_this);
     _this.handleInches = _this.handleInches.bind(_this);
     _this.handleWeight = _this.handleWeight.bind(_this);
+    _this.handleGender = _this.handleGender.bind(_this);
     // this.handleInputChange = this.handleInputChange.bind(this)
     return _this;
   }
@@ -52887,13 +52948,6 @@ var UserStats = function (_React$Component) {
         activityLevel: event.target.value
       });
     }
-
-    // handleGender(event, index, value2) {
-    //     this.setState({
-    //         value2
-    //     })
-    // }
-
   }, {
     key: "handleGoal",
     value: function handleGoal(event) {
@@ -53008,16 +53062,41 @@ var UserStats = function (_React$Component) {
     // }
 
   }, {
+    key: "handleSubmitUserStats",
+    value: function handleSubmitUserStats() {
+      var email = this.props.email;
+
+      var userBodyData = {
+        age: this.state.age,
+        weight: this.state.weight,
+        height: this.state.height,
+        gender: this.state.gender,
+        goal: this.state.goal,
+        activityLevel: this.state.activityLevel
+      };
+
+      var calcCalories = _helpers2.default.calculateCalories(userBodyData);
+      var macrosNutrients = _helpers2.default.calculateMacros(calcCalories);
+
+      userBodyData["email"] = email;
+      userBodyData["calories"] = calcCalories;
+      userBodyData["protiens"] = macrosNutrients.protiens;
+      userBodyData["carbohydrates"] = macrosNutrients.carbohydrates;
+      userBodyData["fats"] = macrosNutrients.fats;
+      userBodyData['createdAt'] = new Date();
+
+      _store2.default.dispatch((0, _index.setUserStats)(userBodyData));
+    }
+  }, {
+    key: "handleGender",
+    value: function handleGender(event) {
+      this.setState({
+        gender: event.target.value
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log('user stats ', this.state);
-      // let userStats = this.props.stats[0]
-      // if (this.state.macros) {
-      //     return <Redirect to="/Journal" />
-      // }
-      // if (this.props.email === undefined) {
-      //     return <Redirect to="/" />
-      // }
       return (
         // <div className="profile">
         //     <h2>Body Statistics</h2>
@@ -53078,14 +53157,27 @@ var UserStats = function (_React$Component) {
             "form",
             null,
             _react2.default.createElement(
-              _reactBootstrap.Checkbox,
-              { checked: true, readOnly: true },
-              "Male"
-            ),
-            _react2.default.createElement(
-              _reactBootstrap.Checkbox,
-              { checked: true, readOnly: true },
-              "Female"
+              _reactBootstrap.FormGroup,
+              { controlId: "select-sex" },
+              _react2.default.createElement(
+                _reactBootstrap.ControlLabel,
+                null,
+                "Select Gender"
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.FormControl,
+                { onChange: this.handleGender, value: this.state.gender, componentClass: "select", placeholder: "select" },
+                _react2.default.createElement(
+                  "option",
+                  { value: "male" },
+                  "Male"
+                ),
+                _react2.default.createElement(
+                  "option",
+                  { value: "female" },
+                  "Female"
+                )
+              )
             ),
             _react2.default.createElement(
               _reactBootstrap.ControlLabel,
@@ -53198,7 +53290,7 @@ var UserStats = function (_React$Component) {
             ),
             _react2.default.createElement(
               _reactBootstrap.Button,
-              { bsStyle: "primary" },
+              { bsStyle: "primary", onClick: this.handleSubmitUserStats },
               "Update my stats"
             )
           )
@@ -53211,6 +53303,7 @@ var UserStats = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
+  console.log('userstas', state);
   var email = state.reducer.email;
   var stats = state.getUserStats.stats;
 
@@ -93654,6 +93747,36 @@ module.exports = function() {
 	throw new Error("define cannot be used indirect");
 };
 
+
+/***/ }),
+/* 865 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _constants = __webpack_require__(57);
+
+exports.default = function () {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var action = arguments[1];
+
+
+    switch (action.type) {
+        case _constants.SET_USERSTATS_SUCCESS:
+            var userObj = action.userObj;
+
+            return {
+                userObj: userObj
+            };
+        default:
+            return state;
+    }
+};
 
 /***/ })
 /******/ ]);
