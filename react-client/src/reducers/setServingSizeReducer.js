@@ -1,4 +1,4 @@
-import { SET_SERVING_SIZE, SUCCESS_SAVED_TO_DAILY_INTAKE } from '../constants';
+import { SET_SERVING_SIZE} from '../constants';
 
 export default (state = {}, action) => {
     switch (action.type) {

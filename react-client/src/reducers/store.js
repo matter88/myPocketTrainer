@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk';
 import reducer from './index.js';
 import todaysEntries from './getTodaysEntriesReducer.js';
