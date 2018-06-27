@@ -76,7 +76,7 @@ class DailySummary extends React.Component {
               </div>
               <div className="ds-large-num">
                 <div className="set-calories">
-                  <SetCalories />
+                  <RemainingCalories />
                 </div>
                 <div className="ds-buttons">
                   <Button

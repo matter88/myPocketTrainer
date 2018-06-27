@@ -175,7 +175,6 @@ class Header extends React.Component {
             </Button>
           </span>
         </div>
-        {/* <ResultsListUSDA/> */}
       </div>
     );
   }
