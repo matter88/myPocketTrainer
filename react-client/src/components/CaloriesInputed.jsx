@@ -9,7 +9,7 @@ const CaloriesInputed = props => {
     <span>
       {props.items === undefined
         ? 2000
-        : helpers.calculateDailyCalories(props.items) + "   =   "}
+        : helpers.calculateDailyCalories(props.items) }
     </span>
   );
 };

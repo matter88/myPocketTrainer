@@ -6,6 +6,7 @@ import todaysEntries from './getTodaysEntriesReducer.js';
 import getUserStats from './getUserStatsReducer.js';
 import setServingSize from './setServingSizeReducer.js';
 import headerSearchReducer from './headerSearchReducer';
+import userBodyStatsReducer from './userBodyStatsReducer';
 
 export default createStore(
     combineReducers({ 
@@ -13,7 +14,8 @@ export default createStore(
          todaysEntries, 
          getUserStats, 
          setServingSize, 
-         headerSearchReducer
+         headerSearchReducer,
+        userBodyStatsReducer
         }),
     {},
     applyMiddleware(thunk)
