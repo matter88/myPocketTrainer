@@ -25,6 +25,14 @@ class Header extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleResultListClick = this.handleResultListClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleKeyPress(target) {
+    event.preventDefault();
+    if (target.charCode === 13) {
+      store.dispatch(searchUSDA(this.state.searchTerm));
+    }
   }
 
   handleClick(event) {
@@ -96,7 +104,7 @@ class Header extends React.Component {
 
     if (itemName || nutrients) {
       return <NdbnoResultsList itemName={itemName} nutrients={nutrients} />;
-    } 
+    }
     if (items) {
       if (Object.keys(items).length) {
         return (
@@ -152,7 +160,7 @@ class Header extends React.Component {
           </Nav>
           <span className="searchBar">
             <form>
-              <FormGroup controlId="formBasicText">
+              <FormGroup controlId="formBasicText" onKeyPress={this.handleKeyPress}>
                 <FormControl
                   type="text"
                   value={this.state.value}
