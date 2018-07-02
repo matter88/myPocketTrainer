@@ -1,4 +1,9 @@
 module.exports = {
+  calculateProgressBars: obj => {
+    console.log(obj)
+  },
+
+
   calculateCalories: obj => {
     let restingEnergy = null;
     let TDEE = null;

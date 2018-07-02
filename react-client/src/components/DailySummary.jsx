@@ -52,10 +52,6 @@ class DailySummary extends React.Component {
   render() {
     let objArr;
 
-    if (this.props.email === undefined) {
-      return <Redirect to="/" />;
-    }
-
     this.props.items === undefined
       ? null
       : (objArr = helpers.designEntriesArray(this.props.items));
