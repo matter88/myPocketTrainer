@@ -103,8 +103,9 @@ body {
 }
 
 .searchBar {
-  width: 40vw;
-  margin-top: 5px;
+  /* width: 100vw; */
+  display: flex;
+  flex-direction: row;
 }
 
 .header-button1 {
@@ -128,21 +129,21 @@ body {
   /* flex-direction: column; */
   background: #EBEBEB;
   border: solid #EBEBEB;
-  border-radius: 25px;
+  /* border-radius: 25px; */
 }
 
 .daily-summary-header {
   background: #105380;
   color: white;
   border: solid #105380;
-  border-radius: 25px;
+  /* border-radius: 25px; */
 }
 
 .user-stats-container {
   border: solid;
   margin: 10px;
   padding: 10px;
-  border-radius: 25px;
+  /* border-radius: 25px; */
 }
 
 .login-form {

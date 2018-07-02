@@ -1,6 +1,22 @@
 module.exports = {
-  calculateProgressBars: obj => {
-    console.log(obj)
+  calculateProgressBars: arr => {
+    let progressObj = {
+      protein: 0,
+      carbohydrates: 0,
+      fats: 0,
+      calories: 0
+    };
+
+    for (var i = 0; i < arr.length; i++) {
+      let obj = arr[i];
+
+      progressObj.protein += obj.Protein;
+      progressObj.fats += obj.Fats;
+      progressObj.carbohydrates += obj.Carbohydrate;
+      progressObj.calories += obj.Calories;
+    }
+
+    return progressObj;
   },
 
 
