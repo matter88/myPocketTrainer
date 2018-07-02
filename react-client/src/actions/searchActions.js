@@ -4,10 +4,10 @@ import {
   NDBNO_SUBMITTEDD_SUCCESS
 } from "../constants.js";
 
-export function itemsFetchDataSuccessHeader(items) {
+export function itemsFetchDataSuccessHeader(itemsSearched) {
   let action = {
     type: "ITEMS_FETCH_DATA_SUCCESS_HEADER",
-    items
+    itemsSearched
   };
   return action;
 }
