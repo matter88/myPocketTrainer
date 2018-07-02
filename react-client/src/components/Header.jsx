@@ -160,14 +160,15 @@ class Header extends React.Component {
           </Nav>
           <span className="searchBar">
             <form>
-              <FormGroup controlId="formBasicText" onKeyPress={this.handleKeyPress}>
+              <FormGroup controlId="formBasicText" >
                 <FormControl
                   type="text"
                   value={this.state.value}
                   placeholder="What are we eating today?"
                   onChange={this.handleChange}
+                  onKeyPress={this.handleKeyPress}
+
                 />
-                <FormControl.Feedback />
               </FormGroup>
             </form>
           </span>
@@ -178,6 +179,7 @@ class Header extends React.Component {
               className="header-button1"
               bsStyle="primary"
               bsSize="small"
+
             >
               Search
             </Button>

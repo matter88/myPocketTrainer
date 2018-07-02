@@ -6,6 +6,7 @@ import Profile from "./UserStats.jsx";
 import Journal from "./DailySummary.jsx";
 import USDAsearch from "./USDAsearch.jsx";
 import CreateFood from "./CreateFood.jsx";
+import PreApp from "./PreApp.jsx";
 
 const Main = () => (
   <main>
