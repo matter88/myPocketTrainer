@@ -69,7 +69,7 @@ class DailySummary extends React.Component {
     store.dispatch(getTomorrowFoodAc(email));
   }
 
-  componentDidUpdate() {
+  componentWillMount() {
     let email = this.props.email;
     store.dispatch(getUserStats(email));
   }
@@ -126,9 +126,10 @@ class DailySummary extends React.Component {
       <div className="container-daily-summary">
       <div className="searchBar">
       <span>
-            <form>
-              <FormGroup controlId="formBasicText" >
+            <form className="search-input">
+              <FormGroup controlId="formBasicText" className="search-input">
                 <FormControl
+                className="search-input"
                   type="text"
                   value={this.state.value}
                   placeholder="What are we eating today?"
@@ -208,9 +209,9 @@ class DailySummary extends React.Component {
             <Progress />
           </div>
         </div>
-        <div className="daily-summary-header">
+        {/* <div className="daily-summary-header">
           <h5>Motivation Feed</h5>
-        </div>
+        </div> */}
       </div>
     );
   }

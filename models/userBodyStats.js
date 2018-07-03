@@ -28,7 +28,7 @@ const userBodyStatsSchema = mongoose.Schema({
   height: { type: Number },
   weight: { type: Number },
   calories: { type: Number },
-  protien: { type: Number },
+  protiens: { type: Number },
   carbohydrates: { type: Number },
   fats: { type: Number }
 });
@@ -40,7 +40,6 @@ const save = userStatsInput => {
     if (err) {
       console.log(err);
     }
-    console.log("saved from userBodyStats.js");
   });
 };
 
@@ -52,12 +51,10 @@ const find = email => {
       if (err) {
         console.log(err);
       }
-      console.log("find age 33 from userBodyStats.js");
     });
 };
 
 const getUserStats = email => {
-  console.log("get user stats invoked", email);
   let today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -70,7 +67,6 @@ const getUserStats = email => {
       if (err) {
         console.log("getUSefsfs", err);
       }
-      console.log("BANANAPANCAKES", data);
     });
 };
 
