@@ -36,72 +36,51 @@ class CreateFood extends React.Component {
           <h5>Create Food Entry</h5>
         </div>
         <form>
-          <FormGroup controlId="select-sex">
-            <ControlLabel>Select Serving Size</ControlLabel>
+          <ControlLabel>Serving Size:</ControlLabel>
+          <div className="serving-size">
             <FormControl
-              onChange={this.handleGender}
-              value={this.state.gender}
-              componentClass="select"
-              placeholder="select"
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </FormControl>
-          </FormGroup>
-          <ControlLabel>Height:</ControlLabel>
-          <div className="height">
-            <FormControl
-              type="height"
-              placeholder="Feet"
+              type="serving-size"
+              placeholder="Measurement"
               onChange={this.handleFeet}
             />
-            <FormControl
-              type="height"
-              placeholder="Inches"
-              onChange={this.handleInches}
-            />
+            
           </div>
-          <ControlLabel>Weight:</ControlLabel>
+          <ControlLabel>Calories:</ControlLabel>
           <FormControl
-            type="weight"
-            placeholder="Weight"
+            type="calories"
+            placeholder="Calories"
             onChange={this.handleWeight}
           />
-          <ControlLabel>Age:</ControlLabel>
+          <ControlLabel>Proteins:</ControlLabel>
           <FormControl
-            type="age"
-            placeholder="Age"
+            type="protein"
+            placeholder="Protein"
             onChange={this.handleAge}
           />
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Select Activity Level</ControlLabel>
+          <ControlLabel>Fats:</ControlLabel>
+          <div className="fats">
             <FormControl
-              onChange={this.handleActivityLevel}
-              componentClass="select"
-              placeholder="select"
-            >
-              <option value="sedentary">Sedentary</option>
-              <option value="lightActivity">Light Activity</option>
-              <option value="moderateActivity">Moderate Activity</option>
-              <option value="veryActive">Very Active</option>
-            </FormControl>
-          </FormGroup>
-          <FormGroup>
-            <ControlLabel>Select Goal</ControlLabel>
-
-            <FormControl
-              onChange={this.handleGoal}
-              componentClass="select"
-              placeholder="select"
-            >
-              <option value="lose">Lose</option>
-              <option value="lose10%">Lose10%</option>
-              <option value="maintain">Maintain</option>
-              <option value="gain">Gain</option>
-            </FormControl>
-          </FormGroup>
+              type="fats"
+              placeholder="Fats"
+              onChange={this.handleFeet}
+            />
+            
+          </div>
+          <ControlLabel>Carbohydrates:</ControlLabel>
+          <FormControl
+            type="carbohydrates"
+            placeholder="Carbohydrates"
+            onChange={this.handleWeight}
+          />
+          <ControlLabel>Fibers:</ControlLabel>
+          <FormControl
+            type="fibers"
+            placeholder="Fibers"
+            onChange={this.handleAge}
+          />
+          <br/>
           <Button bsStyle="primary" onClick={this.handleSubmitUserStats}>
-            Update my stats
+            Save Food Entry
           </Button>
         </form>
       </div>
