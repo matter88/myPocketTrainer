@@ -24,7 +24,6 @@ class Header extends React.Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.handleResultListClick = this.handleResultListClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
@@ -64,16 +63,7 @@ class Header extends React.Component {
     });
   }
 
-  // handleResultListClick(string) {
-  //   this.setState(
-  //     {
-  //       ndbno: string
-  //     },
-  //     () => {
-  //       this.handleSubmitNDBNO();
-  //     }
-  //   );
-  // }
+
 
   signOut() {
     firebaseApp
@@ -101,22 +91,9 @@ class Header extends React.Component {
     let signOut;
     let signUp;
     let dailySummary;
+    let create;
 
-    // if (itemName || nutrients) {
-    //   return <NdbnoResultsList itemName={itemName} nutrients={nutrients} />;
-    // }
-    // if (items) {
-    //   if (Object.keys(items).length) {
-    //     return (
-    //       <div>
-    //         <ResultsListUSDA
-    //           items={items.list.item}
-    //           handleClick={this.handleResultListClick}
-    //         />
-    //       </div>
-    //     );
-    //   }
-    // }
+  
     if (!email) {
       signUp = (
         <Link className="headerLink" to="/SignUp">
@@ -130,7 +107,7 @@ class Header extends React.Component {
       );
     } else {
       signOut = (
-        <Link className="headerLink" to="/" onClick={() => this.signOut()}>
+        <Link className="headerLink" to="/Test" onClick={() => this.signOut()}>
           SignOut
         </Link>
       );
@@ -142,6 +119,11 @@ class Header extends React.Component {
       profile = (
         <Link className="headerLink" to="/Profile">
           Profile
+        </Link>
+      );
+      create = (
+        <Link className="headerLink" to="/Create">
+          Create
         </Link>
       );
     }
@@ -156,6 +138,7 @@ class Header extends React.Component {
             {profile}
             {signIn}
             {dailySummary}
+            {create}
             {signOut}
           </Nav>
         </div>

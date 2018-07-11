@@ -17,6 +17,7 @@ const Main = () => (
       <Route path="/Profile" component={Profile} />
       <Route path="/Journal" component={Journal} />
       <Route path="/Create" component={CreateFood} />
+      <Route path="/Test" component={PreApp}/>
     </Switch>
   </main>
 );
