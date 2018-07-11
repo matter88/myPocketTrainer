@@ -51349,150 +51349,78 @@ var CreateFood = function (_React$Component) {
           "form",
           null,
           _react2.default.createElement(
-            _reactBootstrap.FormGroup,
-            { controlId: "select-sex" },
-            _react2.default.createElement(
-              _reactBootstrap.ControlLabel,
-              null,
-              "Select Serving Size"
-            ),
-            _react2.default.createElement(
-              _reactBootstrap.FormControl,
-              {
-                onChange: this.handleGender,
-                value: this.state.gender,
-                componentClass: "select",
-                placeholder: "select"
-              },
-              _react2.default.createElement(
-                "option",
-                { value: "male" },
-                "Male"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "female" },
-                "Female"
-              )
-            )
-          ),
-          _react2.default.createElement(
             _reactBootstrap.ControlLabel,
             null,
-            "Height:"
+            "Serving Size:"
           ),
           _react2.default.createElement(
             "div",
-            { className: "height" },
+            { className: "serving-size" },
             _react2.default.createElement(_reactBootstrap.FormControl, {
-              type: "height",
-              placeholder: "Feet",
+              type: "serving-size",
+              placeholder: "Measurement",
               onChange: this.handleFeet
-            }),
-            _react2.default.createElement(_reactBootstrap.FormControl, {
-              type: "height",
-              placeholder: "Inches",
-              onChange: this.handleInches
             })
           ),
           _react2.default.createElement(
             _reactBootstrap.ControlLabel,
             null,
-            "Weight:"
+            "Calories:"
           ),
           _react2.default.createElement(_reactBootstrap.FormControl, {
-            type: "weight",
-            placeholder: "Weight",
+            type: "calories",
+            placeholder: "Calories",
             onChange: this.handleWeight
           }),
           _react2.default.createElement(
             _reactBootstrap.ControlLabel,
             null,
-            "Age:"
+            "Proteins:"
           ),
           _react2.default.createElement(_reactBootstrap.FormControl, {
-            type: "age",
-            placeholder: "Age",
+            type: "protein",
+            placeholder: "Protein",
             onChange: this.handleAge
           }),
           _react2.default.createElement(
-            _reactBootstrap.FormGroup,
-            { controlId: "formControlsSelect" },
-            _react2.default.createElement(
-              _reactBootstrap.ControlLabel,
-              null,
-              "Select Activity Level"
-            ),
-            _react2.default.createElement(
-              _reactBootstrap.FormControl,
-              {
-                onChange: this.handleActivityLevel,
-                componentClass: "select",
-                placeholder: "select"
-              },
-              _react2.default.createElement(
-                "option",
-                { value: "sedentary" },
-                "Sedentary"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "lightActivity" },
-                "Light Activity"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "moderateActivity" },
-                "Moderate Activity"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "veryActive" },
-                "Very Active"
-              )
-            )
+            _reactBootstrap.ControlLabel,
+            null,
+            "Fats:"
           ),
           _react2.default.createElement(
-            _reactBootstrap.FormGroup,
-            null,
-            _react2.default.createElement(
-              _reactBootstrap.ControlLabel,
-              null,
-              "Select Goal"
-            ),
-            _react2.default.createElement(
-              _reactBootstrap.FormControl,
-              {
-                onChange: this.handleGoal,
-                componentClass: "select",
-                placeholder: "select"
-              },
-              _react2.default.createElement(
-                "option",
-                { value: "lose" },
-                "Lose"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "lose10%" },
-                "Lose10%"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "maintain" },
-                "Maintain"
-              ),
-              _react2.default.createElement(
-                "option",
-                { value: "gain" },
-                "Gain"
-              )
-            )
+            "div",
+            { className: "fats" },
+            _react2.default.createElement(_reactBootstrap.FormControl, {
+              type: "fats",
+              placeholder: "Fats",
+              onChange: this.handleFeet
+            })
           ),
+          _react2.default.createElement(
+            _reactBootstrap.ControlLabel,
+            null,
+            "Carbohydrates:"
+          ),
+          _react2.default.createElement(_reactBootstrap.FormControl, {
+            type: "carbohydrates",
+            placeholder: "Carbohydrates",
+            onChange: this.handleWeight
+          }),
+          _react2.default.createElement(
+            _reactBootstrap.ControlLabel,
+            null,
+            "Fibers:"
+          ),
+          _react2.default.createElement(_reactBootstrap.FormControl, {
+            type: "fibers",
+            placeholder: "Fibers",
+            onChange: this.handleAge
+          }),
+          _react2.default.createElement("br", null),
           _react2.default.createElement(
             _reactBootstrap.Button,
             { bsStyle: "primary", onClick: this.handleSubmitUserStats },
-            "Update my stats"
+            "Save Food Entry"
           )
         )
       );
