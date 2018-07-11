@@ -1,6 +1,5 @@
 import React from "react";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+import { FormGroup, ControlLabel, FormControl, Button } from "react-bootstrap";
 
 class CreateFood extends React.Component {
   constructor(props) {
@@ -29,47 +28,70 @@ class CreateFood extends React.Component {
   handleSubmit() {
     alert(this.state);
   }
-
+  
   render() {
     return (
-      <div>
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Food Name"
-          floatingLabelFixed={true}
-          onChange={this.handleFoodName}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Calories"
-          floatingLabelFixed={true}
-          onChange={this.handleCalories}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Fats"
-          floatingLabelFixed={true}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Proteins"
-          floatingLabelFixed={true}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Carbohydrates"
-          floatingLabelFixed={true}
-        />
-        <br />
-        <RaisedButton
-          onClick={this.handleSubmit}
-          label="Create"
-          primary={true}
-        />
+      <div className="user-stats-container">
+        <div className="user-stats-header">
+          <h5>Create Food Entry</h5>
+        </div>
+        <form>
+          <ControlLabel>Food Name:</ControlLabel>
+          <div className="food-name">
+            <FormControl
+              type="food-name"
+              placeholder="Name"
+              onChange={this.handleFeet}
+            />
+            
+          </div>
+          <ControlLabel>Serving Size:</ControlLabel>
+          <div className="serving-size">
+            <FormControl
+              type="serving-size"
+              placeholder="Measurement"
+              onChange={this.handleFeet}
+            />
+            
+          </div>
+          <ControlLabel>Calories:</ControlLabel>
+          <FormControl
+            type="calories"
+            placeholder="Calories"
+            onChange={this.handleWeight}
+          />
+          <ControlLabel>Proteins:</ControlLabel>
+          <FormControl
+            type="protein"
+            placeholder="Protein"
+            onChange={this.handleAge}
+          />
+          <ControlLabel>Fats:</ControlLabel>
+          <div className="fats">
+            <FormControl
+              type="fats"
+              placeholder="Fats"
+              onChange={this.handleFeet}
+            />
+            
+          </div>
+          <ControlLabel>Carbohydrates:</ControlLabel>
+          <FormControl
+            type="carbohydrates"
+            placeholder="Carbohydrates"
+            onChange={this.handleWeight}
+          />
+          <ControlLabel>Fibers:</ControlLabel>
+          <FormControl
+            type="fibers"
+            placeholder="Fibers"
+            onChange={this.handleAge}
+          />
+          <br/>
+          <Button bsStyle="primary" onClick={this.handleSubmitUserStats}>
+            Save Food Entry
+          </Button>
+        </form>
       </div>
     );
   }

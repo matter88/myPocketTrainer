@@ -6,6 +6,7 @@ import Profile from "./UserStats.jsx";
 import Journal from "./DailySummary.jsx";
 import USDAsearch from "./USDAsearch.jsx";
 import CreateFood from "./CreateFood.jsx";
+import PreApp from "./PreApp.jsx";
 
 const Main = () => (
   <main>
@@ -16,6 +17,7 @@ const Main = () => (
       <Route path="/Profile" component={Profile} />
       <Route path="/Journal" component={Journal} />
       <Route path="/Create" component={CreateFood} />
+      <Route path="/Test" component={PreApp}/>
     </Switch>
   </main>
 );

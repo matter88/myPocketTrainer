@@ -24,7 +24,14 @@ class Header extends React.Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleResultListClick = this.handleResultListClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleKeyPress(target) {
+    event.preventDefault();
+    if (target.charCode === 13) {
+      store.dispatch(searchUSDA(this.state.searchTerm));
+    }
   }
 
   handleClick(event) {
@@ -56,16 +63,7 @@ class Header extends React.Component {
     });
   }
 
-  handleResultListClick(string) {
-    this.setState(
-      {
-        ndbno: string
-      },
-      () => {
-        this.handleSubmitNDBNO();
-      }
-    );
-  }
+
 
   signOut() {
     firebaseApp
@@ -93,22 +91,9 @@ class Header extends React.Component {
     let signOut;
     let signUp;
     let dailySummary;
+    let create;
 
-    if (itemName || nutrients) {
-      return <NdbnoResultsList itemName={itemName} nutrients={nutrients} />;
-    } 
-    if (items) {
-      if (Object.keys(items).length) {
-        return (
-          <div>
-            <ResultsListUSDA
-              items={items.list.item}
-              handleClick={this.handleResultListClick}
-            />
-          </div>
-        );
-      }
-    }
+  
     if (!email) {
       signUp = (
         <Link className="headerLink" to="/SignUp">
@@ -122,7 +107,7 @@ class Header extends React.Component {
       );
     } else {
       signOut = (
-        <Link className="headerLink" to="/" onClick={() => this.signOut()}>
+        <Link className="headerLink" to="/Test" onClick={() => this.signOut()}>
           SignOut
         </Link>
       );
@@ -134,6 +119,11 @@ class Header extends React.Component {
       profile = (
         <Link className="headerLink" to="/Profile">
           Profile
+        </Link>
+      );
+      create = (
+        <Link className="headerLink" to="/Create">
+          Create
         </Link>
       );
     }
@@ -148,32 +138,9 @@ class Header extends React.Component {
             {profile}
             {signIn}
             {dailySummary}
+            {create}
             {signOut}
           </Nav>
-          <span className="searchBar">
-            <form>
-              <FormGroup controlId="formBasicText">
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="What are we eating today?"
-                  onChange={this.handleChange}
-                />
-                <FormControl.Feedback />
-              </FormGroup>
-            </form>
-          </span>
-          <span>
-            <Button
-              onClick={this.handleSubmit}
-              onChange={this.handleChange}
-              className="header-button1"
-              bsStyle="primary"
-              bsSize="small"
-            >
-              Search
-            </Button>
-          </span>
         </div>
       </div>
     );

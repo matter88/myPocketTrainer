@@ -3,9 +3,9 @@ import { ITEMS_FETCH_DATA_SUCCESS_HEADER, NDBNO_SUBMITTEDD_SUCCESS, SUCCESS_SAVE
 export default (state = [], action) => {
     switch (action.type) {
         case ITEMS_FETCH_DATA_SUCCESS_HEADER:
-            const { items } = action;
+            const { itemsSearched } = action;
             return {
-                items
+                itemsSearched
             }
         case NDBNO_SUBMITTEDD_SUCCESS:
             const {
