@@ -19,6 +19,7 @@ import { Button, FormControl, FormGroup } from "react-bootstrap";
 import Progress from "./Progress.jsx";
 import ResultsListUSDA from "./ResultsListUSDA.jsx"
 import NdbnoResultsList from "./NdbnoResultsList.jsx";
+import { Redirect } from "react-router-dom";
 
 class DailySummary extends React.Component {
   constructor(props) {
@@ -30,7 +31,9 @@ class DailySummary extends React.Component {
       todaysMacros: [],
       todaysCalories: 0,
       searchTerm: 'banana',
-      ndbno: ''
+      ndbno: '',
+      createFood: false,
+      toUserStats: false,
     };
     this.getTomorrowFoodEntries = this.getTomorrowFoodEntries.bind(this);
     this.getYesterday = this.getYesterday.bind(this);
@@ -39,6 +42,8 @@ class DailySummary extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleResultListClick = this.handleResultListClick.bind(this);
     this.handleSubmitNDBNO = this.handleSubmitNDBNO.bind(this);
+    this.handleToCreate = this.handleToCreate.bind(this)
+    this.handleToUserStats = this.handleToUserStats.bind(this)
   }
 
   handleKeyPress(target) {
@@ -94,11 +99,34 @@ class DailySummary extends React.Component {
     );
   }
 
+  handleToCreate() {
+    this.setState({
+      createFood: true
+    })
+  }
+
+  handleToUserStats() {
+    this.setState({
+      toUserStats: true
+    })
+  }
+
   render() {
     const { itemsSearched } = this.props;
     const { itemName } = this.props;
     const { nutrients } = this.props;
-
+    if (this.state.toUserStats) {
+      return (
+        <Redirect to="./Profile"/>
+      )
+    }
+    if (this.state.createFood) {
+      return (
+        <div>
+          <Redirect to="./Create"/>
+        </div>
+      )
+    }
     if (itemName || nutrients) {
       return <NdbnoResultsList itemName={itemName} nutrients={nutrients} />;
     }
@@ -161,7 +189,7 @@ class DailySummary extends React.Component {
             <div>
               <div className="calories-remaining">
                 Calories Remaining
-                <a className="ds-update-button" href="www.google.com">
+                <a className="ds-update-button" onClick={this.handleToUserStats}>
                   Update
                 </a>
               </div>
@@ -181,6 +209,7 @@ class DailySummary extends React.Component {
                     className="ds-button2"
                     bsStyle="primary"
                     bsSize="small"
+                    onClick={this.handleToCreate}
                   >
                     Add Food
                   </Button>
