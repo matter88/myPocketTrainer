@@ -50545,6 +50545,20 @@ var CreateFood = function (_React$Component) {
           _react2.default.createElement(
             _reactBootstrap.ControlLabel,
             null,
+            "Food Name:"
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "food-name" },
+            _react2.default.createElement(_reactBootstrap.FormControl, {
+              type: "food-name",
+              placeholder: "Name",
+              onChange: this.handleFeet
+            })
+          ),
+          _react2.default.createElement(
+            _reactBootstrap.ControlLabel,
+            null,
             "Serving Size:"
           ),
           _react2.default.createElement(

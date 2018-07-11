@@ -36,6 +36,15 @@ class CreateFood extends React.Component {
           <h5>Create Food Entry</h5>
         </div>
         <form>
+          <ControlLabel>Food Name:</ControlLabel>
+          <div className="food-name">
+            <FormControl
+              type="food-name"
+              placeholder="Name"
+              onChange={this.handleFeet}
+            />
+            
+          </div>
           <ControlLabel>Serving Size:</ControlLabel>
           <div className="serving-size">
             <FormControl
