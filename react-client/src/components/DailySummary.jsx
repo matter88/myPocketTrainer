@@ -140,7 +140,7 @@ class DailySummary extends React.Component {
               </FormGroup>
             </form>
           </span>
-          <span>
+          <span className="button-search">
             <Button
               onClick={this.handleSubmit}
               onChange={this.handleChange}

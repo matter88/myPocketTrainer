@@ -1,6 +1,5 @@
 import React from "react";
-import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+import { FormGroup, ControlLabel, FormControl, Button } from "react-bootstrap";
 
 class CreateFood extends React.Component {
   constructor(props) {
@@ -29,47 +28,82 @@ class CreateFood extends React.Component {
   handleSubmit() {
     alert(this.state);
   }
-
+  
   render() {
     return (
-      <div>
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Food Name"
-          floatingLabelFixed={true}
-          onChange={this.handleFoodName}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Calories"
-          floatingLabelFixed={true}
-          onChange={this.handleCalories}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Fats"
-          floatingLabelFixed={true}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Proteins"
-          floatingLabelFixed={true}
-        />
-        <br />
-        <TextField
-          //   hintText="Food"
-          floatingLabelText="Carbohydrates"
-          floatingLabelFixed={true}
-        />
-        <br />
-        <RaisedButton
-          onClick={this.handleSubmit}
-          label="Create"
-          primary={true}
-        />
+      <div className="user-stats-container">
+        <div className="user-stats-header">
+          <h5>Create Food Entry</h5>
+        </div>
+        <form>
+          <FormGroup controlId="select-sex">
+            <ControlLabel>Select Serving Size</ControlLabel>
+            <FormControl
+              onChange={this.handleGender}
+              value={this.state.gender}
+              componentClass="select"
+              placeholder="select"
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </FormControl>
+          </FormGroup>
+          <ControlLabel>Height:</ControlLabel>
+          <div className="height">
+            <FormControl
+              type="height"
+              placeholder="Feet"
+              onChange={this.handleFeet}
+            />
+            <FormControl
+              type="height"
+              placeholder="Inches"
+              onChange={this.handleInches}
+            />
+          </div>
+          <ControlLabel>Weight:</ControlLabel>
+          <FormControl
+            type="weight"
+            placeholder="Weight"
+            onChange={this.handleWeight}
+          />
+          <ControlLabel>Age:</ControlLabel>
+          <FormControl
+            type="age"
+            placeholder="Age"
+            onChange={this.handleAge}
+          />
+          <FormGroup controlId="formControlsSelect">
+            <ControlLabel>Select Activity Level</ControlLabel>
+            <FormControl
+              onChange={this.handleActivityLevel}
+              componentClass="select"
+              placeholder="select"
+            >
+              <option value="sedentary">Sedentary</option>
+              <option value="lightActivity">Light Activity</option>
+              <option value="moderateActivity">Moderate Activity</option>
+              <option value="veryActive">Very Active</option>
+            </FormControl>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Select Goal</ControlLabel>
+
+            <FormControl
+              onChange={this.handleGoal}
+              componentClass="select"
+              placeholder="select"
+            >
+              <option value="lose">Lose</option>
+              <option value="lose10%">Lose10%</option>
+              <option value="maintain">Maintain</option>
+              <option value="gain">Gain</option>
+            </FormControl>
+          </FormGroup>
+          <Button bsStyle="primary" onClick={this.handleSubmitUserStats}>
+            Update my stats
+          </Button>
+        </form>
       </div>
     );
   }
