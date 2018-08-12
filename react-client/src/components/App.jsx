@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header.jsx';
 import Main from './Main.jsx';
 import Footer from './Footer.jsx';
+import { withAuthenticator } from 'aws-amplify-react';
 
 
 class App extends React.Component {
@@ -20,4 +21,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default withAuthenticator(App,{ includeGreetings: false });

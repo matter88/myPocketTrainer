@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { firebaseApp } from './config/firebase.js' ;
 import { BrowserRouter as Router } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import PreApp from './components/PreApp.jsx'
+import App from './components/App.jsx'
 import { logUser, logUserOUT } from './actions/index.js';
 import store from './reducers/store.js';
 import Amplify from 'aws-amplify';
@@ -24,10 +24,8 @@ firebaseApp.auth().onAuthStateChanged(function(user) {
 
 ReactDOM.render( 
   <Provider store={store}>
-    <Router>
-      <MuiThemeProvider>
-        <PreApp className="guava" />
-      </MuiThemeProvider>
+    <Router>   
+        <App className="guava" /> 
     </Router>
   </Provider>
 , document.getElementById('app')

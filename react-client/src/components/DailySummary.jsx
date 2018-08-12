@@ -21,6 +21,8 @@ import ResultsListUSDA from "./ResultsListUSDA.jsx"
 import NdbnoResultsList from "./NdbnoResultsList.jsx";
 import { Redirect } from "react-router-dom";
 
+
+
 class DailySummary extends React.Component {
   constructor(props) {
     super(props);
