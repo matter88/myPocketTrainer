@@ -160,10 +160,18 @@ class Area extends Component {
 
     let baseLine;
     if (hasStack || isRange) {
-      baseLine = points.map(entry => ({
-        x: layout === 'horizontal' ? entry.x : xAxis.scale(entry && entry.value[0]),
-        y: layout === 'horizontal' ? yAxis.scale(entry && entry.value[0]) : entry.y,
-      }));
+      baseLine = points.map((entry) => {
+        if (layout === 'horizontal') {
+          return {
+            x: entry.x,
+            y: !_.isNil(_.get(entry, 'value[0]')) ? yAxis.scale(_.get(entry, 'value[0]')) : null,
+          };
+        }
+        return {
+          x: !_.isNil(_.get(entry, 'value[0]')) ? xAxis.scale(_.get(entry, 'value[0]')) : null,
+          y: entry.y,
+        };
+      });
     } else if (layout === 'horizontal') {
       baseLine = yAxis.scale(baseValue);
     } else {

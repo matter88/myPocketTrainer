@@ -8,6 +8,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PreApp from './components/PreApp.jsx'
 import { logUser, logUserOUT } from './actions/index.js';
 import store from './reducers/store.js';
+import Amplify from 'aws-amplify';
+import configuration from '../../src/aws-exports.js'
+
+Amplify.configure(configuration);
 
 firebaseApp.auth().onAuthStateChanged(function(user) {
   if (user) {
